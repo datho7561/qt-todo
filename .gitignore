@@ -1,5 +1,3 @@
-./.vscode
-./.vscode/*
-./.vscode/**
-
-.bin
+.vscode
+.vscode/*
+.vscode/**
