@@ -1,3 +1,14 @@
+# Ignore editor settings and metadata
 .vscode
 .vscode/*
 .vscode/**
+
+# Don't want this included because it is generated on each platform by qmake
+Makefile
+
+# Standard compiler generated files
+**/ui_*.h
+**/*.o
+
+# Don't include the built application
+qt4-todo
