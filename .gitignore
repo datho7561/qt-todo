@@ -3,6 +3,9 @@
 .vscode/*
 .vscode/**
 
+# Don't include testing framework
+testing/catch.hpp
+
 # Don't want this included because it is generated on each platform by qmake
 Makefile
 
