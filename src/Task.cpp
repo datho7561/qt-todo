@@ -13,6 +13,31 @@ bool Task::is_overdue() const {
 }
 
 
+void Task::set_complete() {
+    completion_date = Date();
+}
+
+
+bool Task::is_expired(ExpiryPolicy expiry_policy) const {
+
+    if (!complete) {
+        return false;
+    }
+
+    switch (expiry_policy) {
+        case ExpiryPolicy::KEEP_ALL:
+            return false;
+        case ExpiryPolicy::KEEP_TODAY:
+            return completion_date < Date();
+        case ExpiryPolicy::KEEP_YESTERDAY:
+        // TODO:
+            return completion_date < Date() - 1;
+        default:
+            return false;
+    }
+}
+
+
 bool Task::operator < (const Task & other) const {
 
     if (deadline < other.deadline) {

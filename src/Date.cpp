@@ -33,17 +33,16 @@ Date::Date() {
 
 Date::Date(unsigned int day, unsigned int month, int year) {
 
-    if (day == 0 || day > 31) {
-        throw std::invalid_argument("Day is out of range");
-    }
-    day = day;
-
     if (month == 0 ||  month > 12) {
         throw std::invalid_argument("Month is out of range");
     }
 
-    month = month;
+    if (day == 0 || day > get_month_days(month, year)) {
+        throw std::invalid_argument("Day is out of range");
+    }
 
+    day = day;
+    month = month;
     year = year;
 }
 
@@ -115,6 +114,18 @@ std::string Date::to_computer_string() const {
 }
 
 
+Date Date::yesterday() const {
+    if (day - 1 > 0) {
+        return Date(day - 1, month, year);
+    }
+    if (month - 1 > 0) {
+        return Date(get_month_days(month - 1, year), month - 1, year);
+    }
+    // We know it has to be last day of December of year before
+    return Date(31, 12, year - 1);
+}
+
+
 bool Date::operator == (const Date & other) const {
     
     return (this->day == other.day
@@ -156,6 +167,43 @@ bool Date::operator <= (const Date & other) const {
 bool Date::operator >= (const Date & other) const {
 
     return (*this > other) || (*this == other);
+}
+
+
+unsigned int Date::get_month_days(unsigned int month, int year) {
+
+    switch (month) {
+        case 1:
+            return 31;
+        case 2:
+            // Convoluted leap year rules that I may hve gotten incorrect
+            if (year % 4 == 0 && !(year % 100 == 0 && year % 400 != 0)) {
+                return 29;
+            }
+            return 28;
+        case 3:
+            return 31;
+        case 4:
+            return 30;
+        case 5:
+            return 31;
+        case 6:
+            return 30;
+        case 7:
+            return 31;
+        case 8:
+            return 31;
+        case 9:
+            return 30;
+        case 10:
+            return 31;
+        case 11:
+            return 30;
+        case 12:
+            return 31;
+        default:
+            throw std::invalid_argument("Month value out of range");
+    }
 }
 
 

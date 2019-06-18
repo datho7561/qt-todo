@@ -11,13 +11,14 @@
 #include <string>
 
 #include "Date.h"
+#include "ExpiryPolicy.h"
 
 class Task {
 
 private:
     std::string name;
     Date deadline;
-    Date completionDate;
+    Date completion_date;
     bool complete;
 
 public:
@@ -44,20 +45,29 @@ public:
     /**
      * \brief Check if the Task is complete
      * 
-     * \return true if the task sis complete, false otherwise
+     * \return true if the task is complete, false otherwise
      */
     bool is_complete() const { return complete; }
 
     /**
      * \brief Returns if the deadline for this task has been passed
-     * 
      */
     bool is_overdue() const;
 
     /**
+     * \brief Checks if this Task is expired, i.e. it has been complete for
+     * the amount of time specified by the expiry policy.
+     * 
+     * \param expiryPolicy The policy to be used to check if this is considered
+     * expired
+     * \return true if this Task si expired, false otherwise
+     */
+    bool is_expired(ExpiryPolicy expiry_policy) const;
+
+    /**
      * \brief Set the Task to be completed
      */
-    void set_complete() { this->complete = true; }
+    void set_complete();
 
     /**
      * \brief Set the task to be incomplete

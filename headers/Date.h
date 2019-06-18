@@ -33,6 +33,15 @@ private:
     int year;
 
     /**
+     * \brief Get the number of days is a given month for a given year
+     * 
+     * \param month 
+     * \param year 
+     * \return unsigned int 
+     */
+    static unsigned int get_month_days(unsigned int month, int year);
+
+    /**
      * \brief Get the string representation of this month
      * 
      * \param month The month to get the string representation of
@@ -48,8 +57,6 @@ public:
      */
     Date();
 
-    // TODO: implement a more rigourous version of date verification (leap
-    // years, days in a month)
     /**
      * \brief Construct a new Date object with a give day, month, and year
      * 
@@ -109,6 +116,11 @@ public:
      * \return A computer-parsable string representation of the Date 
      */
     std::string to_computer_string() const;
+
+    /**
+     * \brief Get a Date object for the day before
+     */
+    Date yesterday() const;
 
     /**
      * \brief Check if two Dates are the same
