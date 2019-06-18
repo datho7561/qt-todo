@@ -50,7 +50,7 @@ Date::Date(unsigned int day, unsigned int month, int year) {
 Date::Date(std::string sourceString) {
 
     std::string readValue = "";
-    int i = 0;
+    unsigned int i = 0;
 
     // Read up until tab
     for (; sourceString[i] != '\t'; i++) {
@@ -74,7 +74,7 @@ Date::Date(std::string sourceString) {
     i++;
     readValue = "";
 
-    for (; sourceString[i] < sourceString.length(); i++) {
+    for (; i < sourceString.length(); i++) {
         readValue.push_back(sourceString[i]);
     }
     day = std::stoi(readValue);
@@ -110,7 +110,7 @@ std::string Date::to_computer_string() const {
     rep += std::to_string(month);
     rep += '\t';
     rep += std::to_string(day);
-
+    return rep;
 }
 
 

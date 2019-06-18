@@ -64,8 +64,8 @@ public:
      * \param month 
      * \param year 
      * 
-     * \throws invalid_argument if the day is > 31, the month is > 12, the day
-     * 0, or the month is zero
+     * \throws invalid_argument if the day is past the end of the given month,
+     * the month is > 12, or the day or the month is zero
      */
     Date(unsigned int day, unsigned int month, int year);
 

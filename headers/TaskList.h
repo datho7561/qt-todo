@@ -12,8 +12,8 @@
 class TaskList {
 
 private:
-    std::vector<Task> tasks;
     std::string name;
+    std::vector<Task> tasks;
 
 public:
 
@@ -26,10 +26,12 @@ public:
         name(name),
         tasks() {}
 
-    void remove_expired(ExpiryPolicy expiryPolicy) {
-        
-    }
-    
+    /**
+     * \brief Remove all expired items from the TaskList
+     * 
+     * \param expiry_policy The policy to determine if an item is expired
+     */
+    void remove_expired(ExpiryPolicy expiry_policy);
 
 };
 

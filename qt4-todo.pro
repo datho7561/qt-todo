@@ -5,13 +5,10 @@
 TEMPLATE = app
 TARGET = 
 DEPENDPATH += . src ui headers
-INCLUDEPATH += . headers
+INCLUDEPATH += . headers headers_ui
 UI_DIR = headers_ui
 
 # Input
-FORMS += ui/AddTaskWidget.ui \
-         ui/CantFindOrLoadDialog.ui \
-         ui/ListWidget.ui \
-         ui/MainWindow.ui \
-         ui/SettingsDialog.ui
-SOURCES += src/main.cpp
+FORMS += ui/*.ui
+SOURCES += src/*.cpp
+

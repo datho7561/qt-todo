@@ -40,7 +40,14 @@ public:
      * 
      * \return The name of the Task
      */
-    std::string get_name() const { return this->name; }
+    std::string get_name() const { return name; }
+
+    /**
+     * \brief Get the Task's deadline
+     * 
+     * \return The deadline of the task
+     */
+    Date get_deadline() const { return deadline; }
 
     /**
      * \brief Check if the Task is complete
@@ -60,7 +67,7 @@ public:
      * 
      * \param expiryPolicy The policy to be used to check if this is considered
      * expired
-     * \return true if this Task si expired, false otherwise
+     * \return true if this Task is expired, false otherwise
      */
     bool is_expired(ExpiryPolicy expiry_policy) const;
 

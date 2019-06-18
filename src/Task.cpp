@@ -30,8 +30,7 @@ bool Task::is_expired(ExpiryPolicy expiry_policy) const {
         case ExpiryPolicy::KEEP_TODAY:
             return completion_date < Date();
         case ExpiryPolicy::KEEP_YESTERDAY:
-        // TODO:
-            return completion_date < Date() - 1;
+            return completion_date < Date().yesterday();
         default:
             return false;
     }
@@ -64,6 +63,6 @@ bool Task::operator <= (const Task & other) const {
     return *this < other || *this == other;
 }
 
-bool Task::operator <= (const Task & other) const {
+bool Task::operator >= (const Task & other) const {
     return other < *this || *this == other;
 }
