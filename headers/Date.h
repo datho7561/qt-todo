@@ -38,7 +38,7 @@ private:
      * \param month The month to get the string representation of
      * \return The string representation of this month
      */
-    static std::string getMonthString(unsigned int month);
+    static std::string get_month_string(unsigned int month);
 
 public:
 
@@ -48,7 +48,7 @@ public:
      */
     Date();
 
-    // TODO: implement a more rigourous version of date verificatio (leap
+    // TODO: implement a more rigourous version of date verification (leap
     // years, days in a month)
     /**
      * \brief Construct a new Date object with a give day, month, and year
@@ -63,6 +63,13 @@ public:
     Date(unsigned int day, unsigned int month, int year);
 
     /**
+     * \brief Construct a new Date object from its comptuer-legible string
+     * 
+     * \param The computer legible string to use to make this Date object
+     */
+    Date(std::string sourceString);
+
+    /**
      * \brief Destroy a Date object
      */
     ~Date() {};
@@ -72,28 +79,36 @@ public:
      * 
      * \return The day of the Date
      */
-    unsigned int getDay() const { return day; }
+    unsigned int get_day() const { return day; }
 
     /**
      * \brief Get the month of this Date
      * 
      * \return The month of this Date
      */
-    unsigned int getMonth() const { return month; }
+    unsigned int get_month() const { return month; }
 
     /**
      * \brief Get the year of this Date
      * 
      * \return The year of this Date
      */
-    int getYear() const { return year; }
+    int get_year() const { return year; }
 
     /**
      * \brief Get a human-legible string representation of this Date
      * 
      * \return A human-legible string representation of this Date
      */
-    std::string toString() const;
+    std::string to_string() const;
+
+    /**
+     * \brief Returns a representation of the Date as a computer-parsable
+     * string
+     * 
+     * \return A computer-parsable string representation of the Date 
+     */
+    std::string to_computer_string() const;
 
     /**
      * \brief Check if two Dates are the same

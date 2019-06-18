@@ -48,12 +48,47 @@ Date::Date(unsigned int day, unsigned int month, int year) {
 }
 
 
-std::string Date::toString() const {
+Date::Date(std::string sourceString) {
+
+    std::string readValue = "";
+    int i = 0;
+
+    // Read up until tab
+    for (; sourceString[i] != '\t'; i++) {
+        readValue.push_back(sourceString[i]);
+    }
+
+    // Parse month
+    year = std::stoi(readValue);
+
+    // Skip past the tab character
+    i++;
+
+    // Reset string
+    readValue = "";
+
+    // Rinse & repeat
+    for (; sourceString[i] != '\t'; i++) {
+        readValue.push_back(sourceString[i]);
+    }
+    month = std::stoi(readValue);
+    i++;
+    readValue = "";
+
+    for (; sourceString[i] < sourceString.length(); i++) {
+        readValue.push_back(sourceString[i]);
+    }
+    day = std::stoi(readValue);
+
+}
+
+
+std::string Date::to_string() const {
 
     std::string rep = "";
 
     rep += std::to_string(day);
-    rep += getMonthString(month);
+    rep += get_month_string(month);
     rep += ", ";
     if (year < 0) {
         rep += std::to_string(-1 * year);
@@ -63,6 +98,19 @@ std::string Date::toString() const {
     }
 
     return rep;
+
+}
+
+
+std::string Date::to_computer_string() const {
+
+    std::string rep = "";
+
+    rep += std::to_string(year);
+    rep += 't';
+    rep += std::to_string(month);
+    rep += '\t';
+    rep += std::to_string(day);
 
 }
 
@@ -111,7 +159,7 @@ bool Date::operator >= (const Date & other) const {
 }
 
 
-std::string Date::getMonthString(unsigned int month) {
+std::string Date::get_month_string(unsigned int month) {
 
     switch (month) {
         case 1:
