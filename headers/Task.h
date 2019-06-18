@@ -61,10 +61,62 @@ public:
 
     /**
      * \brief Set the task to be incomplete
-     * 
      */
     void set_incomplete() { this->complete = false; }
 
+    /**
+     * \brief Checks if this Task should be ordered before another one
+     * \detail Orders by deadline first, then if the date is the same,
+     * orders by name lexicographially. Returns false if the Tasks are
+     * equivalent.
+     * 
+     * \param other The other Task to check the ordering against
+     * \return true if this task should be placed before the other
+     */
+    bool operator < (const Task & other) const;
+
+    /**
+     * \brief Checks if two Tasks are equivalent
+     * \detail Checks if the name and deadline are identical
+     * 
+     * \param other The other Task to check against
+     * \return true if the Tasks are equivalent, false otherwise
+     */
+    bool operator == (const Task & other) const;
+
+    /**
+     * \brief Checks if this Task should be ordered after another one
+     * \detail Orders by deadline first, then if the date is the same,
+     * orders by name lexicographially. Returns false if the Tasks are
+     * equivalent.
+     * 
+     * \param other The other Task to check the ordering against
+     * \return true if this task should be placed after the other
+     */
+    bool operator > (const Task & other) const;
+
+    /**
+     * \brief Check if this Task should be placed before another or if it is
+     * equivalent to another
+     * 
+     * \param other The Task to compare against
+     * \return true if either this Task should be placed before the other or
+     * the tasks are equivalent, false otherwise
+     */
+    bool operator <= (const Task & other) const;
+
+    /**
+     * \brief Check if this Task should be placed after another or if it is
+     * equivalent to another
+     * 
+     * \param other The Task to compare against
+     * \return true if either this Task should be placed after the other or
+     * the tasks are equivalent, false otherwise
+     */
+    bool operator >= (const Task & other) const;
+
 };
+
+
 
 #endif // TASK_H
