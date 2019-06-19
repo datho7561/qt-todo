@@ -17,7 +17,7 @@ template <typename T>
 class VectorForwardReadIterator: ForwardReadIterator<T> {
 
 private:
-    std::vector<T> * vect_ptr;
+    const std::vector<T> * vect_ptr;
     int i;
 
 public:
@@ -28,8 +28,8 @@ public:
      * \param vect_ptr A pointer to the vector to use for thi
      * VectorForwardReadIterator
      */
-    VectorForwardReadIterator(const std::vector<T> * vect_ptr):
-        vect_ptr(vect_ptr),
+    VectorForwardReadIterator(const std::vector<T> * vector_pointer):
+        vect_ptr(vector_pointer),
         i(0) {}
     
     // These are inherited from ForwardReadIterator

@@ -5,23 +5,38 @@
  * \date 2019-06-18
  */
 
+#include <algorithm>
+
 #include "TaskList.h"
-#include "VectorForwardReadIterator.h"
 
 void TaskList::remove_expired(ExpiryPolicy expiry_policy) {
 
-    std::vector<Task> new_tasks;
+    std::vector<Task> * new_tasks = new std::vector<Task>;
     for (
-        std::vector<Task>::iterator iter = tasks.begin();
-        iter != tasks.end();
+        std::vector<Task>::iterator iter = tasks->begin();
+        iter != tasks->end();
         iter++
         ) {
         // If its not expired, put it in the new list
         if (!iter->is_expired(expiry_policy)) {
-            new_tasks.push_back(*iter);
+            new_tasks->push_back(*iter);
         }
     }
+    delete tasks;
     tasks = new_tasks;
+}
+
+
+void TaskList::add_new(Task task) {
+    tasks->push_back(task);
+    // The array order is preserved everywhere else; this is the only spot
+    // where it may change. Sorting is excessive but I'm lazy TODO:
+    std::stable_sort<Task>(tasks->begin, tasks->end);
+}
+
+
+VectorForwardReadIterator<Task> TaskList::iterator() const {
+    return VectorForwardReadIterator<Task>(tasks);
 }
 
 
@@ -31,9 +46,9 @@ std::string TaskList::to_string() const {
     rep += name;
     rep += "\n";
 
-    for (int i = 0; i < tasks.size(); i++) {
+    for (unsigned int i = 0; i < tasks->size(); i++) {
 
-        rep += tasks[i].to_string();
+        rep += tasks->operator[](i).to_string();
         rep += '\n';
 
     }
@@ -46,7 +61,7 @@ std::string TaskList::to_string() const {
 TaskList TaskList::from_string(std::string string_rep) {
 
     std::vector<Task> tasks;
-    unsigned int end = string_rep.find('\n');
+    int end = string_rep.find('\n');
     std::string name = string_rep.substr(0, end);
     string_rep = string_rep.substr(0, end + 1);
     end = string_rep.find('\n');
@@ -59,9 +74,4 @@ TaskList TaskList::from_string(std::string string_rep) {
 
     return TaskList(name, tasks);
 
-}
-
-
-VectorForwardReadIterator<Task> TaskList::iterator() const {
-    return VectorForwardReadIterator<Task>(&tasks);
 }

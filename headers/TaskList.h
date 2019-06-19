@@ -14,12 +14,13 @@
 #include "Task.h"
 #include "ExpiryPolicy.h"
 #include "ForwardReadIterator.h"
+#include "VectorForwardReadIterator.h"
 
 class TaskList {
 
 private:
     std::string name;
-    std::vector<Task> tasks;
+    std::vector<Task> * tasks;
 
 public:
 
@@ -30,7 +31,7 @@ public:
      */
     TaskList(std::string name):
         name(name),
-        tasks() {}
+        tasks(new std::vector<Task>) {}
 
     /**
      * \brief Construct a new TaskList given its name and an array of its
@@ -41,7 +42,11 @@ public:
      */
     TaskList(std::string name, std::vector<Task> tasks):
         name(name),
-        tasks(tasks) {}
+        tasks(new std::vector<Task>(tasks)) {}
+
+    ~TaskList() {
+        delete tasks;
+    }
 
     /**
      * \brief Remove all expired items from the TaskList
