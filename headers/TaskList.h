@@ -13,6 +13,7 @@
 
 #include "Task.h"
 #include "ExpiryPolicy.h"
+#include "ForwardReadIterator.h"
 
 class TaskList {
 
@@ -45,7 +46,13 @@ public:
      */
     void add_new(Task task);
 
-    // TODO: Make an iterator getter
+    /**
+     * \brief Get an ForwardReadIterator that allows iterating through the
+     * Tasks
+     * 
+     * \returns A ForwardReadIterator over this TaskList's Tasks
+     */
+    ForwardReadIterator<Task> iterator() const;
 
     /**
      * \brief Convert this TaskList to a computer readable string

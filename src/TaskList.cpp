@@ -7,7 +7,6 @@
 
 #include "TaskList.h"
 
-
 void TaskList::remove_expired(ExpiryPolicy expiry_policy) {
 
     std::vector<Task> new_tasks;
