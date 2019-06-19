@@ -37,6 +37,68 @@ bool Task::is_expired(ExpiryPolicy expiry_policy) const {
 }
 
 
+std::string Task::to_string() const {
+
+    std::string rep = "";
+    rep += name;
+    rep += "\t";
+    rep += complete? "1" : "0";
+    rep += "\t";
+    rep += deadline.to_computer_string();
+    rep += "\t";
+    rep += completion_date.to_computer_string();
+    return rep;
+}
+
+
+static Task from_string(std::string str_rep) {
+
+    // TODO:
+    // reading a Task from string is not a linear algorithm (Dates must be read
+    // twice in order to process). Perhaps consider a refactor in order to
+    // make it linear time
+    std::string the_name = "";
+    std::string the_deadline = "";
+    std::string the_completion_date = "";
+
+    unsigned int i = 0;
+
+    for (; str_rep[i] != '\t'; i++) {
+        the_name +=  str_rep[i];
+    }
+
+    // Skip over tab
+    i++;
+
+    bool the_completion = str_rep[i] == '1';
+
+    // Skip to tab then to next character
+    i += 2;
+
+    // TODO: this is a very poor algorithm
+    // Read the deadline
+    for (int c = 0; c < 3; c++) {
+        for (; str_rep[i] != '\t'; i++) {
+            the_deadline += str_rep[i];
+        }
+        i++;
+        if (c != 2) {
+            the_deadline += '\t';
+        }
+    }
+
+    // The completion date is stored in the rest of the string
+    the_completion_date = str_rep.substr(i);
+
+    return Task(
+        the_name,
+        the_completion,
+        Date::from_string(the_deadline),
+        Date::from_string(the_completion_date));
+
+}
+
+
 bool Task::operator < (const Task & other) const {
 
     if (deadline < other.deadline) {

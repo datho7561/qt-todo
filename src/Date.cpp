@@ -47,18 +47,22 @@ Date::Date(unsigned int day, unsigned int month, int year) {
 }
 
 
-Date::Date(std::string sourceString) {
+// NOTE TO SELF: I don not need to reuse the keyword static here
+Date Date::from_string(std::string source_string) {
 
     std::string readValue = "";
     unsigned int i = 0;
+    int the_year;
+    unsigned int the_month;
+    unsigned int the_day;
 
     // Read up until tab
-    for (; sourceString[i] != '\t'; i++) {
-        readValue.push_back(sourceString[i]);
+    for (; source_string[i] != '\t'; i++) {
+        readValue.push_back(source_string[i]);
     }
 
     // Parse month
-    year = std::stoi(readValue);
+    the_year = std::stoi(readValue);
 
     // Skip past the tab character
     i++;
@@ -67,17 +71,19 @@ Date::Date(std::string sourceString) {
     readValue = "";
 
     // Rinse & repeat
-    for (; sourceString[i] != '\t'; i++) {
-        readValue.push_back(sourceString[i]);
+    for (; source_string[i] != '\t'; i++) {
+        readValue.push_back(source_string[i]);
     }
-    month = std::stoi(readValue);
+    the_month = std::stoi(readValue);
     i++;
     readValue = "";
 
-    for (; i < sourceString.length(); i++) {
-        readValue.push_back(sourceString[i]);
+    for (; i < source_string.length(); i++) {
+        readValue.push_back(source_string[i]);
     }
-    day = std::stoi(readValue);
+    the_day = std::stoi(readValue);
+
+    return Date(the_day, the_month, the_year);
 
 }
 
@@ -106,7 +112,7 @@ std::string Date::to_computer_string() const {
     std::string rep = "";
 
     rep += std::to_string(year);
-    rep += 't';
+    rep += '\t';
     rep += std::to_string(month);
     rep += '\t';
     rep += std::to_string(day);

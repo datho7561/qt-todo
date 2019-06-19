@@ -17,9 +17,9 @@ class Task {
 
 private:
     std::string name;
+    bool complete;
     Date deadline;
     Date completion_date;
-    bool complete;
 
 public:
 
@@ -32,8 +32,28 @@ public:
      */
     Task(std::string name, Date deadline):
         name(name),
+        complete(false),
         deadline(deadline),
-        complete(false) {}
+        completion_date() {}
+
+    /**
+     * \brief Construct a new Task object, specifying all values for instance
+     * variables.
+     * 
+     * \param name The name of the Task
+     * \param complete If the Task is complete
+     * \param deadline The date the Task is supposed to be compelted
+     * \param completion_date The date the Task was completed. If the Task is
+     * not complete, this value is unused
+     */
+    Task(std::string name,
+        bool complete,
+        Date deadline,
+        Date completion_date):
+        name(name),
+        complete(complete),
+        deadline(deadline),
+        completion_date(completion_date) {}
 
     /**
      * \brief Get the name of the Task
@@ -80,6 +100,21 @@ public:
      * \brief Set the task to be incomplete
      */
     void set_incomplete() { this->complete = false; }
+
+    /**
+     * \brief Convert this Task into a computer readable string
+     * 
+     * \returns A computer-readable string representation of this Task
+     */
+    std::string to_string() const;
+
+    /**
+     * \brief Make a Task from a computer-readable string that represents the
+     * Task
+     * 
+     * \returns The Task that the string represented
+     */
+    static Task from_string(std::string str_rep);
 
     /**
      * \brief Checks if this Task should be ordered before another one

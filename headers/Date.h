@@ -70,13 +70,6 @@ public:
     Date(unsigned int day, unsigned int month, int year);
 
     /**
-     * \brief Construct a new Date object from its comptuer-legible string
-     * 
-     * \param The computer legible string to use to make this Date object
-     */
-    Date(std::string sourceString);
-
-    /**
      * \brief Destroy a Date object
      */
     ~Date() {};
@@ -116,6 +109,14 @@ public:
      * \return A computer-parsable string representation of the Date 
      */
     std::string to_computer_string() const;
+
+    /**
+     * \brief Construct a new Date object from its comptuer-legible string
+     * 
+     * \param source_string The computer legible string to use to make this
+     * Date object
+     */
+    static Date from_string(std::string source_string);
 
     /**
      * \brief Get a Date object for the day before
