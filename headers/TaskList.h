@@ -33,6 +33,17 @@ public:
         tasks() {}
 
     /**
+     * \brief Construct a new TaskList given its name and an array of its
+     * elements
+     * 
+     * \param name The name of the TaskList
+     * \param tasks A vector of the Tasks in the TaskList
+     */
+    TaskList(std::string name, std::vector<Task> tasks):
+        name(name),
+        tasks(tasks) {}
+
+    /**
      * \brief Remove all expired items from the TaskList
      * 
      * \param expiry_policy The policy to determine if an item is expired
@@ -52,14 +63,14 @@ public:
      * 
      * \returns A ForwardReadIterator over this TaskList's Tasks
      */
-    ForwardReadIterator<Task> iterator() const;
+    VectorForwardReadIterator<Task> iterator() const;
 
     /**
      * \brief Convert this TaskList to a computer readable string
      * 
      * \returns The TaskList represented as a computer readable string
      */
-    std::string to_string();
+    std::string to_string() const;
 
     /**
      * \brief Make a TaskList from a computer readable TaskList string

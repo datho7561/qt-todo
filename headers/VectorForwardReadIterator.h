@@ -28,12 +28,14 @@ public:
      * \param vect_ptr A pointer to the vector to use for thi
      * VectorForwardReadIterator
      */
-    VectorForwardReadIterator(std::vector<T> * vect_ptr): vect_ptr(vect_ptr) {}
+    VectorForwardReadIterator(const std::vector<T> * vect_ptr):
+        vect_ptr(vect_ptr),
+        i(0) {}
     
     // These are inherited from ForwardReadIterator
-    virtual T get() const;
+    virtual const T get() const;
     virtual void next();
-    virtual bool has_next();
+    virtual bool has_next() const;
 
 };
 

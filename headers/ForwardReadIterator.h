@@ -17,7 +17,7 @@ public:
      * 
      * \returns The current item in the ForwardReadIterator
      */
-    virtual T get() const = 0;
+    virtual const T get() const = 0;
 
     /**
      * \brief Move to the next item in the ForwardReadIterator
