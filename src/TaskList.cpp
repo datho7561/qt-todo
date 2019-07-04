@@ -31,7 +31,7 @@ void TaskList::add_new(Task task) {
     tasks->push_back(task);
     // The array order is preserved everywhere else; this is the only spot
     // where it may change. Sorting is excessive but I'm lazy TODO:
-    std::stable_sort<Task>(tasks->begin, tasks->end);
+    std::stable_sort(tasks->begin(), tasks->end());
 }
 
 

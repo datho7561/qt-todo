@@ -8,19 +8,19 @@
 #include "VectorForwardReadIterator.h"
 
 
-template<typename T>
+template<class T>
 const T VectorForwardReadIterator<T>::get() const {
     return vect_ptr->operator[](i);
 }
 
 
-template<typename T>
+template<class T>
 void VectorForwardReadIterator<T>::next() {
     i++;
 }
 
 
-template<typename T>
+template<class T>
 bool VectorForwardReadIterator<T>::has_next() const {
     return i < vect_ptr->size;
 }

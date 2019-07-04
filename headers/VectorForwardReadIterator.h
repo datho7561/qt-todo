@@ -13,7 +13,7 @@
 
 #include "ForwardReadIterator.h"
 
-template <typename T>
+template <class T>
 class VectorForwardReadIterator: ForwardReadIterator<T> {
 
 private:
