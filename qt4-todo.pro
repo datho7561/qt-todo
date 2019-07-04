@@ -8,6 +8,23 @@ DEPENDPATH += . src ui headers
 INCLUDEPATH += . headers headers_ui
 UI_DIR = headers_ui
 
+# Platform specific settings
+
+# Windows
+win32 {
+    QMAKE_CXXFLAGS += /std:c++14
+}
+
+# Non Darwin Unix
+unix:!macx {
+    QMAKE_CXXFLAGS += -std=c++11
+}
+
+# Darwin (macos)
+macx {
+    QMAKE_CXXFLAGS += -std=c++11
+}
+
 # Input
 FORMS += ui/*.ui
 SOURCES += src/*.cpp
