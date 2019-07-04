@@ -51,7 +51,7 @@ std::string Task::to_string() const {
 }
 
 
-static Task from_string(std::string str_rep) {
+Task Task::from_string(std::string str_rep) {
 
     // TODO:
     // reading a Task from string is not a linear algorithm (Dates must be read

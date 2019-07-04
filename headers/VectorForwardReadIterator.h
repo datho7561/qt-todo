@@ -12,9 +12,10 @@
 #include <vector>
 
 #include "ForwardReadIterator.h"
+#include "Task.h"
 
-template <class T>
-class VectorForwardReadIterator: ForwardReadIterator<T> {
+template <typename T>
+class VectorForwardReadIterator: public ForwardReadIterator<T> {
 
 private:
     const std::vector<T> * vect_ptr;
@@ -38,5 +39,7 @@ public:
     virtual bool has_next() const;
 
 };
+
+template class VectorForwardReadIterator<Task>;
 
 #endif // VECTOR_FORWARD_READ_ITERATOR

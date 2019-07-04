@@ -28,4 +28,5 @@ macx {
 # Input
 FORMS += ui/*.ui
 SOURCES += src/*.cpp
+HEADERS += headers/*.h
 
