@@ -90,14 +90,12 @@ public:
     /**
      * \brief Write this setting to the default setting file.
      * \detail This setting file is placed under ~/.config/qt-todo as a plain
-     * text file that is computer readable. It is also placed in the same/
-     * corresponding place under Windows
+     * text file that is computer readable. It is also placed in the
+     * corresponding location under Windows
      * (i.e. C:\Users\<username>\.config\todo)
      * TODO: document the format so that it can be user changeable
      */
-    void write_to_file() const {
-
-    }
+    void write_to_file() const;
 
 };
 
