@@ -8,6 +8,8 @@
 #include "Task.h"
 
 
+namespace qttodo {
+
 bool Task::is_overdue() const {
     return deadline < Date();
 }
@@ -128,3 +130,5 @@ bool Task::operator <= (const Task & other) const {
 bool Task::operator >= (const Task & other) const {
     return other < *this || *this == other;
 }
+
+} // qttodo

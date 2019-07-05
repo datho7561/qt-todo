@@ -8,10 +8,14 @@
 #ifndef COLOUR_SCHEME_H
 #define COLOUR_SCHEME_H
 
+namespace qttodo {
+
 enum class ColourScheme {
 
     DEFAULT, MONOKAI, SOLARIZED
 
 };
+
+} // qttodo
 
 #endif // COLOUR_SCHEME_H

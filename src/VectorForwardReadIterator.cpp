@@ -8,6 +8,8 @@
 #include "VectorForwardReadIterator.h"
 
 
+namespace qttodo {
+
 template <typename T>
 const T VectorForwardReadIterator<T>::get() const {
     return vect_ptr->operator[](i);
@@ -24,3 +26,5 @@ template <typename T>
 bool VectorForwardReadIterator<T>::has_next() const {
     return i < vect_ptr->size();
 }
+
+} // qttodo

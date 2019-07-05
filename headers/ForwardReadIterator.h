@@ -8,6 +8,8 @@
 #ifndef FORWARD_READ_ITERATOR
 #define FORWARD_READ_ITERATOR
 
+namespace qttodo {
+
 template <typename T>
 class ForwardReadIterator {
 public:
@@ -34,5 +36,7 @@ public:
     virtual bool has_next() const = 0;
 
 };
+
+} // qttodo
 
 #endif // FORWARD_READ_ITERATOR

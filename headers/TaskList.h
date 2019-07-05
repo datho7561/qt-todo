@@ -16,6 +16,8 @@
 #include "ForwardReadIterator.h"
 #include "VectorForwardReadIterator.h"
 
+namespace qttodo {
+
 class TaskList {
 
 private:
@@ -86,5 +88,7 @@ public:
     static TaskList from_string(std::string string_rep);
 
 };
+
+} // qttodo
 
 #endif // TASK_LIST_H

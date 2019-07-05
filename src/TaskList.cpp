@@ -9,6 +9,9 @@
 
 #include "TaskList.h"
 
+
+namespace qttodo {
+
 void TaskList::remove_expired(ExpiryPolicy expiry_policy) {
 
     std::vector<Task> * new_tasks = new std::vector<Task>;
@@ -75,3 +78,5 @@ TaskList TaskList::from_string(std::string string_rep) {
     return TaskList(name, tasks);
 
 }
+
+} // qttodo

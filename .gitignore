@@ -14,4 +14,4 @@ Makefile
 **/*.o
 
 # Don't include the built application
-qt4-todo
+build/**

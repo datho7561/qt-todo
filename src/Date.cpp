@@ -11,6 +11,8 @@
 
 #include "Date.h"
 
+namespace qttodo {
+
 Date::Date() {
 
     // Get seconds since 1970
@@ -244,3 +246,5 @@ std::string Date::get_month_string(unsigned int month) {
             throw std::invalid_argument("Month out of range");
     }
 }
+
+} // qttodo

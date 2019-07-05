@@ -10,6 +10,8 @@
 
 #include <string>
 
+namespace qttodo {
+
 class Date {
 
 private:
@@ -164,5 +166,7 @@ public:
     bool operator >= (const Date & other) const;
 
 };
+
+} // qttodo
 
 #endif // DATE_H

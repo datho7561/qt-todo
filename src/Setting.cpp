@@ -7,8 +7,12 @@
 
 #include "Setting.h"
 
+namespace qttodo {
+
 void Setting::write_to_file() const {
 
     // TODO: implement
 
 }
+
+} // qttodo

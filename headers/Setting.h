@@ -18,6 +18,8 @@
 #include "ExpiryPolicy.h"
 #include "ColourScheme.h"
 
+namespace qttodo {
+
 class Setting {
 
 private:
@@ -98,5 +100,7 @@ public:
     void write_to_file() const;
 
 };
+
+} // qttodo
 
 #endif // SETTING_H

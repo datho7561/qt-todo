@@ -8,10 +8,14 @@
 #ifndef DEFAULT_DATE_POLICY_H
 #define DEFAULT_DATE_POLICY_H
 
+namespace qttodo {
+
 enum class DefaultDatePolicy {
 
     SET_TODAY, SET_TOMORROW, DONT_SET
 
 };
+
+} // qttodo
 
 #endif // DEFAULT_DATE_POLICY_H

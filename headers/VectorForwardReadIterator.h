@@ -14,6 +14,8 @@
 #include "ForwardReadIterator.h"
 #include "Task.h"
 
+namespace qttodo {
+
 template <typename T>
 class VectorForwardReadIterator: public ForwardReadIterator<T> {
 
@@ -41,5 +43,7 @@ public:
 };
 
 template class VectorForwardReadIterator<Task>;
+
+} // qttodo
 
 #endif // VECTOR_FORWARD_READ_ITERATOR

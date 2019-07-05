@@ -3,10 +3,14 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = 
+TARGET =
 DEPENDPATH += . src ui headers
 INCLUDEPATH += . headers headers_ui
 UI_DIR = headers_ui
+
+# Put executable and objects in the build directory
+DESTDIR = ./build
+OBJECTS_DIR = ./build
 
 # Platform specific settings
 

@@ -8,6 +8,8 @@
 #ifndef EXPIRY_POLICY_H
 #define EXPIRY_POLICY_H
 
+namespace qttodo {
+
 /**
  * \brief Defines different policies for when completed items should be
  * considered expired
@@ -18,5 +20,7 @@ enum class ExpiryPolicy {
     KEEP_ALL, KEEP_TODAY, KEEP_YESTERDAY
 
 };
+
+} // qttodo
 
 #endif // EXPIRY_POLICY_H

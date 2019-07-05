@@ -13,6 +13,8 @@
 #include "Date.h"
 #include "ExpiryPolicy.h"
 
+namespace qttodo {
+
 class Task {
 
 private:
@@ -169,6 +171,6 @@ public:
 
 };
 
-
+} // qttodo
 
 #endif // TASK_H
