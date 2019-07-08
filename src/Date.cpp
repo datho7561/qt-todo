@@ -43,13 +43,13 @@ Date::Date(unsigned int day, unsigned int month, int year) {
         throw std::invalid_argument("Day is out of range");
     }
 
-    day = day;
-    month = month;
-    year = year;
+    this->day = day;
+    this->month = month;
+    this->year = year;
 }
 
 
-// NOTE TO SELF: I don not need to reuse the keyword static here
+// NOTE TO SELF: I do not need to reuse the keyword static here
 Date Date::from_string(std::string source_string) {
 
     std::string readValue = "";

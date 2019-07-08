@@ -113,7 +113,7 @@ public:
     std::string to_computer_string() const;
 
     /**
-     * \brief Construct a new Date object from its comptuer-legible string
+     * \brief Construct a new Date object from its computer-legible string
      * 
      * \param source_string The computer legible string to use to make this
      * Date object

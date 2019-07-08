@@ -1,0 +1,25 @@
+
+CXX_FLAGS = -Wall -std=c++11
+CXX_FLAGS += -Iheaders `pkg-config --cflags QtCore`
+
+LDLIBS = `pkg-config --libs QtCore`
+
+SRC_OBJ = build/Date.o build/Setting.o build/Task.o build/TaskList.o \
+	build/VectorForwardReadIterator.o
+
+TEST_OBJ = testing/test_main.o testing/test_date.o
+OBJ = $(SRC_OBJ) $(TEST_OBJ)
+
+test: $(OBJ)
+	$(CXX) $(CXX_FLAGS) $^ -o testing/$@
+
+build/%.o: src/%.cpp
+	$(CXX) $(CXX_FLAGS) -c -o $@ $?
+
+testing/%.o: testing/%.cpp
+	$(CXX) $(CXX_FLAGS) -c -o $@ $?
+
+clean:
+	rm build/*
+	rm testing/*.o
+	rm testing/test

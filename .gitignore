@@ -15,3 +15,6 @@ Makefile
 
 # Don't include the built application
 build/**
+
+# Din't include the built unit testing program
+testing/test
