@@ -14,6 +14,8 @@
 
 namespace qttodo {
 
+
+// TODO: do a case where the odd leap year rules play a factor
 TEST_CASE("Only valid dates") {
 
     SECTION("Zero day invalid") {
@@ -47,6 +49,7 @@ TEST_CASE("Only valid dates") {
     }
 
 }
+
 
 TEST_CASE("Yesterday") {
 
@@ -134,6 +137,48 @@ TEST_CASE("To String") {
     }
 
 }
+
+
+TEST_CASE("Computer String") {
+
+    Date my_date = Date(9, 7, 2019);
+    Date epoch = Date(1, 1, 1970);
+    Date end_of_year = Date(31, 12, 2000);
+
+    Date feb = Date(2, 2, 2077);
+    Date mar = Date(2, 3, 2077);
+    Date apr = Date(2, 4, 2077);
+    Date may = Date(2, 5, 2077);
+    Date jun = Date(2, 6, 2077);
+    Date aug = Date(2, 8, 2077);
+    Date sept = Date(2, 9, 2077);
+    Date oct = Date(2, 10, 2077);
+    Date nov = Date(2, 11, 2077);
+
+    Date bce_0 = Date(1, 1, 0);
+    Date bce_1 = Date(15, 4, -100);
+    Date bce_2 = Date(20, 6, -2000);
+
+    REQUIRE(my_date == Date::from_string(my_date.to_computer_string()));
+    REQUIRE(epoch == Date::from_string(epoch.to_computer_string()));
+    REQUIRE(end_of_year == Date::from_string(end_of_year.to_computer_string()));
+    REQUIRE(feb == Date::from_string(feb.to_computer_string()));
+    REQUIRE(mar == Date::from_string(mar.to_computer_string()));
+    REQUIRE(apr == Date::from_string(apr.to_computer_string()));
+    REQUIRE(may == Date::from_string(may.to_computer_string()));
+    REQUIRE(jun == Date::from_string(jun.to_computer_string()));
+    REQUIRE(aug == Date::from_string(aug.to_computer_string()));
+    REQUIRE(sept == Date::from_string(sept.to_computer_string()));
+    REQUIRE(oct == Date::from_string(oct.to_computer_string()));
+    REQUIRE(nov == Date::from_string(nov.to_computer_string()));
+    REQUIRE(bce_0 == Date::from_string(bce_0.to_computer_string()));
+    REQUIRE(bce_1 == Date::from_string(bce_1.to_computer_string()));
+    REQUIRE(bce_2 == Date::from_string(bce_2.to_computer_string()));
+
+}
+
+
+// TODO: check comparison operators
 
 
 }
