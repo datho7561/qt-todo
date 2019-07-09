@@ -95,6 +95,7 @@ std::string Date::to_string() const {
     std::string rep = "";
 
     rep += std::to_string(day);
+    rep += " ";
     rep += get_month_string(month);
     rep += ", ";
     if (year < 0) {
@@ -184,7 +185,7 @@ unsigned int Date::get_month_days(unsigned int month, int year) {
         case 1:
             return 31;
         case 2:
-            // Convoluted leap year rules that I may hve gotten incorrect
+            // Convoluted leap year rules that I may have gotten incorrect
             if (year % 4 == 0 && !(year % 100 == 0 && year % 400 != 0)) {
                 return 29;
             }
@@ -241,7 +242,7 @@ std::string Date::get_month_string(unsigned int month) {
         case 11:
             return std::string("November");
         case 12:
-            return std::string("Decemeber");
+            return std::string("December");
         default:
             throw std::invalid_argument("Month out of range");
     }

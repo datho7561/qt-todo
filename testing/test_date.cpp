@@ -5,6 +5,8 @@
  * \date 2019-07-08
  */
 
+#include <iostream>
+
 #include "catch.hpp"
 
 #include "Date.h"
@@ -82,6 +84,53 @@ TEST_CASE("Yesterday") {
         REQUIRE(yesterday_mar1_non_leap.get_day() == 28);
         REQUIRE(yesterday_mar1_non_leap.get_month() == 2);
         REQUIRE(yesterday_mar1_non_leap.get_year() == 2013);
+    }
+
+}
+
+
+TEST_CASE("To String") {
+
+    Date my_date = Date(9, 7, 2019);
+    Date epoch = Date(1, 1, 1970);
+    Date end_of_year = Date(31, 12, 2000);
+
+    Date feb = Date(2, 2, 2077);
+    Date mar = Date(2, 3, 2077);
+    Date apr = Date(2, 4, 2077);
+    Date may = Date(2, 5, 2077);
+    Date jun = Date(2, 6, 2077);
+    Date aug = Date(2, 8, 2077);
+    Date sept = Date(2, 9, 2077);
+    Date oct = Date(2, 10, 2077);
+    Date nov = Date(2, 11, 2077);
+
+    Date bce_0 = Date(1, 1, 0);
+    Date bce_1 = Date(15, 4, -100);
+    Date bce_2 = Date(20, 6, -2000);
+
+    SECTION("General cases") {
+        REQUIRE(my_date.to_string() == std::string("9 July, 2019"));
+        REQUIRE(epoch.to_string() == std::string("1 January, 1970"));
+        REQUIRE(end_of_year.to_string() == std::string("31 December, 2000"));
+    }
+
+    SECTION("Months") {
+        REQUIRE(feb.to_string() == std::string("2 February, 2077"));
+        REQUIRE(mar.to_string() == std::string("2 March, 2077"));
+        REQUIRE(apr.to_string() == std::string("2 April, 2077"));
+        REQUIRE(may.to_string() == std::string("2 May, 2077"));
+        REQUIRE(jun.to_string() == std::string("2 June, 2077"));
+        REQUIRE(aug.to_string() == std::string("2 August, 2077"));
+        REQUIRE(sept.to_string() == std::string("2 September, 2077"));
+        REQUIRE(oct.to_string() == std::string("2 October, 2077"));
+        REQUIRE(nov.to_string() == std::string("2 November, 2077"));
+    }
+
+    SECTION("BCE") {
+        REQUIRE(bce_0.to_string() == std::string("1 January, 0"));
+        REQUIRE(bce_1.to_string() == std::string("15 April, 100 BCE"));
+        REQUIRE(bce_2.to_string() == std::string("20 June, 2000 BCE"));
     }
 
 }
