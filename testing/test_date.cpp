@@ -178,7 +178,35 @@ TEST_CASE("Computer String") {
 }
 
 
-// TODO: check comparison operators
+TEST_CASE("Comparison Operators") {
 
+    Date my_date = Date(9, 7, 2019);
+    Date also_my_date = Date(9, 7, 2019);
+    Date after_my_date = Date(10, 7, 2019);
+    Date month_later = Date(9, 8, 2019);
+
+    REQUIRE(my_date == also_my_date);
+    REQUIRE(my_date <= also_my_date);
+    REQUIRE(!(my_date < also_my_date));
+    REQUIRE(my_date >= also_my_date);
+    REQUIRE(!(my_date > also_my_date));
+    REQUIRE(!(my_date != also_my_date));
+
+    REQUIRE(my_date < after_my_date);
+    REQUIRE(my_date <= after_my_date);
+    REQUIRE(!(my_date > after_my_date));
+    REQUIRE(!(my_date >= after_my_date));
+    REQUIRE(!(my_date == after_my_date));
+    REQUIRE(my_date != after_my_date);
+
+    REQUIRE(my_date < month_later);
+    REQUIRE(my_date <= month_later);
+    REQUIRE(!(my_date > month_later));
+    REQUIRE(!(my_date >= month_later));
+    REQUIRE(!(my_date == month_later));
+    REQUIRE(my_date != month_later);
 
 }
+
+
+} //qttodo

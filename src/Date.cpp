@@ -150,7 +150,7 @@ bool Date::operator < (const Date & other) const {
     } else if (this->year == other.year) {
         if (this->month < other.month) {
             return true;
-        } else if (this->month < other.month) {
+        } else if (this->month == other.month) {
             if (this->day < other.day) {
                 return true;
             }
@@ -176,6 +176,12 @@ bool Date::operator <= (const Date & other) const {
 bool Date::operator >= (const Date & other) const {
 
     return (*this > other) || (*this == other);
+}
+
+
+bool Date::operator != (const Date & other) const {
+
+    return !(*this == other);
 }
 
 

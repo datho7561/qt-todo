@@ -128,10 +128,18 @@ public:
     /**
      * \brief Check if two Dates are the same
      * 
-     * \param other The other date to chck against
+     * \param other The other date to check against
      * \return true If the dates are equal, false otherwise
      */
     bool operator == (const Date & other) const;
+
+    /**
+     * \brief Check if two Dates are not the same
+     * 
+     * \param other The other date to check against
+     * \return true If the dates are not equal, false if they are equal
+     */
+    bool operator != (const Date & other) const;
 
     /**
      * \brief Check if this Date is before another
