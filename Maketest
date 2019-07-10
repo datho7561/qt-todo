@@ -4,22 +4,25 @@ CXX_FLAGS += -Iheaders `pkg-config --cflags QtCore`
 
 LDLIBS = `pkg-config --libs QtCore`
 
+# Files that will be tested
 SRC_OBJ = build/Date.o build/Setting.o build/Task.o build/TaskList.o \
 	build/VectorForwardReadIterator.o
 
+# Test files
 TEST_OBJ = testing/test_main.o
 TEST_OBJ += testing/test_date.o
+TEST_OBJ += testing/test_setting.o
 
 OBJ = $(SRC_OBJ) $(TEST_OBJ)
 
 test: $(OBJ)
-	$(CXX) $(CXX_FLAGS) $^ -o testing/$@
+	$(CXX) $(CXX_FLAGS) $(LDLIBS) $^ -o testing/$@
 
 build/%.o: src/%.cpp
-	$(CXX) $(CXX_FLAGS) -c -o $@ $?
+	$(CXX) $(CXX_FLAGS) $(LDLIBS) -c -o $@ $?
 
 testing/%.o: testing/%.cpp
-	$(CXX) $(CXX_FLAGS) -c -o $@ $?
+	$(CXX) $(CXX_FLAGS) $(LDLIBS) -c -o $@ $?
 
 clean:
 	rm build/*

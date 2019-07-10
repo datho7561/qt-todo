@@ -1,7 +1,7 @@
 /**
  * \file Setting.h
  * \author David Thompson
- * \brief Defines the Setting object, which represents the
+ * \brief Defines the Setting class, which represents the
  * configuration of the application
  * \date 2019-07-05
  */
@@ -87,6 +87,10 @@ public:
      */
     ColourScheme get_colour_scheme() const {
         return colour_scheme;
+    }
+
+    std::string get_default_list_file() const {
+        return default_list_file;
     }
 
     /**
