@@ -115,6 +115,8 @@ TEST_CASE("To String") {
     Date current = Date();
 
     SECTION("General cases") {
+        // TODO: Come up with non-manual way to test current date
+        std::cout << current.to_string();
         REQUIRE(my_date.to_string() == std::string("9 July, 2019"));
         REQUIRE(epoch.to_string() == std::string("1 January, 1970"));
         REQUIRE(end_of_year.to_string() == std::string("31 December, 2000"));

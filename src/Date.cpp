@@ -24,8 +24,10 @@ Date::Date() {
 
     // Populate
     day = static_cast<unsigned int>(curr_tm->tm_mday);
-    month = static_cast<unsigned int>(curr_tm->tm_mon);
-    year = curr_tm->tm_year;
+    // [0, 11], so I add one to convert
+    month = static_cast<unsigned int>(curr_tm->tm_mon) + 1;
+    // It gets years since 1900, so I add 1900 to convert
+    year = static_cast<int>(curr_tm->tm_year) + 1900;
 
     // Avoid mem leaks
     delete curr;
