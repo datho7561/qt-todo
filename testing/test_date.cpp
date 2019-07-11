@@ -112,6 +112,8 @@ TEST_CASE("To String") {
     Date bce_1 = Date(15, 4, -100);
     Date bce_2 = Date(20, 6, -2000);
 
+    Date current = Date();
+
     SECTION("General cases") {
         REQUIRE(my_date.to_string() == std::string("9 July, 2019"));
         REQUIRE(epoch.to_string() == std::string("1 January, 1970"));

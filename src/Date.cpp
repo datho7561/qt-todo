@@ -28,7 +28,6 @@ Date::Date() {
     year = curr_tm->tm_year;
 
     // Avoid mem leaks
-    delete curr_tm;
     delete curr;
 }
 

@@ -12,6 +12,7 @@ SRC_OBJ = build/Date.o build/Setting.o build/Task.o build/TaskList.o \
 TEST_OBJ = testing/test_main.o
 TEST_OBJ += testing/test_date.o
 TEST_OBJ += testing/test_setting.o
+TEST_OBJ += testing/test_task.o
 
 OBJ = $(SRC_OBJ) $(TEST_OBJ)
 
