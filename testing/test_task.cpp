@@ -36,13 +36,16 @@ TEST_CASE("Task") {
     );
 
     SECTION("Overdue") {
+
         REQUIRE(past_its_prime.is_overdue());
         REQUIRE(yesterdays_task.is_overdue());
         REQUIRE(!todays_task.is_overdue());
         REQUIRE(!far_future.is_overdue());
+
     }
 
     SECTION("Expiry") {
+
         REQUIRE(complete_yesterday.is_expired(ExpiryPolicy::KEEP_TODAY));
         REQUIRE(!complete_yesterday.is_expired(ExpiryPolicy::KEEP_YESTERDAY));
         REQUIRE(!complete_yesterday.is_expired(ExpiryPolicy::KEEP_ALL));
@@ -53,12 +56,14 @@ TEST_CASE("Task") {
 
         todays_task.set_complete();
 
-        REQUIRE(!complete_2_ago.is_expired(ExpiryPolicy::KEEP_TODAY));
-        REQUIRE(!complete_2_ago.is_expired(ExpiryPolicy::KEEP_YESTERDAY));
-        REQUIRE(!complete_2_ago.is_expired(ExpiryPolicy::KEEP_ALL));
+        REQUIRE(!todays_task.is_expired(ExpiryPolicy::KEEP_TODAY));
+        REQUIRE(!todays_task.is_expired(ExpiryPolicy::KEEP_YESTERDAY));
+        REQUIRE(!todays_task.is_expired(ExpiryPolicy::KEEP_ALL));
+
     }
 
     SECTION("Ordering") {
+
         REQUIRE(complete_yesterday < past_its_prime);
         REQUIRE(complete_yesterday < yesterdays_task);
         REQUIRE(complete_yesterday < todays_task);
@@ -72,9 +77,11 @@ TEST_CASE("Task") {
         REQUIRE(extrordinary < todays_task);
         REQUIRE(extrordinary < yesterdays_task);
         REQUIRE(extrordinary < past_its_prime);
+        REQUIRE(todays_task < past_its_prime);
         REQUIRE(todays_task < yesterdays_task);
-        REQUIRE(yesterdays_task < past_its_prime);
+        REQUIRE(past_its_prime < yesterdays_task);
         REQUIRE(far_future < extrordinary);
+
     }
 
 }

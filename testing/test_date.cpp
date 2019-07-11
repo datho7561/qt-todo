@@ -188,6 +188,7 @@ TEST_CASE("Comparison Operators") {
     Date also_my_date = Date(9, 7, 2019);
     Date after_my_date = Date(10, 7, 2019);
     Date month_later = Date(9, 8, 2019);
+    Date today = Date();
 
     REQUIRE(my_date == also_my_date);
     REQUIRE(my_date <= also_my_date);
@@ -209,6 +210,13 @@ TEST_CASE("Comparison Operators") {
     REQUIRE(!(my_date >= month_later));
     REQUIRE(!(my_date == month_later));
     REQUIRE(my_date != month_later);
+
+    REQUIRE(today == today);
+    REQUIRE(today <= today);
+    REQUIRE(today.yesterday() < today);
+    REQUIRE(today.yesterday() <= today);
+    REQUIRE(today > today.yesterday());
+    REQUIRE(today >= today.yesterday());
 
 }
 
