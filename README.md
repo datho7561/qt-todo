@@ -33,6 +33,10 @@ try it for myself.
 
 #### RUNNING TESTS
 
+__WARNING__: the checked in test suite created the folders and file
+`~/.config/qt-todo/setting`. If you have a file there currently, it will be
+overwritten.
+
 In order to unit test the application, the testing framework 
 [Catch2](https://github.com/catchorg/Catch2) was used. Currently, these steps
 only work under Linux. This is because I am using `pkg-config` to link/include
