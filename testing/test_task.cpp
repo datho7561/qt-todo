@@ -95,6 +95,7 @@ TEST_CASE("Task") {
     }
 
     SECTION("Serializing") {
+        
         REQUIRE(past_its_prime
             == Task::from_string(past_its_prime.to_string()));
         REQUIRE(yesterdays_task
@@ -105,7 +106,8 @@ TEST_CASE("Task") {
             == Task::from_string(far_future.to_string()));
         REQUIRE(extrordinary
             == Task::from_string(extrordinary.to_string()));
-            // TODO: more
+        REQUIRE(identical2
+            == Task::from_string(identical1.to_string()));
         
     }
 
