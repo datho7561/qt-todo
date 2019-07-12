@@ -12,7 +12,7 @@
 
 namespace qttodo {
 
-// TODO: test the class
+
 TEST_CASE("Task") {
 
     Task past_its_prime("Make salad", Date(1, 1, 1970));
@@ -20,6 +20,8 @@ TEST_CASE("Task") {
     Task todays_task("Finish Date Tests", Date());
     Task far_future("", Date(1, 1, 0xFFFFFFF));
     Task extrordinary(".", Date(31, 12, 0xFFFFFFF));
+    Task identical1("Identical", Date(27, 2, 2008));
+    Task identical2("Identical", Date(27, 2, 2008));
 
     Task complete_yesterday(
         "Complete yesterday",
@@ -82,6 +84,29 @@ TEST_CASE("Task") {
         REQUIRE(past_its_prime < yesterdays_task);
         REQUIRE(far_future < extrordinary);
 
+        // Equivalence checks
+        REQUIRE(identical1 == identical2);
+        REQUIRE(identical1 <= identical2);
+        REQUIRE(identical2 <= identical1);
+        REQUIRE(identical1 >= identical2);
+        REQUIRE(identical2 >= identical1);
+        REQUIRE(!(identical1 < identical2));
+
+    }
+
+    SECTION("Serializing") {
+        REQUIRE(past_its_prime
+            == Task::from_string(past_its_prime.to_string()));
+        REQUIRE(yesterdays_task
+            == Task::from_string(yesterdays_task.to_string()));
+        REQUIRE(todays_task
+            == Task::from_string(todays_task.to_string()));
+        REQUIRE(far_future
+            == Task::from_string(far_future.to_string()));
+        REQUIRE(extrordinary
+            == Task::from_string(extrordinary.to_string()));
+            // TODO: more
+        
     }
 
 }
