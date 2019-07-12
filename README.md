@@ -3,6 +3,8 @@
 This is a project where I am learning the basics of Qt4 through building a
 simple cross-platform TODO application
 
+---
+
 ## BUILDING
 
 This project was developed on Linux but should be able to be built on Mac and

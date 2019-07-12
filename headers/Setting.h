@@ -29,6 +29,21 @@ private:
     ColourScheme colour_scheme;
     std::string default_list_file;
 
+    /**
+     * \brief Make a string representation of this Setting
+     * \detail
+     * Each line is seperated by a linefeed '\n'
+     * First line: default_date_policy converted into an unsigned integer based
+     *  on the ordering in the hedaer definition starting at zero
+     * Second line: expiry_policy converted into an unsigned integer based
+     *  on the ordering in the header definition starting at zero
+     * Third line: colour_scheme converted into an unsigned integer based
+     *  on the ordering in the header definition starting at zero
+     * Fourth line: The default_list_file
+     * \returns A string representation of this Setting
+     */
+    std::string to_string() const;
+
 public:
 
     /**
@@ -98,10 +113,21 @@ public:
      * \detail This setting file is placed under ~/.config/qt-todo as a plain
      * text file that is computer readable. It is also placed in the
      * corresponding location under Windows
-     * (i.e. C:\Users\<username>\.config\todo)
-     * TODO: document the format so that it can be user changeable
+     * (i.e. C:\Users\<username>\.config\todo).
+     * The format for the settings file is documented aboe in the declaration
+     * of the private to_string() method
+     * \exception std::runtime_error if in any way the file couldn't be written
      */
     void write_to_file() const;
+
+    /**
+     * \brief Makes a Setting object by reading the Setting file
+     * \detail Please refer to the documentation for Setting::write_to_file()
+     * and the private method Setting::to_string() for the location and format
+     * of the setting file.
+     * \returns A new Setting object representing the Setting in the file
+     */
+    static Setting read_setting_file();
 
 };
 

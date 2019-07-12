@@ -14,7 +14,7 @@
 namespace qttodo {
 
 
-TEST_CASE("Constructor/accessor test") {
+TEST_CASE("Setting") {
 
     Setting default_setting;
     Setting custom_setting(
@@ -23,19 +23,22 @@ TEST_CASE("Constructor/accessor test") {
         ColourScheme::MONOKAI,
         "/home/david/potate");
 
-    REQUIRE(default_setting.get_default_date_policy()
-        == DefaultDatePolicy::SET_TOMORROW);
-    REQUIRE(default_setting.get_colour_scheme() == ColourScheme::DEFAULT);
-    REQUIRE(default_setting.get_expiry_policy()
-        == ExpiryPolicy::KEEP_YESTERDAY);
-    REQUIRE(default_setting.get_default_list_file()
-        == std::string("/home/david/Documents/qt-todo/default.list"));
+    SECTION("Constructor/accessor test") {
 
-}
+        REQUIRE(default_setting.get_default_date_policy()
+            == DefaultDatePolicy::SET_TOMORROW);
+        REQUIRE(default_setting.get_colour_scheme() == ColourScheme::DEFAULT);
+        REQUIRE(default_setting.get_expiry_policy()
+            == ExpiryPolicy::KEEP_YESTERDAY);
+        REQUIRE(default_setting.get_default_list_file()
+            == std::string("/home/david/Documents/qt-todo/default.list"));
 
+    }
 
-// TODO: write some tests after I have implemented it
-TEST_CASE("Writing/Reading from file") {
+    SECTION("Writing/Reading from file") {
+
+        default_setting.write_to_file();
+    }
 
 }
 
