@@ -16,16 +16,35 @@ from these standards are being used in the application.
 
 #### Linux/Mac
 
-`qmake`
+1. `qmake`
 
-`make`
+2. `make`
 
-Then, run with `./build/qt-todo`
+3. Run with `./build/qt-todo`
 
 #### Windows
 
-I will put the instructions for building under Visual Studio up here once I
-try it for myself.
+Installing Qt4 on Windows i kind of difficult. I will most likely include
+instructions on how to do this in the future.
+
+These instructions are for Visual Studio. I have built on Visual Studio 2019, but
+it should work on any version newer than 2010. I would have included instructions
+for how to build on MinGW/Cygwin, but I have not had time to attempt these
+methods.
+
+1. In a developer command prompt where you have Qt4's bin files on the path,
+   enter `qmake -tp vc` while in the `qt-todo` folder.
+
+2. Open the generated .vcxproj with Visual Studio.
+
+3. It should prompt to update the project to the latest version of Visual Studio.
+   Accept this offer.
+
+4. Build/run the project as normal. If you need to make changes to the qt-todo.pro
+   or add/remove files, you will need to regenerate the Visual Studio project.
+   (At least, I find regenerating the project is the easiest method, because this
+   means no manually editing the .vcxproj to get Visual Studio to run the
+   correct preprocessing commands).
 
 ---
 
