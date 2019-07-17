@@ -6,6 +6,7 @@
 # Ignore Visual Studio project files as they need to be constantly regenerated
 qt-todo.vcxproj*
 .vs/**
+qt-todo.sln
 *.pdb
 
 # Don't include testing framework
