@@ -10,11 +10,10 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 
 #include "Task.h"
 #include "ExpiryPolicy.h"
-#include "ForwardReadIterator.h"
-#include "VectorForwardReadIterator.h"
 
 namespace qttodo {
 
@@ -22,7 +21,7 @@ class TaskList {
 
 private:
     std::string name;
-    std::vector<Task> * tasks;
+    std::unique_ptr<std::vector<Task>> tasks;
 
 public:
 
@@ -46,9 +45,17 @@ public:
         name(name),
         tasks(new std::vector<Task>(tasks)) {}
 
-    ~TaskList() {
-        delete tasks;
-    }
+    /**
+     * \brief Make a copy of a TaskList
+     * 
+     * \param task_list The TaskList to copy
+     */
+    TaskList(const TaskList & task_list);
+
+    /**
+     * \brief Delete a TaskList
+     */
+    ~TaskList() {}
 
     /**
      * \brief Remove all expired items from the TaskList
@@ -65,12 +72,11 @@ public:
     void add_new(Task task);
 
     /**
-     * \brief Get an ForwardReadIterator that allows iterating through the
-     * Tasks
+     * \brief Get an iterator that allows iterating through the Tasks
      * 
-     * \returns A ForwardReadIterator over this TaskList's Tasks
+     * \returns An iterator over this TaskList's Tasks
      */
-    VectorForwardReadIterator<Task> iterator() const;
+    const std::vector<Task> iterator() const { return *(tasks.get()); };
 
     /**
      * \brief Convert this TaskList to a computer readable string

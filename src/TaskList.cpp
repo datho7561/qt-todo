@@ -12,6 +12,15 @@
 
 namespace qttodo {
 
+TaskList::TaskList(const TaskList & task_list):
+    tasks(new std::vector<Task>) {
+    name = task_list.name;
+    for (Task t : task_list.iterator()) {
+        tasks->push_back(Task(t));
+    }
+}
+
+
 void TaskList::remove_expired(ExpiryPolicy expiry_policy) {
 
     std::vector<Task> * new_tasks = new std::vector<Task>;
@@ -25,21 +34,15 @@ void TaskList::remove_expired(ExpiryPolicy expiry_policy) {
             new_tasks->push_back(*iter);
         }
     }
-    delete tasks;
-    tasks = new_tasks;
+    tasks.reset(new_tasks);
 }
 
 
 void TaskList::add_new(Task task) {
-    tasks->push_back(task);
     // The array order is preserved everywhere else; this is the only spot
     // where it may change. Sorting is excessive but I'm lazy TODO:
+    tasks->push_back(task);
     std::stable_sort(tasks->begin(), tasks->end());
-}
-
-
-VectorForwardReadIterator<Task> TaskList::iterator() const {
-    return VectorForwardReadIterator<Task>(tasks);
 }
 
 

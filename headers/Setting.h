@@ -1,8 +1,8 @@
 /**
  * \file Setting.h
  * \author David Thompson
- * \brief Defines the Setting class, which represents the
- * configuration of the application
+ * \brief Defines the Setting class, which represents the configuration of the
+ * application
  * \date 2019-07-05
  */
 
@@ -40,6 +40,7 @@ private:
      * Third line: colour_scheme converted into an unsigned integer based
      *  on the ordering in the header definition starting at zero
      * Fourth line: The default_list_file
+     * 
      * \returns A string representation of this Setting
      */
     std::string to_string() const;
@@ -48,6 +49,7 @@ public:
 
     /**
      * \brief Construct a new Setting object given all the settings
+     * 
      * \param default_date_policy The policy for when new items should be due by default
      * \param expiry_policy The policy for when completed items will be removed from the list
      * \param colour_scheme The colour scheme to use for the UI
@@ -65,6 +67,7 @@ public:
 
     /**
      * \brief Constructs a setting object with the default settings
+     * 
      * \returns A Setting object with the default settings
      */
     Setting():
@@ -78,6 +81,7 @@ public:
     /**
      * \brief Get the setting that tells which day items should be due by
      * default
+     * 
      * \returns The DefaultDatePolicy indicating when items should be
      * due by default
      */
@@ -88,6 +92,7 @@ public:
     /**
      * \brief Get the setting that tells how many days after completion
      * completed items should be removed from the list
+     * 
      * \returns The ExpiryPolicy indicating when completed items should be
      * removed from the list
      */
@@ -97,6 +102,7 @@ public:
 
     /**
      * \brief Get the setting indicating which theme to use for the application
+     * 
      * \returns The ColourScheme setting, which indicates which theme should be
      * used for the application
      */
@@ -116,6 +122,7 @@ public:
      * (i.e. C:\Users\<username>\.config\todo).
      * The format for the settings file is documented aboe in the declaration
      * of the private to_string() method
+     * 
      * \exception std::runtime_error if in any way the file couldn't be written
      */
     void write_to_file() const;
@@ -125,9 +132,19 @@ public:
      * \detail Please refer to the documentation for Setting::write_to_file()
      * and the private method Setting::to_string() for the location and format
      * of the setting file.
+     * 
      * \returns A new Setting object representing the Setting in the file
      */
     static Setting read_setting_file();
+
+    /**
+     * \brief Checks if there is a Setting file
+     * \detail This can be used to verify if the application has ever been
+     * launched
+     * 
+     * \returns true if the Setting file exists, false otherwise
+     */
+    static bool setting_file_exists();
 
 };
 

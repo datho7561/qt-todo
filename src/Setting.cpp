@@ -120,4 +120,31 @@ void Setting::write_to_file() const {
 }
 
 
+Setting Setting::read_setting_file() {
+
+    // TODO:
+
+    Q_ASSERT(Setting::setting_file_exists());
+
+    return Setting();
+
+}
+
+
+bool Setting::setting_file_exists()  {
+    const QString config_folder_str = ".config/qt-todo";
+    QDir config_folder(QDir::homePath() + "/" + config_folder_str);
+    if (!config_folder.exists()) {
+        return false;
+    }
+    QFile settings_file(
+        QDir::homePath()
+        + "/"
+        + config_folder_str
+        + "/"
+        + "settings");
+    return settings_file.exists();
+}
+
+
 } // qttodo

@@ -6,6 +6,7 @@
  */
 
 #include <ctime>
+#include <memory>
 #include <stdexcept>
 #include <string>
 
@@ -14,13 +15,12 @@
 namespace qttodo {
 
 Date::Date() {
-
     // Get seconds since 1970
-    time_t * curr = new time_t;
-    time(curr);
+    std::unique_ptr<time_t> curr(new time_t);
+    time(curr.get());
 
     // Convert to struct with info we want
-    struct tm * curr_tm = localtime(curr);
+    struct tm * curr_tm = localtime(curr.get());
 
     // Populate
     day = static_cast<unsigned int>(curr_tm->tm_mday);
@@ -28,9 +28,6 @@ Date::Date() {
     month = static_cast<unsigned int>(curr_tm->tm_mon) + 1;
     // It gets years since 1900, so I add 1900 to convert
     year = static_cast<int>(curr_tm->tm_year) + 1900;
-
-    // Avoid mem leaks
-    delete curr;
 }
 
 

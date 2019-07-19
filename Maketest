@@ -5,8 +5,7 @@ CXX_FLAGS += -Iheaders `pkg-config --cflags QtCore`
 LDLIBS = `pkg-config --libs QtCore`
 
 # Files that will be tested
-SRC_OBJ = build/Date.o build/Setting.o build/Task.o build/TaskList.o \
-	build/VectorForwardReadIterator.o
+SRC_OBJ = build/Date.o build/Setting.o build/Task.o build/TaskList.o
 
 # Test files
 TEST_OBJ = testing/test_main.o

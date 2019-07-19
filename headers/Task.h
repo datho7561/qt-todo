@@ -58,6 +58,17 @@ public:
         completion_date(completion_date) {}
 
     /**
+     * \brief Makes a copy of a given task
+     * 
+     * \param task The Task to be copied
+     */
+    Task(const Task & task) :
+        name(task.name),
+        complete(task.complete),
+        deadline(task.deadline),
+        completion_date(task.completion_date) {}
+
+    /**
      * \brief Get the name of the Task
      * 
      * \return The name of the Task
