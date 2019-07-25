@@ -7,6 +7,7 @@ TARGET =
 DEPENDPATH += . src ui headers
 INCLUDEPATH += . headers headers_ui
 UI_DIR = headers_ui
+MOC_DIR = build
 
 # Put executable and objects in the build directory
 DESTDIR = ./build
