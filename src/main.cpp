@@ -15,35 +15,16 @@
 
 #include "Setting.h"
 
-#include "ui_SettingsDialog.h"
+#include "SettingsDialog.h"
 
-// TODO: Move this all into a subclass of QApplication?
-// Or, into another class that I create?
+// TODO: Move this logic into a QApplication instance
 int main(int argc, char * argv[]) {
 
     QApplication app(argc, argv);
 
-    // Manage lifetime of the setting object, pass it down to the classes that
-    // need it
-    std::unique_ptr<qttodo::Setting> setting;
+	std::unique_ptr<qttodo::SettingsDialog> settings_dialog(new qttodo::SettingsDialog);
 
-    // if (qttodo::Setting::setting_file_exists()) {
-    //     // Display welcome dialog
-    //     // Create default Setting
-    //     // Open settings dialog with default Setting
-    //     setting.reset(new qttodo::Setting);
-        Ui::SettingsDialog ui;
-        std::unique_ptr<QDialog> dialog(new QDialog);
-        ui.setupUi(dialog.get());
-
-        dialog->show();
-    // } else {
-    //     // Load settings from file
-    //     // FIXME: inefficient because the copy constructor is called a few times
-    //     setting.reset(
-    //         new qttodo::Setting(qttodo::Setting::read_setting_file()));
-    // }
-
+    settings_dialog->show();
 
     return app.exec();
 
