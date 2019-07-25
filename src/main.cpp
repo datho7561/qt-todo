@@ -22,7 +22,7 @@ int main(int argc, char * argv[]) {
 
     QApplication app(argc, argv);
 
-	std::unique_ptr<qttodo::SettingsDialog> settings_dialog(new qttodo::SettingsDialog);
+    std::unique_ptr<qttodo::SettingsDialog> settings_dialog(new qttodo::SettingsDialog);
 
     settings_dialog->show();
 

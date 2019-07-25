@@ -12,22 +12,22 @@ namespace qttodo {
 
 class SettingsDialog : public QDialog, public Ui::SettingsDialog {
 
-	Q_OBJECT
+    Q_OBJECT
 
 private:
-	Setting setting;
+    Setting setting;
 
 private slots:
-	// For when combo box values are changed
-	void on_defaultDeadlineBox_currentIndexChanged();
-	void on_completedItemsBox_currentIndexChanged();
-	void on_themeBox_currentIndexChanged();
+    // For when combo box values are changed
+    void on_defaultDeadlineBox_currentIndexChanged();
+    void on_completedItemsBox_currentIndexChanged();
+    void on_themeBox_currentIndexChanged();
 
-	// For when the reset button is pressed
-	void restore_defaults();
+    // For when the reset button is pressed
+    void restore_defaults();
 
 public:
-	SettingsDialog(QWidget * parent = nullptr);
+    SettingsDialog(QWidget * parent = nullptr);
 
 };
 
