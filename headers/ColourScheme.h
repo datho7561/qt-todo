@@ -12,7 +12,7 @@ namespace qttodo {
 
 enum class ColourScheme {
 
-    DEFAULT, MONOKAI, SOLARIZED
+    DEFAULT, MONOKAI, SOLARIZED, HIGH_CONTRAST
 
 };
 

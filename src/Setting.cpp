@@ -71,6 +71,10 @@ std::string Setting::to_string() const {
             str_rep += "2";
             break;
         
+        case ColourScheme::HIGH_CONTRAST:
+            str_rep += "3";
+            break;
+        
         default:
             throw std::invalid_argument("ColourScheme not recognized");
     }
