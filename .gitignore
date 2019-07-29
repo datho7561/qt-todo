@@ -1,7 +1,6 @@
 # Ignore editor settings and metadata
-.vscode
-.vscode/*
-.vscode/**
+.vscode/settings.json
+.vscode/c_cpp_properties.json
 
 # Ignore Visual Studio project files as they need to be constantly regenerated
 qt-todo.vcxproj*

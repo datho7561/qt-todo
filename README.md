@@ -77,3 +77,13 @@ Here is the current process for testing a class that is not yet being tested:
     `test_myClass.cpp`, where MyClass is the class being tested.
 2. Follow the steps in the RUNNING TESTS section in order to run the added
     tests.
+
+---
+
+## VSCODE FILES
+
+I have included VSCode build tasks for the program in order to help anyone else
+who wants to build the application and happens to be using VSCode. The tasks
+that are intended for direct running are `build-app` and `build-test`. I put
+them both under the 'Build' section of tasks so that they can be run with the
+`Ctrl+Shift+B` shortcut
