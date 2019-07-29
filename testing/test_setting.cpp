@@ -37,6 +37,9 @@ TEST_CASE("Setting") {
 
     SECTION("Writing/Reading from file") {
 
+        // TODO: More thorough tests, maybe test reading invalid files for
+        // the expected exception
+
         default_setting.write_to_file();
         Setting current = Setting::read_setting_file();
         REQUIRE(default_setting.get_default_date_policy()

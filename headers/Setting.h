@@ -133,6 +133,8 @@ public:
      * and the private method Setting::to_string() for the location and format
      * of the setting file.
      * 
+     * \throws std::runtime_error if the settings file does not exist or is not
+     * able to be read as a settings file.
      * \returns A new Setting object representing the Setting in the file
      */
     static Setting read_setting_file();
