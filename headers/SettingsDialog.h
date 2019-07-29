@@ -37,6 +37,12 @@ private slots:
     void on_themeBox_currentIndexChanged();
 
     /**
+     * \brief Called when the Ok button is pressed
+     * \detail Saves the current setting to file
+     */
+    void save_setting();
+
+    /**
      * \brief Called when the restore defaults button is pressed.
      * \detail Restores the internal representation of the setting as well as
      * sets the GUI to that setting.

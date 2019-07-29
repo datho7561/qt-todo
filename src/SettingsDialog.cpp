@@ -22,6 +22,8 @@ SettingsDialog::SettingsDialog(QWidget* parent) :
 
     // Connect Ok/Cancel/RestoreDefault buttons
     connect(buttonBox->button(QDialogButtonBox::Ok),
+        SIGNAL(clicked()), this, SLOT(save_setting()));
+    connect(buttonBox->button(QDialogButtonBox::Ok),
         SIGNAL(clicked()), this, SLOT(accept()));
     connect(buttonBox->button(QDialogButtonBox::Cancel),
         SIGNAL(clicked()), this, SLOT(reject()));
@@ -116,6 +118,11 @@ void SettingsDialog::on_themeBox_currentIndexChanged() {
         setting.get_expiry_policy(),
         new_scheme,
         setting.get_default_list_file());
+}
+
+void SettingsDialog::save_setting() {
+    
+    // TODO: implement
 }
 
 void SettingsDialog::restore_defaults() {
