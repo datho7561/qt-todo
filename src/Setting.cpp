@@ -140,6 +140,7 @@ Setting Setting::read_setting_file() {
     in >> default_date_num;
     in >> expiry_policy_num;
     in >> colour_scheme_num;
+    in.readLine();  // Finish reading line with last number on it
     default_list_file = in.readLine().toStdString();
 
     DefaultDatePolicy default_date_policy;

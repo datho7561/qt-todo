@@ -38,6 +38,26 @@ TEST_CASE("Setting") {
     SECTION("Writing/Reading from file") {
 
         default_setting.write_to_file();
+        Setting current = Setting::read_setting_file();
+        REQUIRE(default_setting.get_default_date_policy()
+            == current.get_default_date_policy());
+        REQUIRE(default_setting.get_expiry_policy()
+            == current.get_expiry_policy());
+        REQUIRE(default_setting.get_colour_scheme()
+            == current.get_colour_scheme());
+        REQUIRE(default_setting.get_default_list_file()
+            == current.get_default_list_file());
+
+        custom_setting.write_to_file();
+        current = Setting::read_setting_file();
+        REQUIRE(custom_setting.get_default_date_policy()
+            == current.get_default_date_policy());
+        REQUIRE(custom_setting.get_expiry_policy()
+            == current.get_expiry_policy());
+        REQUIRE(custom_setting.get_colour_scheme()
+            == current.get_colour_scheme());
+        REQUIRE(custom_setting.get_default_list_file()
+            == current.get_default_list_file());
     }
 
 }
