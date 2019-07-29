@@ -5,6 +5,8 @@
  * \date 2019-07-05
  */
 
+#include <QTextStream>
+
 #include "Setting.h"
 
 namespace qttodo {
@@ -112,12 +114,7 @@ void Setting::write_to_file() const {
     }
 
     // Write the generated text to the file
-    for (auto i = str_rep.begin(); i < str_rep.end(); i++) {
-        // HACK: There should be a better way to convert than this
-        char * convert = new char[2]{*i, '\0'};
-        settings_file.write(convert);
-        delete convert;
-    }
+    settings_file.write(str_rep.c_str());
 
     // Flush the buffer, file gets closed on stack frame exit
     settings_file.close();
@@ -126,16 +123,86 @@ void Setting::write_to_file() const {
 
 Setting Setting::read_setting_file() {
 
-    // TODO:
+    if (!Setting::setting_file_exists()) {
+        throw std::runtime_error("Settings file does not exist. Please check "
+            "that it exists before attempting to read it.");
+    }
 
-    Q_ASSERT(Setting::setting_file_exists());
+    int default_date_num;
+    int expiry_policy_num;
+    int colour_scheme_num;
+    std::string default_list_file;
 
-    return Setting();
+    QFile settings_file(QDir::homePath() + "/.config/qt-todo/settings");
+    settings_file.open(QIODevice::ReadOnly);
+    QTextStream in(&settings_file);
+
+    in >> default_date_num;
+    in >> expiry_policy_num;
+    in >> colour_scheme_num;
+    default_list_file = in.readLine().toStdString();
+
+    DefaultDatePolicy default_date_policy;
+    ExpiryPolicy expiry_policy;
+    ColourScheme colour_scheme;
+
+    switch (default_date_num) {
+        case 0:
+            default_date_policy = DefaultDatePolicy::SET_TODAY;
+            break;
+        case 1:
+            default_date_policy = DefaultDatePolicy::SET_TOMORROW;
+            break;
+        case 2:
+            default_date_policy = DefaultDatePolicy::DONT_SET;
+            break;
+        default:
+            throw std::runtime_error("Invalid settings file");
+    }
+
+    switch (expiry_policy_num) {
+        case 0:
+            expiry_policy = ExpiryPolicy::KEEP_ALL;
+            break;
+        case 1:
+            expiry_policy = ExpiryPolicy::KEEP_TODAY;
+            break;
+        case 2:
+            expiry_policy = ExpiryPolicy::KEEP_YESTERDAY;
+            break;
+        default:
+            throw std::runtime_error("Invalid settings file");
+    }
+
+    switch (colour_scheme_num) {
+        case 0:
+            colour_scheme = ColourScheme::DEFAULT;
+            break;
+        case 1:
+            colour_scheme = ColourScheme::MONOKAI;
+            break;
+        case 2:
+            colour_scheme = ColourScheme::SOLARIZED;
+            break;
+        case 3:
+            colour_scheme = ColourScheme::HIGH_CONTRAST;
+            break;
+        default:
+            throw std::runtime_error("Invalid settings file");
+    }
+
+    return Setting(
+        default_date_policy,
+        expiry_policy,
+        colour_scheme,
+        default_list_file
+    );
 
 }
 
 
-bool Setting::setting_file_exists()  {
+bool Setting::setting_file_exists() {
+
     const QString config_folder_str = ".config/qt-todo";
     QDir config_folder(QDir::homePath() + "/" + config_folder_str);
     if (!config_folder.exists()) {

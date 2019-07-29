@@ -5,7 +5,7 @@
  * \date 2019-07-25
  */
 
-#include <iostream>
+#include <QMessageBox>
 
 #include "SettingsDialog.h"
 
@@ -128,12 +128,15 @@ void SettingsDialog::save_setting() {
     // TODO: Catch exception and give an error dialog
     try {
         setting.write_to_file();
-	emit setting_saved();
+        emit setting_saved();
     } catch (std::runtime_error e) {
         // Get confirmation to try again or not
 	int try_again = QMessageBox::warning(this, tr("Settings"),
             tr("Unable to write settings to disk.\n"
-            "Try again?"),
+            "Make sure that you have permission to read and write to"
+            "the file.\n"
+            "Try writing them again?\n"
+            "(Selecting no will continue with the default settings)."),
             QMessageBox::Yes | QMessageBox::No);
         if (try_again == QMessageBox::Yes) {
             save_setting();

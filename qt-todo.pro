@@ -13,6 +13,14 @@ MOC_DIR = build
 DESTDIR = ./build
 OBJECTS_DIR = ./build
 
+# Check if the test suite or the application is supposed to be made
+contains("test", 1) {
+    SOURCES += testing/*.cpp
+    HEADERS += testing/catch.hpp
+} else {
+    SOURCES += main.cpp
+}
+
 # Platform specific settings
 
 # Windows
@@ -34,4 +42,3 @@ macx {
 FORMS += ui/*.ui
 SOURCES += src/*.cpp
 HEADERS += headers/*.h
-

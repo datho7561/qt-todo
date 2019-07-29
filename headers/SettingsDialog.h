@@ -17,12 +17,10 @@ class SettingsDialog : public QDialog, public Ui::SettingsDialog {
     Q_OBJECT
 
 private:
-    // Maps from the IDs to the enums TODO: recosider architecture?
-    // static const std::map<int, DefaultDatePolicy> DATE_POLICY_MAP;
-    // static const std::map<int, ExpiryPolicy> EXPIRY_POLICY_MAP;
-    // static const std::map<int, ColourScheme> COLOUR_SCHEME_MAP;
 
-    // Internal representation of the current setting selected
+    /**
+     * \brief Internal representation of the current setting selected
+     */
     Setting setting;
 
 signals:
