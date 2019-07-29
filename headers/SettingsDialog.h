@@ -25,6 +25,14 @@ private:
     // Internal representation of the current setting selected
     Setting setting;
 
+signals:
+    
+    /**
+     * \brief Signals that the setting was saved successfully.
+     * \detail Connected to the accept slot in order to close the dialog.
+     */
+    void setting_saved();
+
 private slots:
 
     /** 

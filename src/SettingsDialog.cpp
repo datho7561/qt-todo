@@ -13,6 +13,7 @@ namespace qttodo {
 
 SettingsDialog::SettingsDialog(QWidget* parent) :
     QDialog(parent) {
+
     setupUi(this);
 
     // TODO: try to read the setting from file, otherwise create
@@ -20,13 +21,15 @@ SettingsDialog::SettingsDialog(QWidget* parent) :
 
     // Populate
 
-    // Connect Ok/Cancel/RestoreDefault buttons
+    // Ok button triggers save attempt
     connect(buttonBox->button(QDialogButtonBox::Ok),
         SIGNAL(clicked()), this, SLOT(save_setting()));
-    connect(buttonBox->button(QDialogButtonBox::Ok),
-        SIGNAL(clicked()), this, SLOT(accept()));
+    // Successful save attempt triggers exit
+    connect(this, SIGNAL(setting_saved()), this, SLOT(accept()));
+    // Cancel button triggers exit
     connect(buttonBox->button(QDialogButtonBox::Cancel),
         SIGNAL(clicked()), this, SLOT(reject()));
+    // RestoreDefaults buttonrestores defaults
     connect(buttonBox->button(QDialogButtonBox::RestoreDefaults),
         SIGNAL(clicked()), this, SLOT(restore_defaults()));
 
@@ -121,8 +124,21 @@ void SettingsDialog::on_themeBox_currentIndexChanged() {
 }
 
 void SettingsDialog::save_setting() {
-    
-    // TODO: implement
+
+    // TODO: Catch exception and give an error dialog
+    try {
+        setting.write_to_file();
+	emit setting_saved();
+    } catch (std::runtime_error e) {
+        // Get confirmation to try again or not
+	int try_again = QMessageBox::warning(this, tr("Settings"),
+            tr("Unable to write settings to disk.\n"
+            "Try again?"),
+            QMessageBox::Yes | QMessageBox::No);
+        if (try_again == QMessageBox::Yes) {
+            save_setting();
+        }
+    }
 }
 
 void SettingsDialog::restore_defaults() {
