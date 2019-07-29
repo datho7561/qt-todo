@@ -23,4 +23,4 @@ Makefile
 build/**
 
 # Din't include the built unit testing program
-testing/test
+testing/qt-todo

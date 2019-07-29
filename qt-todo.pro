@@ -9,16 +9,19 @@ INCLUDEPATH += . headers headers_ui
 UI_DIR = headers_ui
 MOC_DIR = build
 
-# Put executable and objects in the build directory
-DESTDIR = ./build
+# Put object files in the build directory
 OBJECTS_DIR = ./build
 
 # Check if the test suite or the application is supposed to be made
 contains("test", 1) {
+    # Test suite setup
     SOURCES += testing/*.cpp
     HEADERS += testing/catch.hpp
+    DESTDIR = ./testing
 } else {
+    # Normal build setup
     SOURCES += main.cpp
+    DESTDIR = ./build
 }
 
 # Platform specific settings
