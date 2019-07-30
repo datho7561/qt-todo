@@ -69,12 +69,12 @@ TaskList TaskList::from_string(std::string string_rep) {
     std::vector<Task> tasks;
     int end = string_rep.find('\n');
     std::string name = string_rep.substr(0, end);
-    string_rep = string_rep.substr(0, end + 1);
+    string_rep = string_rep.substr(end + 1);
     end = string_rep.find('\n');
 
     while (end != -1) {
         tasks.push_back(Task::from_string(string_rep.substr(0, end)));
-        string_rep = string_rep.substr(0, end + 1);
+        string_rep = string_rep.substr(end + 1);
         end = string_rep.find('\n');
     }
 

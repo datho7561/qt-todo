@@ -73,6 +73,12 @@ public:
 
     /**
      * \brief Get an iterator that allows iterating through the Tasks
+     * \detail For right now it just returns a read only copy of the vector
+     * storing the Tasks
+     * TODO: come up with some form of non-standard iterator to return
+     * OR come up with a way for the items to be accesses other than an iterator
+     * OR make the TaskList itself a sort of iterator over its elements
+     * AT LEAST change this to a const pointer being returned
      * 
      * \returns An iterator over this TaskList's Tasks
      */
