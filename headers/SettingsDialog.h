@@ -20,8 +20,16 @@ private:
 
     /**
      * \brief Internal representation of the current setting selected
+     * \detail The setting does not own this resource. It is given full access
+     * to this resource.
      */
-    Setting setting;
+    Setting * setting;
+
+    // HACK: This is sort of messy but I'm not sure how else to structure this
+
+    static int expiry_to_id(ExpiryPolicy ep);
+    static int deadline_to_id(DefaultDatePolicy deadline);
+    static int colour_to_id(ColourScheme colour);
 
 signals:
     
@@ -56,7 +64,7 @@ private slots:
     void restore_defaults();
 
 public:
-    SettingsDialog(QWidget * parent = nullptr);
+    SettingsDialog(Setting * setting, QWidget * parent = nullptr);
 
 };
 

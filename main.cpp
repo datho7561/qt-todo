@@ -13,19 +13,12 @@
 #include <QApplication>
 #include <QDialog>
 
-#include "Setting.h"
+#include "MainWindow.h"
 
-#include "SettingsDialog.h"
-
-// TODO: Move this logic into a QApplication instance
 int main(int argc, char * argv[]) {
 
     QApplication app(argc, argv);
-
-    std::unique_ptr<qttodo::SettingsDialog> settings_dialog(new qttodo::SettingsDialog);
-
-    settings_dialog->show();
-
+    std::unique_ptr<qttodo::MainWindow> main_window(new qttodo::MainWindow);
+    main_window->show();
     return app.exec();
-
 }

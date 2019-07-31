@@ -110,8 +110,30 @@ public:
         return colour_scheme;
     }
 
+    /**
+     * \brief Gets the path to the default list file to be used, as a Unix-style
+     * path
+     * 
+     * \returns The Unix-style path to the default list file
+     */
     std::string get_default_list_file() const {
         return default_list_file;
+    }
+
+    void set_default_date_policy(DefaultDatePolicy new_default_date_policy) {
+        default_date_policy = new_default_date_policy;
+    }
+
+    void set_expiry_policy(ExpiryPolicy new_expiry_policy) {
+        expiry_policy = new_expiry_policy;
+    }
+
+    void set_colour_scheme(ColourScheme new_colour_scheme) {
+        colour_scheme = new_colour_scheme;
+    }
+
+    void set_default_list_file(std::string new_default_list_file) {
+        default_list_file = new_default_list_file;
     }
 
     /**
