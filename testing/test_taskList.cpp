@@ -18,13 +18,18 @@ TEST_CASE("TaskList") {
     TaskList prepopulated("Prepopulated", tasks);
 
     SECTION("Iterator") {
-        auto empty_list_iter = empty_list.iterator();
-        REQUIRE(empty_list_iter.begin() == empty_list_iter.end());
-        
-        auto pop_list_iter = prepopulated.iterator();
-        // TODO: I should either rename this method or not
-        REQUIRE(pop_list_iter[0] == task1);
-        REQUIRE(pop_list_iter[1] == task2);
+        REQUIRE(empty_list.begin() == empty_list.end());
+        auto pop_iter = prepopulated.begin();
+        REQUIRE(*pop_iter == task1);
+        pop_iter++;
+        REQUIRE(*pop_iter == task2);
+        pop_iter++;
+        REQUIRE(pop_iter == prepopulated.end());
+
+        // Test to make sure range-based for syntax works
+        for (Task task: prepopulated) {
+            task.get_name();
+        }
     }
 
     SECTION("To/From String") {
@@ -50,8 +55,14 @@ TEST_CASE("TaskList") {
             == TaskList::from_string(TaskList::from_string(prepopulated.to_string()).to_string()).to_string());
         
         // Other ways to check if they have changed
-        REQUIRE(TaskList::from_string(empty_list.to_string()).iterator().size() == 0);
-        REQUIRE(TaskList::from_string(prepopulated.to_string()).iterator().size() == 2);
+        TaskList rehydrated_empty = TaskList::from_string(empty_list.to_string());
+        TaskList rehydrated_pop = TaskList::from_string(prepopulated.to_string());
+        REQUIRE(rehydrated_empty.begin() == rehydrated_empty.end());
+        unsigned int pop_count = 0;
+        for (Task t: rehydrated_pop) {
+            pop_count++;
+        }
+        REQUIRE(pop_count == 2);
     }
 
 }

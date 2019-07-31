@@ -72,17 +72,18 @@ public:
     void add_new(Task task);
 
     /**
-     * \brief Get an iterator that allows iterating through the Tasks
-     * \detail For right now it just returns a read only copy of the vector
-     * storing the Tasks
-     * TODO: come up with some form of non-standard iterator to return
-     * OR come up with a way for the items to be accesses other than an iterator
-     * OR make the TaskList itself a sort of iterator over its elements
-     * AT LEAST change this to a const pointer being returned
+     * \brief Returns a read iterator at the beginning of the list of tasks
      * 
-     * \returns An iterator over this TaskList's Tasks
+     * \returns A read iterator at the beginning of the list of tasks
      */
-    const std::vector<Task> iterator() const { return *(tasks.get()); };
+    std::vector<Task>::const_iterator begin() const { return tasks->cbegin(); }
+
+    /**
+     * \brief Returns a read iterator past the end of the list of tasks
+     * 
+     * \returns A read iterator past the end of the list of tasks
+     */
+    std::vector<Task>::const_iterator end() const { return tasks->cend(); }
 
     /**
      * \brief Convert this TaskList to a computer readable string

@@ -15,7 +15,7 @@ namespace qttodo {
 TaskList::TaskList(const TaskList & task_list):
     tasks(new std::vector<Task>) {
     name = task_list.name;
-    for (Task t : task_list.iterator()) {
+    for (Task t : task_list) {
         tasks->push_back(Task(t));
     }
 }

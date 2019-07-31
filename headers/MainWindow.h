@@ -12,6 +12,7 @@
 #include <QMainWindow>
 
 #include "Setting.h"
+#include "TaskList.h"
 #include "ui_MainWindow.h"
 
 namespace qttodo {
@@ -22,6 +23,27 @@ class MainWindow: public QMainWindow, public Ui::MainWindow {
 
 private:
     std::unique_ptr<Setting> setting;
+
+private slots:
+
+    /**
+     * \brief Called when an existing list is to be opened
+     * \detail Brings up a file selection dialog to select the list file, then
+     * opens up a new tab with the list displayed
+     */
+    void open_list();
+
+    /**
+     * \brief Called when a new list is to be created
+     * \detail Brings up a dialog to enter the name and list file location, then
+     * opens up a new tab with the list displayed
+     */
+    void new_list();
+    
+    /**
+     * \brief Open the About Qt Dialog
+     */
+    void about_qt();
 
 public:
     MainWindow();

@@ -5,6 +5,8 @@
  * \date 2019-07-31
  */
 
+#include <QMessageBox>
+
 #include "MainWindow.h"
 #include "SettingsDialog.h"
 
@@ -21,13 +23,38 @@ MainWindow::MainWindow():
         settings_dialog->exec();
     }
 
-    // Read/create default list file
+    // TODO: Read/create default list file
 
     setupUi(this);
 
-    // TODO: populate the central widget with the list file. Need to make a
-    // widget class that does this
+    // TODO: Add a new tab, and then populate it with the widget that displays
+    // the TaskList
 
+    // Set up the actions
+
+    // Quit closes the application
+    connect(quit_act, SIGNAL(triggered()),
+        this, SLOT(close()));
+
+    // About Qt
+    connect(about_qt_act, SIGNAL(triggered()),
+        this, SLOT(about_qt()));
+
+}
+
+// SLOTS
+
+void MainWindow::open_list() {
+    // TODO: implement opening the list and adding it to a new tab
+}
+
+void MainWindow::new_list() {
+    // TODO: Implement selecting a name and file name to store the list as, then
+    // open it in a new tab
+}
+
+void MainWindow::about_qt() {
+    QMessageBox::aboutQt(this, this->windowTitle());
 }
 
 }

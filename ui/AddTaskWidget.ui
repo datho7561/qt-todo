@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>486</width>
-    <height>83</height>
+    <height>88</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,39 +26,48 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QLabel" name="nameLabel">
+         <widget class="QLabel" name="name_label">
           <property name="text">
            <string>&amp;Name:</string>
           </property>
           <property name="buddy">
-           <cstring>taskNameField</cstring>
+           <cstring>task_name_field</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="taskNameField"/>
+         <widget class="QLineEdit" name="task_name_field"/>
         </item>
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="deadline_label">
           <property name="text">
            <string>&amp;Deadline:</string>
           </property>
           <property name="buddy">
-           <cstring>taskDate</cstring>
+           <cstring>task_date_editor</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QDateEdit" name="taskDate">
+         <widget class="QDateEdit" name="task_date_editor">
           <property name="calendarPopup">
            <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="addButton">
+         <widget class="QPushButton" name="add_button">
           <property name="text">
            <string>&amp;Add</string>
+          </property>
+          <property name="autoDefault">
+           <bool>false</bool>
+          </property>
+          <property name="default">
+           <bool>true</bool>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
           </property>
          </widget>
         </item>
