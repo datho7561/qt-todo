@@ -22,6 +22,20 @@ class TaskWidget: public QCheckBox {
 private:
     Task * task;
 
+private slots:
+
+	/**
+	 * \brief Update the text of the widget
+	 * \detail Apply colouring and formatting to the name of the text
+	 */
+	void update_text();
+
+	/**
+	 * \brief Called when the checkbox is clicked
+	 * \detail Sets the completed status of the Task, and updates the text
+	 */
+	void on_clicked();
+
 public:
     TaskWidget(Task * task, QWidget * parent = nullptr);
 };
