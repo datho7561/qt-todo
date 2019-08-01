@@ -35,17 +35,24 @@ private slots:
 	void update_list_widget();
 
 public:
+
+	// TODO: Split into two constructors: one for opening and one for new lists
 	/**
 	 * \brief Constructs a new ListWidget
 	 * \detail A ListWidget is used to graphically display a TaskList
 	 *
-	 * \param list_path 
+	 * \param list_path The filepath of the list file to be opened/created
+	 * 
 	 * \param setting
+	 * \param list_name If the TaskList to be created is a new TaskList, this
+	 * will be the name that the TaskList is given. Otherwise, this parameter
+	 * is ignored.
 	 * \param parent The parent widget for this ListWidget
 	 * \throws std::runtime_exception If the file exists but can't be opened
 	 * for reading, or the file exists and its not of the correct format.
 	 */
-	ListWidget(std::string list_path, Setting* setting, QWidget * parent = nullptr);
+	ListWidget(std::string list_path, Setting* setting,
+		std::string list_name = "", QWidget * parent = nullptr);
 
 };
 

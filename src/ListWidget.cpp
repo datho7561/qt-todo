@@ -5,24 +5,36 @@
  * \date 2019-08-01
  */
 
+#include <exception>
 #include <QFile>
 
 #include "ListWidget.h"
 
 namespace qttodo {
 
-ListWidget::ListWidget(std::string list_path, Setting* setting, QWidget * parent) :
+ListWidget::ListWidget(std::string list_path, Setting* setting,
+	std::string list_name, QWidget * parent) :
+	QWidget(parent),
 	list_path(list_path),
-	setting(setting),
-	QWidget(parent) {
+	setting(setting) {
+
 	// TODO: try to read the file
-	QFile list_file(QString(list_path));
+	QFile list_file(QString::fromStdString(list_path));
+
 	if (list_file.exists()) {
-		// Read it
-
+		// Read it from file
+		if (list_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+			QString data = "";
+			while (!list_file.atEnd()) {
+				data += list_file.readLine();
+			}
+			task_list.reset(new TaskList(TaskList::from_string(data.toStdString())));
+		} else {
+			throw std::runtime_error("Cannot open file for reading");
+		}
 	} else {
-		// Write to it
-
+		// Make it and write it to file
+		task_list.reset(new TaskList(list_name));
 	}
 }
 
