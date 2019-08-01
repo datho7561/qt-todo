@@ -16,6 +16,8 @@ namespace qttodo {
 
 class TaskWidget: public QCheckBox {
 
+	Q_OBJECT
+
 // TODO: Add a slot/method for updating text & text colour based off of expiry/
 // completion status
 
