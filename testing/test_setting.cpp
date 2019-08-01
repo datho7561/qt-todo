@@ -6,6 +6,8 @@
  */
 
 
+#include <qglobal.h>
+
 #include "catch.hpp"
 
 #include "Setting.h"
@@ -30,8 +32,16 @@ TEST_CASE("Setting") {
         REQUIRE(default_setting.get_colour_scheme() == ColourScheme::DEFAULT);
         REQUIRE(default_setting.get_expiry_policy()
             == ExpiryPolicy::KEEP_YESTERDAY);
+#ifdef Q_OS_DARWIN
         REQUIRE(default_setting.get_default_list_file()
             == std::string("/home/david/Documents/qt-todo/default.list"));
+#elif defined Q_OS_LINUX
+		REQUIRE(default_setting.get_default_list_file()
+			== std::string("/home/david/Documents/qt-todo/default.list"));
+#elif defined Q_OS_WIN
+		REQUIRE(default_setting.get_default_list_file()
+			== std::string("C:/Users/DavidT/Documents/qt-todo/default.list"));
+#endif
 
     }
 

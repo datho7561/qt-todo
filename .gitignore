@@ -21,5 +21,7 @@ Makefile
 # Don't include the built application
 build/**
 
-# Din't include the built unit testing program
+# Don't include the built unit testing program
 testing/qt-todo
+testing/qt-todo.exe
+testing/qt-todo.ilk
