@@ -45,6 +45,13 @@ private slots:
      */
     void about_qt();
 
+    /**
+     * \brief Called when the user requests to edit settings.
+     * \detail Brings up the settings dialog, allowing the user to modify their
+     * settings. This prevents interaction with the main window
+     */
+    void on_settings_act_triggered();
+
 public:
     MainWindow();
 

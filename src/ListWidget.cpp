@@ -45,4 +45,9 @@ void ListWidget::add_new_task(Task task) {
 	update_list_widget();
 }
 
+// TODO:
+void ListWidget::update_list_widget() {
+
+}
+
 } // qttodo

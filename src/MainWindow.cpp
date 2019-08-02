@@ -18,6 +18,13 @@ MainWindow::MainWindow():
         setting.reset(new Setting(Setting::read_setting_file()));
     } else {
         setting.reset(new Setting);
+        QMessageBox welcome_dialog(
+            QMessageBox::Information,
+            windowTitle(),
+            tr("Welcome to qt-todo! Before you begin using the application, "
+            "we need you to set your settings."),
+            QMessageBox::Ok);
+        welcome_dialog.exec();
         std::unique_ptr<SettingsDialog> settings_dialog(
             new SettingsDialog(setting.get(), this));
         settings_dialog->exec();
@@ -26,6 +33,14 @@ MainWindow::MainWindow():
     // TODO: Read/create default list file
 
     setupUi(this);
+
+    QFile default_list_file(
+        QString::fromStdString(setting->get_default_list_file()));
+    if (default_list_file.exists()) {
+        // Call the `open` constructor for the new tab
+    } else {
+        // Call the `create` constructor for the new tab
+    }
 
     // TODO: Add a new tab, and then populate it with the widget that displays
     // the TaskList
@@ -55,6 +70,11 @@ void MainWindow::new_list() {
 
 void MainWindow::about_qt() {
     QMessageBox::aboutQt(this, this->windowTitle());
+}
+
+void MainWindow::on_settings_act_triggered() {
+    SettingsDialog settings_dialog(setting.get(), this);
+    settings_dialog.exec();
 }
 
 }

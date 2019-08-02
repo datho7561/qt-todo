@@ -12,19 +12,23 @@
 namespace qttodo {
 
 SettingsDialog::SettingsDialog(Setting * setting, QWidget* parent) :
-    QDialog(parent), setting(setting) {
+    QDialog(parent), current_setting(setting), selected_setting(*setting) {
 
     setupUi(this);
 
+    // Disable the cancel button if the Settings file doesn't exist
+    buttonBox->button(QDialogButtonBox::Cancel)->setEnabled(
+        Setting::setting_file_exists());
+
     // Populate with the passed setting object
     defaultDeadlineBox->setCurrentIndex(
-        deadline_to_id(setting->get_default_date_policy()));
+        deadline_to_id(selected_setting.get_default_date_policy()));
     completedItemsBox->setCurrentIndex(
-        expiry_to_id(setting->get_expiry_policy()));
+        expiry_to_id(selected_setting.get_expiry_policy()));
     themeBox->setCurrentIndex(
-        colour_to_id(setting->get_colour_scheme()));
+        colour_to_id(selected_setting.get_colour_scheme()));
     defaultListField->setText(
-        QString::fromStdString(setting->get_default_list_file()));
+        QString::fromStdString(selected_setting.get_default_list_file()));
 
     // Ok button triggers save attempt
     connect(buttonBox->button(QDialogButtonBox::Ok),
@@ -34,7 +38,7 @@ SettingsDialog::SettingsDialog(Setting * setting, QWidget* parent) :
     // Cancel button triggers exit
     connect(buttonBox->button(QDialogButtonBox::Cancel),
         SIGNAL(clicked()), this, SLOT(reject()));
-    // RestoreDefaults buttonrestores defaults
+    // RestoreDefaults button restores defaults
     connect(buttonBox->button(QDialogButtonBox::RestoreDefaults),
         SIGNAL(clicked()), this, SLOT(restore_defaults()));
 
@@ -52,7 +56,7 @@ void SettingsDialog::on_defaultDeadlineBox_currentIndexChanged() {
     // Tomorrow 1
     // Not set 2
 
-    DefaultDatePolicy new_policy = setting->get_default_date_policy();
+    DefaultDatePolicy new_policy = selected_setting.get_default_date_policy();
     switch (defaultDeadlineBox->currentIndex()) {
         case 0:
             new_policy = DefaultDatePolicy::SET_TODAY;
@@ -64,7 +68,7 @@ void SettingsDialog::on_defaultDeadlineBox_currentIndexChanged() {
             new_policy = DefaultDatePolicy::DONT_SET;
             break;
     }
-    setting->set_default_date_policy(new_policy);
+    selected_setting.set_default_date_policy(new_policy);
 }
 
 void SettingsDialog::on_completedItemsBox_currentIndexChanged() {
@@ -75,7 +79,7 @@ void SettingsDialog::on_completedItemsBox_currentIndexChanged() {
     // At end of next day 1
     // Never 2
 
-    ExpiryPolicy new_ep = setting->get_expiry_policy();
+    ExpiryPolicy new_ep = selected_setting.get_expiry_policy();
     switch (completedItemsBox->currentIndex()) {
         case 0:
             new_ep = ExpiryPolicy::KEEP_TODAY;
@@ -87,7 +91,7 @@ void SettingsDialog::on_completedItemsBox_currentIndexChanged() {
             new_ep = ExpiryPolicy::KEEP_ALL;
             break;
     }
-    setting->set_expiry_policy(new_ep);
+    selected_setting.set_expiry_policy(new_ep);
 }
 
 void SettingsDialog::on_themeBox_currentIndexChanged() {
@@ -99,7 +103,7 @@ void SettingsDialog::on_themeBox_currentIndexChanged() {
     // Solarized 2
     // High Contrast 3
 
-    ColourScheme new_scheme = setting->get_colour_scheme();
+    ColourScheme new_scheme = selected_setting.get_colour_scheme();
     switch (themeBox->currentIndex()) {
         case 0:
             new_scheme = ColourScheme::DEFAULT;
@@ -113,23 +117,36 @@ void SettingsDialog::on_themeBox_currentIndexChanged() {
         case 3:
             new_scheme = ColourScheme::HIGH_CONTRAST;
     }
-    setting->set_colour_scheme(new_scheme);
+    selected_setting.set_colour_scheme(new_scheme);
 }
 
 void SettingsDialog::save_setting() {
 
-    // TODO: Catch exception and give an error dialog
     try {
-        setting->write_to_file();
+        // Write settings to file first, so that if a failure occurs,
+        // then no change will occur, and the user will be using the settings
+        // that are still on the disk. This means that the settings won't
+        // suddenly change when they restart the application
+        selected_setting.write_to_file();
+        // Change application setting so the user can start using it now
+        current_setting->set_default_date_policy(
+            selected_setting.get_default_date_policy());
+        current_setting->set_expiry_policy(
+            selected_setting.get_expiry_policy());
+        current_setting->set_colour_scheme(
+            selected_setting.get_colour_scheme());
+        current_setting->set_default_list_file(
+            selected_setting.get_default_list_file());
         emit setting_saved();
-    } catch (std::runtime_error e) {
+    } catch (std::runtime_error) {
         // Get confirmation to try again or not
 	    int try_again = QMessageBox::warning(this, tr("Settings"),
             tr("Unable to write settings to disk.\n"
-            "Make sure that you have permission to read and write to"
+            "Make sure that you have permission to read and write to "
             "the file.\n"
             "Try writing them again?\n"
-            "(Selecting no will continue with the default settings)."),
+            "(Selecting no means the application won't keep the settings "
+            "after it closes)."),
             QMessageBox::Yes | QMessageBox::No);
         if (try_again == QMessageBox::Yes) {
             save_setting();
@@ -139,19 +156,16 @@ void SettingsDialog::save_setting() {
 
 void SettingsDialog::restore_defaults() {
 
-    Setting default_setting;
-    setting->set_default_date_policy(default_setting.get_default_date_policy());
-    setting->set_expiry_policy(default_setting.get_expiry_policy());
-    setting->set_default_list_file(default_setting.get_default_list_file());
-    setting->set_colour_scheme(default_setting.get_colour_scheme());
+    selected_setting = Setting();
 
-    // By design, the default settings should be first.
-    // TODO: figure out a way to unit test this?
-    defaultDeadlineBox->setCurrentIndex(0);
-    completedItemsBox->setCurrentIndex(0);
-    themeBox->setCurrentIndex(0);
+    defaultDeadlineBox->setCurrentIndex(
+        deadline_to_id(selected_setting.get_default_date_policy()));
+    completedItemsBox->setCurrentIndex(expiry_to_id(
+            selected_setting.get_expiry_policy()));
+    themeBox->setCurrentIndex(colour_to_id(
+        selected_setting.get_colour_scheme()));
     defaultListField->setText(
-        QString::fromStdString(setting->get_default_list_file()));
+        QString::fromStdString(selected_setting.get_default_list_file()));
 }
 
 // private static methods

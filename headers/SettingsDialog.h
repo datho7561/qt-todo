@@ -19,11 +19,19 @@ class SettingsDialog : public QDialog, public Ui::SettingsDialog {
 private:
 
     /**
-     * \brief Internal representation of the current setting selected
-     * \detail The setting does not own this resource. It is given full access
-     * to this resource.
+     * \brief The current setting for the application
+     * \detail The SettingDialog does not own this resource. It is given full
+     * access to this resource in order to write to it when the selected
+     * setting is saved.
      */
-    Setting * setting;
+    Setting * current_setting;
+
+    /**
+     * \brief Internal representation of the current setting selected
+     * \detail This is only held in this SettingsDialog until the setting is
+     * saved.
+     */
+    Setting selected_setting;
 
     // HACK: This is sort of messy but I'm not sure how else to structure this
 
@@ -52,7 +60,8 @@ private slots:
 
     /**
      * \brief Called when the Ok button is pressed
-     * \detail Saves the current setting to file
+     * \detail Saves the setting to file, then changes the application's
+     * current setting. Prompts the user to try again if writing to file fails
      */
     void save_setting();
 
@@ -64,6 +73,14 @@ private slots:
     void restore_defaults();
 
 public:
+
+    /**
+     * \brief Makes a SettingsDialog
+     * 
+     * \param setting A pointer to the application's global setting. This
+     * setting will be modified if the Ok button is pressed in the dialog
+     * \param parent The parent widget for this dialog.
+     */
     SettingsDialog(Setting * setting, QWidget * parent = nullptr);
 
 };
