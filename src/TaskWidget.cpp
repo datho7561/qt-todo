@@ -19,28 +19,28 @@ TaskWidget::TaskWidget(Task * task, QWidget * parent):
 
 // TODO: Test this code
 void TaskWidget::update_text() {
-	QString new_text = "";
-	if (task->is_complete()) {
-		new_text += "<s>";
-	}
+    QString new_text = "";
+    if (task->is_complete()) {
+        new_text += "<s>";
+    }
 
-	if (task->is_overdue()) {
-		new_text += "<span style=\"font-color: red\">";
-	}
+    if (task->is_overdue()) {
+        new_text += "<span style=\"font-color: red\">";
+    }
 
-	if (task->is_overdue()) {
-		new_text += "</span>";
-	}
+    if (task->is_overdue()) {
+        new_text += "</span>";
+    }
 
-	if (task->is_complete()) {
-		new_text += "</s>";
-	}
+    if (task->is_complete()) {
+        new_text += "</s>";
+    }
 }
 
 // SLOTS
 
 void TaskWidget::on_clicked() {
-	QString output_string;
+    QString output_string;
 }
 
 } // qttodo

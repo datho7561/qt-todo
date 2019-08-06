@@ -14,6 +14,7 @@ namespace qttodo {
 
 TaskList::TaskList(const TaskList & task_list):
     tasks(new std::vector<Task>) {
+
     name = task_list.name;
     for (Task t : task_list) {
         tasks->push_back(Task(t));
@@ -39,6 +40,7 @@ void TaskList::remove_expired(ExpiryPolicy expiry_policy) {
 
 
 void TaskList::add_new(Task task) {
+
     // The array order is preserved everywhere else; this is the only spot
     // where it may change. Sorting is excessive but I'm lazy TODO:
     tasks->push_back(task);
@@ -53,14 +55,11 @@ std::string TaskList::to_string() const {
     rep += "\n";
 
     for (unsigned int i = 0; i < tasks->size(); i++) {
-
         rep += tasks->operator[](i).to_string();
         rep += '\n';
-
     }
 
     return rep;
-
 }
 
 
@@ -79,7 +78,6 @@ TaskList TaskList::from_string(std::string string_rep) {
     }
 
     return TaskList(name, tasks);
-
 }
 
 } // qttodo

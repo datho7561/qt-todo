@@ -20,70 +20,81 @@ namespace qttodo {
 
 class ListWidget : public QWidget {
 
-	Q_OBJECT
+    Q_OBJECT
 
 private:
 
-	/**
-	 * \brief The TaskList that this ListWidget represents
-	 * \detail This ListWidget owns this TaskList
-	 */
-	std::unique_ptr<TaskList> task_list;
+    /**
+     * \brief The TaskList that this ListWidget represents
+     * \detail This ListWidget owns this TaskList
+     */
+    std::unique_ptr<TaskList> task_list;
 
-	/**
-	 * \brief The filepath (styled as a Unix path) to the TaskList file
-	 */
-	std::string list_path;
+    /**
+     * \brief The filepath (styled as a Unix path) to the TaskList file
+     */
+    std::string list_path;
 
-	/**
-	 * \brief A pointer to the application's current setting.
-	 * \detail This pointer is non-owning (the ListWidget does not own
-	 * this Setting object).
-	 */
-	Setting * setting;
+    /**
+     * \brief A pointer to the application's current setting.
+     * \detail This pointer is non-owning (the ListWidget does not own
+     * this Setting object).
+     */
+    Setting * setting;
 
 private slots:
-	void add_new_task(Task task);
+    void add_new_task(Task task);
 
-	/**
-	 * \brief Remakes
-	 */
-	void update_list_widget();
+    /**
+     * \brief Redraws the widget's task list, adding new tasks and updating
+     * existing ones.
+     * TODO: implement
+     */
+    void update_list_widget();
+
+    /**
+     * \brief Write the TaskList to file
+     * TODO: implement
+     */
+    void rewrite_task_list();
 
 public:
 
-	/**
-	 * \brief Makes a new ListWidget with a new TaskList
-	 * \detail This is the "create" constructor. It makes a new TaskList
-	 * and associated file at the specified location with the specifed name.
-	 * The assumption is that the given file doesn't yet exist, because this
-	 * ListWidget will create it.
-	 *
-	 * \param list_path The filepath of the list file to be created
-	 * \param setting A pointer to the application's current setting
-	 * \param list_name The name for the new TaskList
-	 * \param parent The parent widget for this ListWidget
-	 * \throws std::invalid_argument If the file exists already
-	 */
-	ListWidget(std::string list_path, Setting * setting,
-		std::string list_name, QWidget * parent = nullptr);
-
-	/**
-	 * \brief Makes a new ListWidget given an existing TaskList file
-	 * \detail This is the "open" constructor. It reads the given TaskList file
-	 * and populates itself with the information. The function assumes that
-	 * the file exists and is in the correct format.
+    /**
+     * \brief Makes a new ListWidget with a new TaskList
+     * \detail This is the "create" constructor. It makes a new TaskList
+     * and associated file at the specified location with the specifed name.
+     * The assumption is that the given file doesn't yet exist, because this
+     * ListWidget will create it.
      *
-	 * \param list_path The filepath (stylized as a unix path) to the list file
-	 * to open
-	 * \param setting A pointer to the application's current setting
-	 * \param parent The parent Widget for this Widget
-	 * \throws std::invalid_argument If the file does not exist
-	 * \throws std::runtime_error If the file is not able to parsed as a
-	 * TaskList file
-	 */
-	ListWidget(std::string list_path, Setting * setting,
-		QWidget * parent = nullptr);
+     * \param list_path The filepath of the list file to be created
+     * \param setting A pointer to the application's current setting
+     * \param list_name The name for the new TaskList
+     * \param parent The parent widget for this ListWidget
+     * \throws std::invalid_argument If the file exists already
+     */
+    ListWidget(std::string list_path, Setting * setting,
+        std::string list_name, QWidget * parent = nullptr);
+
+    /**
+     * \brief Makes a new ListWidget given an existing TaskList file
+     * \detail This is the "open" constructor. It reads the given TaskList file
+     * and populates itself with the information. The function assumes that
+     * the file exists and is in the correct format.
+     *
+     * \param list_path The filepath (stylized as a unix path) to the list file
+     * to open
+     * \param setting A pointer to the application's current setting
+     * \param parent The parent Widget for this Widget
+     * \throws std::invalid_argument If the file does not exist
+     * \throws std::runtime_error If the file is not able to be read, or the
+     * file is able to be read but not parsed as a TaskList file
+     */
+    ListWidget(std::string list_path, Setting * setting,
+        QWidget * parent = nullptr);
+
+    // TODO: Write a destructor? To force a write before closing?
+    // consider how frequently you want to write
 
 };
 
