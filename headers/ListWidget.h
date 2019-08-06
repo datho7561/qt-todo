@@ -11,6 +11,7 @@
 #define LIST_WIDGET_H
 
 #include <memory>
+#include <string>
 #include <QWidget>
 
 #include "TaskList.h"
@@ -43,6 +44,11 @@ private:
     Setting * setting;
 
 private slots:
+
+    /**
+	 * \brief Add a new Task to be displayed to this ListWidget
+	 * \detail Adds it to the internal representation and adds it graphically
+	 */
     void add_new_task(Task task);
 
     /**
@@ -95,6 +101,16 @@ public:
 
     // TODO: Write a destructor? To force a write before closing?
     // consider how frequently you want to write
+
+	/**
+	 * \brief Gets the name of this widget
+	 * \detail The name of this widget is the name of the list it is working with
+	 * 
+	 * \returns The name of this widget
+	 */
+	std::string get_widget_name() const {
+		return task_list->get_name();
+	}
 
 };
 

@@ -100,6 +100,15 @@ public:
      */
     static TaskList from_string(std::string string_rep);
 
+	/**
+	 * \brief Gets the name of this TaskList
+	 * 
+	 * \returns The name of the TaskList
+	 */
+	std::string get_name() const {
+		return name;
+	}
+
 };
 
 } // qttodo
