@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>ListWidget</class>
+ <widget class="QWidget" name="ListWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -15,29 +15,20 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Tasks</string>
+    <widget class="QScrollArea" name="scroll_area">
+     <property name="widgetResizable">
+      <bool>true</bool>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QScrollArea" name="scrollArea">
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="tasklist_items_area">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>354</width>
-           <height>244</height>
-          </rect>
-         </property>
-        </widget>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QWidget" name="list_contents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>380</width>
+        <height>280</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </item>
   </layout>

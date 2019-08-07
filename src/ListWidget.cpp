@@ -31,6 +31,7 @@ ListWidget::ListWidget(std::string list_path, Setting * setting,
 
     // Write the TaskList object to file
     rewrite_task_list();
+
 }
 
 ListWidget::ListWidget(std::string list_path, Setting * setting,
@@ -61,6 +62,7 @@ ListWidget::ListWidget(std::string list_path, Setting * setting,
     } else {
         throw std::runtime_error("Cannot open file for reading");
     }
+	update_list_widget();
 }
 
 // SLOTS
@@ -72,7 +74,7 @@ void ListWidget::add_new_task(Task task) {
 }
 
 void ListWidget::update_list_widget() {
-    // TODO:
+    this
 }
 
 void ListWidget::rewrite_task_list() {

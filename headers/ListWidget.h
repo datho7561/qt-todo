@@ -16,10 +16,11 @@
 
 #include "TaskList.h"
 #include "Setting.h"
+#include "ui_ListWidget.h"
 
 namespace qttodo {
 
-class ListWidget : public QWidget {
+class ListWidget : public QWidget, public Ui::ListWidget {
 
     Q_OBJECT
 
