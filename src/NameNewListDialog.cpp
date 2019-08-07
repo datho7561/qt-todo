@@ -18,6 +18,9 @@ NameNewListDialog::NameNewListDialog(QWidget * parent):
 
 	setupUi(this);
 
+	if (parent != nullptr)
+		setWindowTitle(parent->windowTitle());
+
 	// TODO: make less restrictive
 	QRegExp reg_exp("[A-Za-z0-9 _]+");
 	list_name_field->setValidator(new QRegExpValidator(reg_exp, this));
