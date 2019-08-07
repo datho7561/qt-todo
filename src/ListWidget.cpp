@@ -66,6 +66,7 @@ ListWidget::ListWidget(std::string list_path, Setting * setting,
 // SLOTS
 
 void ListWidget::add_new_task(Task task) {
+
     task_list->add_new(task);
     update_list_widget();
 }
@@ -75,7 +76,16 @@ void ListWidget::update_list_widget() {
 }
 
 void ListWidget::rewrite_task_list() {
-    // TODO:
+
+    QFile list_file(QString::fromStdString(list_path));
+    QDir list_dir(QFileInfo(list_file).absoluteDir());
+    // Make the directory path if it doesn't exist
+    if (!list_dir.exists()) {
+        list_dir.mkpath(list_dir.absolutePath());
+    }
+    if (list_file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        list_file.write(task_list->to_string().c_str());
+    }
 }
 
 } // qttodo

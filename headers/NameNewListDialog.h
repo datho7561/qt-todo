@@ -20,7 +20,7 @@ class NameNewListDialog : public QDialog, public Ui::NameNewListDialog {
 
 private slots:
 
-	void on_list_name_field_changed();
+	void on_list_name_field_textChanged();
 
 public:
 
@@ -30,11 +30,11 @@ public:
 	NameNewListDialog(QWidget * parent = nullptr);
 
 	/**
-	 * \brief Gets the task name that was selected
+	 * \brief Gets the task list name that was selected
 	 *
-	 * \returns The selected name for the task
+	 * \returns The selected name for the task list
 	 */
-	std::string get_task_name() const {
+	std::string get_list_name() const {
 		return list_name_field->text().toStdString();
 	}
 };

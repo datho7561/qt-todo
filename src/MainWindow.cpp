@@ -5,16 +5,20 @@
  * \date 2019-07-31
  */
 
+#include <iostream>
 #include <QMessageBox>
 
 #include "MainWindow.h"
 #include "SettingsDialog.h"
 #include "ListWidget.h"
+#include "NameNewListDialog.h"
 
 namespace qttodo {
 
 MainWindow::MainWindow():
     setting() {
+    
+    // Set settings if first time, read them otherwise
     if (Setting::setting_file_exists()) {
         setting.reset(new Setting(Setting::read_setting_file()));
     } else {
@@ -31,10 +35,9 @@ MainWindow::MainWindow():
         settings_dialog->exec();
     }
 
-    // TODO: Read/create default list file
-
     setupUi(this);
 
+    // Add the widget that displays the default TaskList
     QFile default_list_file(
         QString::fromStdString(setting->get_default_list_file()));
 
@@ -51,12 +54,15 @@ MainWindow::MainWindow():
 			);
 		} else {
 			// Call the `create` constructor for the new tab
-			
-			new_tab = new ListWidget(
-				setting->get_default_list_file(),
-				setting.get(),
-				tab_widget
-			);
+			NameNewListDialog name_dlg(this);
+            if (name_dlg.exec()) {
+                new_tab = new ListWidget(
+                    setting->get_default_list_file(),
+                    setting.get(),
+                    name_dlg.get_list_name(),
+                    tab_widget
+                );
+            }
 		}
 		if (new_tab != nullptr) {
 			tab_widget->addTab(new_tab,
@@ -64,10 +70,9 @@ MainWindow::MainWindow():
 		}
 	} catch (std::exception e) {
 		// TODO: what to do if this fails?
+        std::cout << e.what() << "\n";
 	}
 
-    // TODO: Add a new tab, and then populate it with the widget that displays
-    // the TaskList
 
     // Set up the actions
 

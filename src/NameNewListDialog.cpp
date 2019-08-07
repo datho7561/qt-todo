@@ -33,7 +33,7 @@ NameNewListDialog::NameNewListDialog(QWidget * parent):
 
 // SLOTS
 
-void NameNewListDialog::on_list_name_field_changed() {
+void NameNewListDialog::on_list_name_field_textChanged() {
 	button_box->button(QDialogButtonBox::Ok)->setEnabled(list_name_field->hasAcceptableInput());
 }
 
