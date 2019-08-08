@@ -74,7 +74,7 @@ void ListWidget::add_new_task(Task task) {
 }
 
 void ListWidget::update_list_widget() {
-    this
+    //this
 }
 
 void ListWidget::rewrite_task_list() {

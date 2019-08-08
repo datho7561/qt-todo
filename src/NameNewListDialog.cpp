@@ -8,6 +8,8 @@
 
 #include <QDialog>
 #include <QPushButton>
+#include <QRegExpValidator>
+#include <QRegExp>
 
 #include "NameNewListDialog.h"
 
