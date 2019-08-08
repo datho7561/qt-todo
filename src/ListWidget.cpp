@@ -29,8 +29,11 @@ ListWidget::ListWidget(std::string list_path, Setting * setting,
     // Make the TaskList object
     task_list.reset(new TaskList(list_name));
 
+
     // Write the TaskList object to file
     rewrite_task_list();
+
+	setupUi(this);
 
 }
 
@@ -62,6 +65,9 @@ ListWidget::ListWidget(std::string list_path, Setting * setting,
     } else {
         throw std::runtime_error("Cannot open file for reading");
     }
+
+	setupUi(this);
+
 	update_list_widget();
 }
 
@@ -74,7 +80,14 @@ void ListWidget::add_new_task(Task task) {
 }
 
 void ListWidget::update_list_widget() {
-    //this
+
+	// Delete all the task widgets
+	QObjectList list_children = list_contents->children();
+	for (QObject * child : list_children) {
+		child->deleteLater();
+	}
+
+	// TODO: Make new ones
 }
 
 void ListWidget::rewrite_task_list() {
