@@ -14,6 +14,7 @@
 
 namespace qttodo {
 
+// TODO: Work into a custom widget so I can style the text properly
 class TaskWidget: public QCheckBox {
 
     Q_OBJECT
@@ -27,10 +28,11 @@ private:
 private slots:
 
     /**
+     * FIXME: Broken as all heck
      * \brief Update the text of the widget
      * \detail Apply colouring and formatting to the name of the text
      */
-    void update_text();
+    // void update_text();
 
     /**
      * \brief Called when the checkbox is clicked

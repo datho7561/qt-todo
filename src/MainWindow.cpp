@@ -16,6 +16,7 @@
 namespace qttodo {
 
 MainWindow::MainWindow():
+    QMainWindow(),
     setting() {
     
     // Set settings if first time, read them otherwise
@@ -41,37 +42,46 @@ MainWindow::MainWindow():
     QFile default_list_file(
         QString::fromStdString(setting->get_default_list_file()));
 
-	try {
-		// NOTE: The added tab is resource-managed by the tab_widget, so there
-		// is no need to worry about it being leaked
-		ListWidget * new_tab = nullptr;
-		if (default_list_file.exists()) {
-			// Call the `open` constructor for the new tab
-			new_tab = new ListWidget(
-				setting->get_default_list_file(),
-				setting.get(),
-				tab_widget
-			);
-		} else {
-			// Call the `create` constructor for the new tab
-			NameNewListDialog name_dlg(this);
-            if (name_dlg.exec()) {
-                new_tab = new ListWidget(
-                    setting->get_default_list_file(),
-                    setting.get(),
-                    name_dlg.get_list_name(),
-                    tab_widget
-                );
-            }
-		}
-		if (new_tab != nullptr) {
-			tab_widget->addTab(new_tab,
-				QString::fromStdString(new_tab->get_widget_name()));
-		}
-	} catch (std::exception e) {
-		// TODO: what to do if this fails?
-        std::cout << e.what() << "\n";
-	}
+	
+    // NOTE: The added tab is resource-managed by the tab_widget, so there
+    // is no need to worry about it being leaked
+    ListWidget * new_tab = nullptr;
+    if (default_list_file.exists()) {
+        // Call the `open` constructor for the new tab
+        try {
+        new_tab = new ListWidget(
+            setting->get_default_list_file(),
+            setting.get(),
+            tab_widget
+        );
+        } catch(std::runtime_error re) {
+            // DEBUG
+            std::cout << "Incorrect format" << "\n";
+            // TODO: Fix/detect leak?
+            new_tab = nullptr;
+        } catch (std::invalid_argument ia) {
+            // DEBUG
+            std::cout << "File cannot be opened" << "\n";
+            // TODO: Fix/detect leak?
+            new_tab = nullptr;
+        }
+    } else {
+        // Call the `create` constructor for the new tab
+        NameNewListDialog name_dlg(this);
+        if (name_dlg.exec()) {
+            new_tab = new ListWidget(
+                setting->get_default_list_file(),
+                setting.get(),
+                name_dlg.get_list_name(),
+                tab_widget
+            );
+        }
+    }
+    if (new_tab != nullptr) {
+        tab_widget->addTab(new_tab,
+            QString::fromStdString(new_tab->get_widget_name()));
+    }
+	
 
 
     // Set up the actions

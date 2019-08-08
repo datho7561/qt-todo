@@ -1,4 +1,6 @@
 
+#include <iostream>
+
 #include "catch.hpp"
 
 #include "TaskList.h"
@@ -63,6 +65,9 @@ TEST_CASE("TaskList") {
             pop_count++;
         }
         REQUIRE(pop_count == 2);
+
+        // TODO: Remove
+        std::cout << prepopulated.to_string() << "\n";
     }
 
 }

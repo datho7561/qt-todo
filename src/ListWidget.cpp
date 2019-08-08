@@ -9,6 +9,7 @@
 #include <QFile>
 
 #include "ListWidget.h"
+#include "TaskWidget.h"
 
 namespace qttodo {
 
@@ -87,7 +88,22 @@ void ListWidget::update_list_widget() {
 		child->deleteLater();
 	}
 
+    // Make a new layout TODO: Move into each constructor instead?
+    // Need to find out if layout counts as a child
+    QVBoxLayout * layout = new QVBoxLayout();
+
+    task_list->remove_expired(setting->get_expiry_policy());
+
 	// TODO: Make new ones
+    for (Task task : *task_list) {
+        // FIXME: I think that dereferencing the task should get the pointer
+        // correct, but run a trial/make a dummy program to make sure
+        TaskWidget * task_widget = new TaskWidget(&task, list_contents);
+        layout->addWidget(task_widget);
+    }
+    layout->addStretch(1);
+
+    list_contents->setLayout(layout);
 }
 
 void ListWidget::rewrite_task_list() {
