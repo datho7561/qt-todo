@@ -32,14 +32,14 @@
             "label": "qmake-app",
             "type": "shell",
             "command": [
-                "qmake-qt4",
+                "qmake-qt5",
             ]
         },
         {
             "label": "qmake-test",
             "type": "shell",
             "command": [
-                "qmake-qt4 test=1"
+                "qmake-qt5 test=1"
             ]
         },
         {

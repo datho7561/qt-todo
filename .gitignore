@@ -11,8 +11,9 @@ qt-todo.sln
 # Don't include testing framework
 testing/catch.hpp
 
-# Don't want this included because it is generated on each platform by qmake
+# QMake generated files
 Makefile
+.qmake.stash
 
 # Standard compiler generated files
 **/ui_*.h

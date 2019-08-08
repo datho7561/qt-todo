@@ -1,7 +1,7 @@
 # qt-todo
 
 This is a project where I am learning the basics of Qt4 through building a
-simple cross-platform TODO application
+simple cross-platform TODO application.
 
 ---
 
@@ -11,7 +11,7 @@ This project was developed on Linux but should be able to be built on Mac and
 Windows. All that's needed is a C++ development environment (c++ compiler,
 make/nmake) and a development installation of Qt4.
 
-Make sure that the compiler being used support C++11 or later, because features
+Make sure that the compiler being used supports C++11 or later, because features
 from these standards are being used in the application.
 
 #### Linux/Mac
@@ -83,7 +83,8 @@ Here is the current process for testing a class that is not yet being tested:
 ## VSCODE FILES
 
 I have included VSCode build tasks for the program in order to help anyone else
-who wants to build the application and happens to be using VSCode. The tasks
-that are intended for direct running are `build-app` and `build-test`. I put
-them both under the 'Build' section of tasks so that they can be run with the
-`Ctrl+Shift+B` shortcut
+who wants to build the application and happens to be using VSCode. They are
+currently set up to compile with Qt5 instead of Qt4, and only work on Linux. The
+tasks that are intended to be run directly are `build-app` and `build-test`. I
+put them both under the 'Build' section of Tasks so that they can be run with
+the `Ctrl+Shift+B` shortcut
