@@ -112,7 +112,7 @@ public:
     /**
      * \brief Set the task to be incomplete
      */
-    void set_incomplete() { this->complete = false; }
+    void set_incomplete() { complete = false; }
 
     /**
      * \brief Convert this Task into a computer readable string

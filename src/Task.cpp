@@ -16,6 +16,7 @@ bool Task::is_overdue() const {
 
 
 void Task::set_complete() {
+    complete = true;
     completion_date = Date();
 }
 

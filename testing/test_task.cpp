@@ -5,6 +5,8 @@
  * \date 2019-07-10
  */
 
+#include <iostream>
+
 #include "catch.hpp"
 
 #include "Task.h"
@@ -94,6 +96,19 @@ TEST_CASE("Task") {
 
     }
 
+    SECTION("Completion") {
+        REQUIRE(!past_its_prime.is_complete());
+        past_its_prime.set_complete();
+        REQUIRE(past_its_prime.is_complete());
+        past_its_prime.set_incomplete();
+        REQUIRE(!past_its_prime.is_complete());
+        REQUIRE(!identical1.is_complete());
+        identical1.set_complete();
+        REQUIRE(identical1.is_complete());
+        identical1.set_incomplete();
+        REQUIRE(!identical1.is_complete());
+    }
+
     SECTION("Serializing") {
         
         REQUIRE(past_its_prime
@@ -108,7 +123,7 @@ TEST_CASE("Task") {
             == Task::from_string(extrordinary.to_string()));
         REQUIRE(identical2
             == Task::from_string(identical1.to_string()));
-        
+        std::cout << todays_task.to_string() << "\n";
     }
 
 }

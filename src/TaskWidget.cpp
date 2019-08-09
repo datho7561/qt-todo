@@ -26,41 +26,41 @@ TaskWidget::TaskWidget(Task * task, QWidget * parent):
     update_text();
 }
 
-// TODO: Test this code
+
 void TaskWidget::update_text() {
 
-    std::cout << task->get_name() << "\n";
-    task_label->setText(QString::fromStdString(task->get_name()));
-    // std::string new_text = "";
-    // if (task->is_complete()) {
-    //     new_text += "<s>";
-    // }
-    // if (task->is_overdue()) {
-    //     new_text += "<span style=\"font-color: red\">";
-    // }
-    // new_text += task->get_name();
-    // if (task->is_overdue()) {
-    //     new_text += "</span>";
-    // }
-    // if (task->is_complete()) {
-    //     new_text += "</s>";
-    // }
-    // // DEBUG
-    // std::cout << new_text << "\n";
-    // task_label->setText(QString::fromStdString(new_text));
+    std::string new_text = "";
+    if (task->is_complete()) {
+        new_text += "<s><span style=\"color: gray\">";
+    }
+    // TODO: I don't think that the overdue works properly, make an example
+    if (task->is_overdue()) {
+        new_text += "<span style=\"color: red\">";
+    }
+    new_text += task->get_name();
+    if (task->is_overdue()) {
+        new_text += "</span>";
+    }
+    if (task->is_complete()) {
+        new_text += "</span></s>";
+    }
+    task_label->setText(QString::fromStdString(new_text));
+    this->repaint();
 }
 
 // SLOTS
 
 void TaskWidget::on_clicked() {
-
-    if (task->is_complete()) {
-        task->set_incomplete();
-    } else {
+    
+    if (check_box->isChecked()) {
         task->set_complete();
+        task->is_complete();
+    } else {
+        task->set_incomplete();
+        !task->is_complete();
     }
     update_text();
-    emit task_updated();
+    // emit task_updated();
 }
 
 } // qttodo
