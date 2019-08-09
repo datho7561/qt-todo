@@ -25,7 +25,7 @@ TaskList::TaskList(const TaskList & task_list):
 
 TaskList::TaskList(std::string name, std::vector<Task> initial_tasks):
     name(name),
-    tasks() {
+    tasks(new std::vector<std::unique_ptr<Task>>) {
 
     // Copy the provided tasks into the internal list of tasks
     // Put on heap to share with others
@@ -109,7 +109,7 @@ TaskList TaskList::from_string(std::string string_rep) {
 
 
 std::vector<Task *>::const_iterator TaskList::begin() const {
-    std::vector<Task *> iter_vect;
+    iter_vect = std::vector<Task *>();
     for (
         std::vector<std::unique_ptr<Task>>::iterator i = tasks->begin();
         i != tasks->end();
@@ -121,6 +121,7 @@ std::vector<Task *>::const_iterator TaskList::begin() const {
 
 
 std::vector<Task *>::const_iterator TaskList::end() const {
+    // May error is some cases if end is called before begin
     return iter_vect.end();
 }
 

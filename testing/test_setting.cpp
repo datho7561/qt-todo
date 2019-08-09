@@ -23,7 +23,7 @@ TEST_CASE("Setting") {
         DefaultDatePolicy::DONT_SET,
         ExpiryPolicy::KEEP_ALL,
         ColourScheme::MONOKAI,
-        "/home/david/potate");
+        "/home/david/custom.list");
 
     SECTION("Constructor/accessor test") {
 
@@ -71,6 +71,9 @@ TEST_CASE("Setting") {
             == current.get_colour_scheme());
         REQUIRE(custom_setting.get_default_list_file()
             == current.get_default_list_file());
+        
+        // Restore default setting! Important if both testing and running
+        default_setting.write_to_file();
     }
 
 }

@@ -22,15 +22,15 @@ TEST_CASE("TaskList") {
     SECTION("Iterator") {
         REQUIRE(empty_list.begin() == empty_list.end());
         auto pop_iter = prepopulated.begin();
-        REQUIRE(*pop_iter == task1);
+        REQUIRE(*(*pop_iter) == task1);
         pop_iter++;
-        REQUIRE(*pop_iter == task2);
+        REQUIRE(*(*pop_iter) == task2);
         pop_iter++;
         REQUIRE(pop_iter == prepopulated.end());
 
         // Test to make sure range-based for syntax works
-        for (Task task: prepopulated) {
-            task.get_name();
+        for (Task * task: prepopulated) {
+            task->get_name();
         }
     }
 
@@ -61,13 +61,10 @@ TEST_CASE("TaskList") {
         TaskList rehydrated_pop = TaskList::from_string(prepopulated.to_string());
         REQUIRE(rehydrated_empty.begin() == rehydrated_empty.end());
         unsigned int pop_count = 0;
-        for (Task t: rehydrated_pop) {
+        for (Task * t: rehydrated_pop) {
             pop_count++;
         }
         REQUIRE(pop_count == 2);
-
-        // TODO: Remove
-        std::cout << prepopulated.to_string() << "\n";
     }
 
 }
