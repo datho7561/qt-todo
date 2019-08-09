@@ -21,7 +21,17 @@ class TaskList {
 
 private:
     std::string name;
-    std::unique_ptr<std::vector<Task>> tasks;
+    std::unique_ptr<std::vector<std::unique_ptr<Task>>> tasks;
+
+    /**
+     * \brief This is the vector that allows TaskList to be treated as an
+     * iterator
+     * \detail begin() recalculates this vector, and end() uses the existing
+     * end of the vector. It is expected that begin will be called first.
+     * TODO: maybe make a bool variable to prevent this from breaking programs
+     * that want/need to access this way?
+     */
+    mutable std::vector<Task *> iter_vect;
 
 public:
 
@@ -32,7 +42,7 @@ public:
      */
     TaskList(std::string name):
         name(name),
-        tasks(new std::vector<Task>) {}
+        tasks(new std::vector<std::unique_ptr<Task>>) {}
 
     /**
      * \brief Construct a new TaskList given its name and an array of its
@@ -41,9 +51,7 @@ public:
      * \param name The name of the TaskList
      * \param tasks A vector of the Tasks in the TaskList
      */
-    TaskList(std::string name, std::vector<Task> tasks):
-        name(name),
-        tasks(new std::vector<Task>(tasks)) {}
+    TaskList(std::string name, std::vector<Task> initial_tasks);
 
     /**
      * \brief Make a copy of a TaskList
@@ -76,14 +84,14 @@ public:
      * 
      * \returns A read iterator at the beginning of the list of tasks
      */
-    std::vector<Task>::const_iterator begin() const { return tasks->cbegin(); }
+    std::vector<Task *>::const_iterator begin() const;
 
     /**
      * \brief Returns a read iterator past the end of the list of tasks
      * 
      * \returns A read iterator past the end of the list of tasks
      */
-    std::vector<Task>::const_iterator end() const { return tasks->cend(); }
+    std::vector<Task *>::const_iterator end() const;
 
     /**
      * \brief Convert this TaskList to a computer readable string

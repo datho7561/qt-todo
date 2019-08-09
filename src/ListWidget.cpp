@@ -78,6 +78,7 @@ void ListWidget::add_new_task(Task task) {
 
     task_list->add_new(task);
     update_list_widget();
+    rewrite_task_list();
 }
 
 void ListWidget::update_list_widget() {
@@ -95,11 +96,11 @@ void ListWidget::update_list_widget() {
     task_list->remove_expired(setting->get_expiry_policy());
 
 	// TODO: Make new ones
-    for (Task task : *task_list) {
-        // FIXME: I think that dereferencing the task should get the pointer
-        // correct, but run a trial/make a dummy program to make sure
-        TaskWidget * task_widget = new TaskWidget(&task, list_contents);
+    for (Task * task : *task_list) {
+        TaskWidget * task_widget = new TaskWidget(task, list_contents);
         layout->addWidget(task_widget);
+        connect(task_widget, SIGNAL(task_updated()),
+            this, SLOT(rewrite_task_list()));
     }
     layout->addStretch(1);
 

@@ -11,28 +11,34 @@
 #include <QCheckBox>
 
 #include "Task.h"
+#include "ui_TaskWidget.h"
 
 namespace qttodo {
 
 // TODO: Work into a custom widget so I can style the text properly
-class TaskWidget: public QCheckBox {
+class TaskWidget: public QWidget, public Ui::TaskWidget {
 
     Q_OBJECT
-
-// TODO: Add a slot/method for updating text & text colour based off of expiry/
-// completion status
 
 private:
     Task * task;
 
+signals:
+
+    /**
+     * \brief Send signal that this TaskWidget has been updated
+     * \detail This can be interpreted to figure out if the list needs to be
+     * rewritten.
+     */
+    void task_updated();
+
 private slots:
 
     /**
-     * FIXME: Broken as all heck
      * \brief Update the text of the widget
      * \detail Apply colouring and formatting to the name of the text
      */
-    // void update_text();
+    void update_text();
 
     /**
      * \brief Called when the checkbox is clicked

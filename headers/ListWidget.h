@@ -55,13 +55,11 @@ private slots:
     /**
      * \brief Redraws the widget's task list, adding new tasks and updating
      * existing ones.
-     * TODO: implement
      */
     void update_list_widget();
 
     /**
      * \brief Write the TaskList to file
-     * TODO: implement
      */
     void rewrite_task_list();
 
