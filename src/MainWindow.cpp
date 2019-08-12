@@ -101,14 +101,18 @@ MainWindow::MainWindow():
     connect(open_act, SIGNAL(triggered()),
         this, SLOT(open_list()));
 
-	// Connect the add task button to the
+    // New List
+    connect(new_act, SIGNAL(triggered()),
+        this, SLOT(new_list()));
+
+	// Connect the add task button to the currently open tabbed widget?
 
 }
 
 // SLOTS
 
 void MainWindow::open_list() {
-    // TODO: implement opening the list and adding it to a new tab
+
     // Get the list file using a dialog
     QString open_list_file_path = QFileDialog::getOpenFileName(
         this,
@@ -121,7 +125,6 @@ void MainWindow::open_list() {
     if (open_list_file_path != QString()) {
         
 		// Check if this list is already open, and if so, change to it
-		// TODO: segfaults, maybe rework logic into for loop over tabs?
 		for (int i = 0; i < tab_widget->count(); i++) {
 			try {
 				ListWidget * tab = dynamic_cast<ListWidget *>(tab_widget->widget(i));
@@ -130,8 +133,7 @@ void MainWindow::open_list() {
 					return;
 				}
 			} catch (std::exception e) {
-				// DEBUG
-				std::cout << "Cannot cast widget to tab while checking for duplicates\n";
+                // TODO: handle more elegantly?
 				continue;
 			}
 		}
@@ -185,6 +187,13 @@ void MainWindow::open_list() {
 void MainWindow::new_list() {
     // TODO: Implement selecting a name and file name to store the list as, then
     // open it in a new tab
+    QString new_file_list = QFileDialog::getSaveFileName(
+        this,
+        tr("Create List"),
+        QDir::homePath(),
+        tr("qt-todo Lists (*.list)")
+    );
+    // TODO: Check if it exists
 }
 
 void MainWindow::about_qt() {
