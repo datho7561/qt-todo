@@ -120,6 +120,17 @@ void MainWindow::open_list() {
     // If a file was selected
     if (open_list_file_path != QString()) {
         
+		// Check if this list is already open, and if so, change to it
+		// TODO: segfaults, maybe rework logic into for loop over tabs?
+		for (QObject * tab : tab_widget->children()) {
+			ListWidget * list_tab = dynamic_cast<ListWidget *>(tab);
+			if (QString::fromStdString(list_tab->get_file_name())
+				== open_list_file_path) {
+				tab_widget->setCurrentWidget(dynamic_cast<QWidget *>(tab));
+				return;
+			}
+		}
+
         ListWidget * new_tab;
 
         // Read the list file in and handle any exceptions appropriately
@@ -160,7 +171,7 @@ void MainWindow::open_list() {
         // figure out why
         if (new_tab != nullptr) {
         tab_widget->addTab(new_tab,
-            tr("Unadulterated potation"));
+            QString::fromStdString(new_tab->get_widget_name()));
         }
     }
 }

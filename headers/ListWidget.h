@@ -111,6 +111,10 @@ public:
 		return task_list->get_name();
 	}
 
+    std::string get_file_name() const {
+        return list_path;
+    }
+
 };
 
 } // qttodo
