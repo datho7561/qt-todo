@@ -6,6 +6,7 @@
  */
 
 #include <exception>
+#include <iostream> // DEBUG
 #include <QFile>
 
 #include "ListWidget.h"
@@ -89,16 +90,14 @@ void ListWidget::update_list_widget() {
 		child->deleteLater();
 	}
 
-    // Make a new layout TODO: Move into each constructor instead?
-    // Need to find out if layout counts as a child
     QVBoxLayout * layout = new QVBoxLayout();
 
     task_list->remove_expired(setting->get_expiry_policy());
 
-	// TODO: Make new ones
     for (Task * task : *task_list) {
         TaskWidget * task_widget = new TaskWidget(task, list_contents);
         layout->addWidget(task_widget);
+        // TODO: connect buttons to task_updated?
         connect(task_widget, SIGNAL(task_updated()),
             this, SLOT(rewrite_task_list()));
     }

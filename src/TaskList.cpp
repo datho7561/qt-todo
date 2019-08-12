@@ -5,8 +5,6 @@
  * \date 2019-06-18
  */
 
-#include <algorithm>
-
 #include "TaskList.h"
 
 
@@ -98,7 +96,6 @@ TaskList TaskList::from_string(std::string string_rep) {
     end = string_rep.find('\n');
 
     while (end != -1) {
-        // TODO: Maybe make this more legible?
         read_tasks.push_back(Task::from_string(string_rep.substr(0, end)));
         string_rep = string_rep.substr(end + 1);
         end = string_rep.find('\n');

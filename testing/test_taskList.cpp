@@ -34,6 +34,19 @@ TEST_CASE("TaskList") {
         }
     }
 
+    SECTION("Copying") {
+        TaskList copy_prepopulated(prepopulated);
+        REQUIRE(copy_prepopulated.get_name() == prepopulated.get_name());
+        REQUIRE(copy_prepopulated.to_string() == prepopulated.to_string());
+        auto copy_iter = copy_prepopulated.begin();
+        auto original_iter = prepopulated.begin();
+        while (copy_iter != copy_prepopulated.end()) {
+            REQUIRE(*(*copy_iter) == *(*original_iter));
+            copy_iter++;
+            original_iter++;
+        }
+    }
+
     SECTION("To/From String") {
         // Directly cehcking string
         REQUIRE(empty_list.to_string() == std::string("Empty List\n"));
