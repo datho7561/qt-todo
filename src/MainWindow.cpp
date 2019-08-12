@@ -122,12 +122,17 @@ void MainWindow::open_list() {
         
 		// Check if this list is already open, and if so, change to it
 		// TODO: segfaults, maybe rework logic into for loop over tabs?
-		for (QObject * tab : tab_widget->children()) {
-			ListWidget * list_tab = dynamic_cast<ListWidget *>(tab);
-			if (QString::fromStdString(list_tab->get_file_name())
-				== open_list_file_path) {
-				tab_widget->setCurrentWidget(dynamic_cast<QWidget *>(tab));
-				return;
+		for (int i = 0; i < tab_widget->count(); i++) {
+			try {
+				ListWidget * tab = dynamic_cast<ListWidget *>(tab_widget->widget(i));
+				if (tab->get_file_name() == open_list_file_path.toStdString()) {
+					tab_widget->setCurrentIndex(i);
+					return;
+				}
+			} catch (std::exception e) {
+				// DEBUG
+				std::cout << "Cannot cast widget to tab while checking for duplicates\n";
+				continue;
 			}
 		}
 
@@ -136,7 +141,7 @@ void MainWindow::open_list() {
         // Read the list file in and handle any exceptions appropriately
         try {
             new_tab = new ListWidget(
-                setting->get_default_list_file(),
+                open_list_file_path.toStdString(),
                 setting.get(),
                 tab_widget
             );
@@ -170,8 +175,9 @@ void MainWindow::open_list() {
         // TODO: Name of tab is not being processed correctly here
         // figure out why
         if (new_tab != nullptr) {
-        tab_widget->addTab(new_tab,
-            QString::fromStdString(new_tab->get_widget_name()));
+			tab_widget->addTab(new_tab,
+				QString::fromStdString(new_tab->get_widget_name()));
+			tab_widget->setCurrentWidget(new_tab);
         }
     }
 }

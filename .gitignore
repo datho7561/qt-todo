@@ -26,3 +26,6 @@ build/**
 testing/qt-todo
 testing/qt-todo.exe
 testing/qt-todo.ilk
+
+# Don't include any list files
+.list
