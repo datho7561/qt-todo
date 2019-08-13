@@ -11,6 +11,7 @@
 
 #include <QWidget>
 
+#include "Task.h"
 #include "ui_AddTaskWidget.h"
 
 namespace qttodo {
@@ -20,9 +21,15 @@ class AddTaskWidget: public QWidget, public Ui::Form {
     Q_OBJECT
 
 private slots:
-    // TODO: This actually shouldn't be a slot here. The signal should be
-    // connected to the main window.
+    /**
+     * \brief Process the clicking of the Add Task button
+     * \detail Attempts to turn the current state of the widget into a Task,
+     * then emits the task_created signal
+     */
     void on_add_button_clicked();
+
+signals:
+    void task_created(Task task);
 
 public:
     AddTaskWidget(QWidget * parent = nullptr);

@@ -80,14 +80,13 @@ MainWindow::MainWindow():
             );
         }
     }
+
     if (new_tab != nullptr) {
         tab_widget->addTab(new_tab,
             QString::fromStdString(new_tab->get_widget_name()));
     }
-    
 
-
-    // Set up the actions
+    // ACTIONS
 
     // Quit closes the application
     connect(quit_act, SIGNAL(triggered()),
@@ -105,7 +104,11 @@ MainWindow::MainWindow():
     connect(new_act, SIGNAL(triggered()),
         this, SLOT(new_list()));
 
-    // Connect the add task button to the currently open tabbed widget?
+    // Connect the add task button to the currently open tabbed widget
+    connect(add_task_widget,
+        SIGNAL(task_created(Task)),
+        dynamic_cast<ListWidget *>(tab_widget->currentWidget()),
+        SLOT(add_new_task(Task)));
 
 }
 

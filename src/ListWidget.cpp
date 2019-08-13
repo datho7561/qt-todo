@@ -31,11 +31,12 @@ ListWidget::ListWidget(std::string list_path, Setting * setting,
     // Make the TaskList object
     task_list.reset(new TaskList(list_name));
 
-
     // Write the TaskList object to file
     rewrite_task_list();
 
 	setupUi(this);
+
+    list_contents->setLayout(new QVBoxLayout);
 
 }
 
@@ -70,6 +71,8 @@ ListWidget::ListWidget(std::string list_path, Setting * setting,
 
 	setupUi(this);
 
+    list_contents->setLayout(new QVBoxLayout);
+
 	update_list_widget();
 }
 
@@ -84,13 +87,14 @@ void ListWidget::add_new_task(Task task) {
 
 void ListWidget::update_list_widget() {
 
-	// Delete all the task widgets
-	QObjectList list_children = list_contents->children();
-	for (QObject * child : list_children) {
-		child->deleteLater();
-	}
 
-    QVBoxLayout * layout = new QVBoxLayout();
+    QVBoxLayout * layout = dynamic_cast<QVBoxLayout *>(list_contents->layout());
+	
+    while(layout->count() > 0) {
+        QLayoutItem * to_remove = layout->itemAt(0);
+        layout->removeItem(to_remove);
+        delete to_remove;
+    }
 
     task_list->remove_expired(setting->get_expiry_policy());
 
@@ -102,8 +106,6 @@ void ListWidget::update_list_widget() {
             this, SLOT(rewrite_task_list()));
     }
     layout->addStretch(1);
-
-    list_contents->setLayout(layout);
 }
 
 void ListWidget::rewrite_task_list() {

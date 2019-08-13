@@ -21,8 +21,8 @@ AddTaskWidget::AddTaskWidget(QWidget * parent):
 // SLOTS
 
 void AddTaskWidget::on_add_button_clicked() {
-	// TODO: send signal up and process this information correctly
-    std::cout << "Huzzah!" << task_name_field->text().toStdString() << "\n";
+    Task task("Huzzah!", Date());
+    emit task_created(task);
 }
 
 } // qttodo
