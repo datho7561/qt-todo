@@ -45,7 +45,7 @@ MainWindow::MainWindow():
     QFile default_list_file(
         QString::fromStdString(setting->get_default_list_file()));
 
-	
+    
     // NOTE: The added tab is resource-managed by the tab_widget, so there
     // is no need to worry about it being leaked
     ListWidget * new_tab = nullptr;
@@ -84,7 +84,7 @@ MainWindow::MainWindow():
         tab_widget->addTab(new_tab,
             QString::fromStdString(new_tab->get_widget_name()));
     }
-	
+    
 
 
     // Set up the actions
@@ -105,7 +105,7 @@ MainWindow::MainWindow():
     connect(new_act, SIGNAL(triggered()),
         this, SLOT(new_list()));
 
-	// Connect the add task button to the currently open tabbed widget?
+    // Connect the add task button to the currently open tabbed widget?
 
 }
 
@@ -114,6 +114,8 @@ MainWindow::MainWindow():
 void MainWindow::open_list() {
 
     // Get the list file using a dialog
+    // TODO: Change the default open directory to the Documents/qt-todo
+    // directory
     QString open_list_file_path = QFileDialog::getOpenFileName(
         this,
         tr("Open List"),
@@ -124,19 +126,20 @@ void MainWindow::open_list() {
     // If a file was selected
     if (open_list_file_path != QString()) {
         
-		// Check if this list is already open, and if so, change to it
-		for (int i = 0; i < tab_widget->count(); i++) {
-			try {
-				ListWidget * tab = dynamic_cast<ListWidget *>(tab_widget->widget(i));
-				if (tab->get_file_name() == open_list_file_path.toStdString()) {
-					tab_widget->setCurrentIndex(i);
-					return;
-				}
-			} catch (std::exception e) {
+        // Check if this list is already open, and if so, change to it
+        for (int i = 0; i < tab_widget->count(); i++) {
+            try {
+                ListWidget * tab = dynamic_cast<ListWidget *>(
+                    tab_widget->widget(i));
+                if (tab->get_file_name() == open_list_file_path.toStdString()) {
+                    tab_widget->setCurrentIndex(i);
+                    return;
+                }
+            } catch (std::exception e) {
                 // TODO: handle more elegantly?
-				continue;
-			}
-		}
+                continue;
+            }
+        }
 
         ListWidget * new_tab;
 
@@ -174,26 +177,87 @@ void MainWindow::open_list() {
         }
 
         // Add the tab if reading went well
-        // TODO: Name of tab is not being processed correctly here
-        // figure out why
         if (new_tab != nullptr) {
-			tab_widget->addTab(new_tab,
-				QString::fromStdString(new_tab->get_widget_name()));
-			tab_widget->setCurrentWidget(new_tab);
+            tab_widget->addTab(new_tab,
+                QString::fromStdString(new_tab->get_widget_name()));
+            tab_widget->setCurrentWidget(new_tab);
         }
     }
 }
 
 void MainWindow::new_list() {
-    // TODO: Implement selecting a name and file name to store the list as, then
-    // open it in a new tab
+    // TODO: Change the default open directory to the Documents/qt-todo
+    // directory
     QString new_file_list = QFileDialog::getSaveFileName(
         this,
         tr("Create List"),
         QDir::homePath(),
         tr("qt-todo Lists (*.list)")
     );
-    // TODO: Check if it exists
+    // If it already exists, there will be a warning from the selection dialog
+    // If a name was selected
+    if (new_file_list != QString()) {
+        
+        // Get the name for the new TaskList, abort if no name is selected
+        NameNewListDialog name_dlg(this);
+        if (name_dlg.exec()) {
+
+            // Check if this list is already open, and if so, close it (because
+            // we are going to overwrite it)
+            for (int i = 0; i < tab_widget->count(); i++) {
+                try {
+                    ListWidget * tab = dynamic_cast<ListWidget *>(
+                        tab_widget->widget(i));
+                    if (tab->get_file_name() == new_file_list.toStdString()) {
+                        tab->deleteLater();
+                        break;
+                    }
+                } catch (std::exception e) {
+                    // TODO: This means something other than a normal TaskList
+                    // has been added as a tab, consider crashing/resolving somehow?
+                    continue;
+                }
+            }
+
+            if (QFile(new_file_list).exists()) {
+                // TODO: add error message if file can't be deleted
+                QFile(new_file_list).remove();
+            }
+
+            ListWidget * new_tab;
+
+            // Read the list file in and handle any exceptions appropriately
+            try {
+                new_tab = new ListWidget(
+                    new_file_list.toStdString(),
+                    setting.get(),
+                    name_dlg.get_list_name(),
+                    tab_widget
+                );
+            } catch (std::invalid_argument ia) {
+                QMessageBox err_msg_box(
+                    QMessageBox::Warning,
+                    tr("List Writing Error"),
+                    tr("Unable to create the file: ")
+                    + new_file_list
+                    + tr(" . Please make sure you have permission to create or "
+                    "modify it. The new list was not created, but an old file "
+                    "may have been deleted."),
+                    QMessageBox::Ok,
+                    this
+                );
+                err_msg_box.exec();
+                new_tab = nullptr;
+            }
+
+            // Add the tab if reading went well
+            if (new_tab != nullptr) {
+                tab_widget->addTab(new_tab,
+                    QString::fromStdString(new_tab->get_widget_name()));
+                tab_widget->setCurrentWidget(new_tab);
+            }
+        }
+    }
 }
 
 void MainWindow::about_qt() {
