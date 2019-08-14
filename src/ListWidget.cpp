@@ -90,14 +90,17 @@ void ListWidget::update_list_widget() {
 
     QVBoxLayout * layout = dynamic_cast<QVBoxLayout *>(list_contents->layout());
 	
+    // Remove widgets
     while(layout->count() > 0) {
         QLayoutItem * to_remove = layout->itemAt(0);
         layout->removeItem(to_remove);
         delete to_remove;
     }
 
+    // Remove outdated tasks
     task_list->remove_expired(setting->get_expiry_policy());
 
+    // Add new widgets
     for (Task * task : *task_list) {
         TaskWidget * task_widget = new TaskWidget(task, list_contents);
         layout->addWidget(task_widget);
