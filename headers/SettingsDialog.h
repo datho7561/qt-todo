@@ -12,6 +12,7 @@
 
 namespace qttodo {
 
+// TODO: Actually implement the select file button
 class SettingsDialog : public QDialog, public Ui::SettingsDialog {
 
     Q_OBJECT
@@ -54,16 +55,22 @@ private slots:
      * \detail Modifies the SettingDialog's setting in order to reflect the new
      * default
      */
-    void on_defaultDeadlineBox_currentIndexChanged();
-    void on_completedItemsBox_currentIndexChanged();
-    void on_themeBox_currentIndexChanged();
+    void on_defaultDeadlineBox_currentIndexChanged(int);
+    void on_completedItemsBox_currentIndexChanged(int);
+    void on_themeBox_currentIndexChanged(int);
+    
+    /**
+     * \brief called when the list input box is modified
+     */
+    void on_defaultListField_textChanged(const QString & text);
 
     /**
      * \brief Called when the Ok button is pressed
      * \detail Saves the setting to file, then changes the application's
-     * current setting. Prompts the user to try again if writing to file fails
+     * current setting. Prompts the user to try again if writing to file fails.
+     * It performs the default accept() action after the file is saved.
      */
-    void save_setting();
+    virtual void accept();
 
     /**
      * \brief Called when the restore defaults button is pressed.

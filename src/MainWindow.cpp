@@ -105,10 +105,8 @@ MainWindow::MainWindow():
         this, SLOT(new_list()));
 
     // Connect the add task button to the currently open tabbed widget
-    connect(add_task_widget,
-        SIGNAL(task_created(Task)),
-        dynamic_cast<ListWidget *>(tab_widget->currentWidget()),
-        SLOT(add_new_task(Task)));
+    connect(add_task_widget, SIGNAL(task_created(Task)),
+        this, SLOT(add_task_to_current_tab(Task)));
 
 }
 
@@ -270,6 +268,10 @@ void MainWindow::about_qt() {
 void MainWindow::on_settings_act_triggered() {
     SettingsDialog settings_dialog(setting.get(), this);
     settings_dialog.exec();
+}
+
+void MainWindow::add_task_to_current_tab(Task task) {
+    dynamic_cast<ListWidget *>(tab_widget->currentWidget())->add_new_task(task);
 }
 
 }

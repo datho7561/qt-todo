@@ -47,12 +47,6 @@ private:
 private slots:
 
     /**
-	 * \brief Add a new Task to be displayed to this ListWidget
-	 * \detail Adds it to the internal representation and adds it graphically
-	 */
-    void add_new_task(Task task);
-
-    /**
      * \brief Redraws the widget's task list, adding new tasks and updating
      * existing ones.
      */
@@ -111,9 +105,21 @@ public:
 		return task_list->get_name();
 	}
 
+    /**
+     * \brief Gets the name of the file that this ListWidget is displaying
+     * 
+     * \returns The name of the file that the ListWidget is displaying, as a
+     * Unix-style path.
+     */
     std::string get_file_name() const {
         return list_path;
     }
+
+    /**
+	 * \brief Add a new Task to be displayed to this ListWidget
+	 * \detail Adds it to the internal representation and adds it graphically
+	 */
+    void add_new_task(Task task);
 
 };
 

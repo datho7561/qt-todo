@@ -60,7 +60,7 @@ void TaskWidget::on_clicked() {
         !task->is_complete();
     }
     update_text();
-    // emit task_updated();
+    emit task_updated();
 }
 
 } // qttodo

@@ -5,6 +5,7 @@
  * \date 2019-07-25
  */
 
+#include <iostream> // DEBUG
 #include <QMessageBox>
 
 #include "SettingsDialog.h"
@@ -32,9 +33,7 @@ SettingsDialog::SettingsDialog(Setting * setting, QWidget* parent) :
 
     // Ok button triggers save attempt
     connect(buttonBox->button(QDialogButtonBox::Ok),
-        SIGNAL(clicked()), this, SLOT(save_setting()));
-    // Successful save attempt triggers exit
-    connect(this, SIGNAL(setting_saved()), this, SLOT(accept()));
+        SIGNAL(clicked()), this, SLOT(accept()));
     // Cancel button triggers exit
     connect(buttonBox->button(QDialogButtonBox::Cancel),
         SIGNAL(clicked()), this, SLOT(reject()));
@@ -46,8 +45,9 @@ SettingsDialog::SettingsDialog(Setting * setting, QWidget* parent) :
 
 // SLOTS
 
-void SettingsDialog::on_defaultDeadlineBox_currentIndexChanged() {
+void SettingsDialog::on_defaultDeadlineBox_currentIndexChanged(int) {
 
+    // TODO: Switch to using the built-in index or String
     // TODO: build unit tests to assert that this order is kept after
     // recompiling UI. If it isn't it isn't a big deal, but the switch statement
     // will have to be modified to reflect this.
@@ -71,8 +71,9 @@ void SettingsDialog::on_defaultDeadlineBox_currentIndexChanged() {
     selected_setting.set_default_date_policy(new_policy);
 }
 
-void SettingsDialog::on_completedItemsBox_currentIndexChanged() {
+void SettingsDialog::on_completedItemsBox_currentIndexChanged(int) {
     
+    // TODO: Switch to using the built-in index or String
     // TODO: Unit test as above
     // Index reference:
     // At end of day 0
@@ -94,8 +95,9 @@ void SettingsDialog::on_completedItemsBox_currentIndexChanged() {
     selected_setting.set_expiry_policy(new_ep);
 }
 
-void SettingsDialog::on_themeBox_currentIndexChanged() {
+void SettingsDialog::on_themeBox_currentIndexChanged(int) {
 
+    // TODO: Switch to using the built-in index or String
     // TODO: Unit test as above
     // Index Reference
     // Default 0
@@ -120,7 +122,12 @@ void SettingsDialog::on_themeBox_currentIndexChanged() {
     selected_setting.set_colour_scheme(new_scheme);
 }
 
-void SettingsDialog::save_setting() {
+void SettingsDialog::on_defaultListField_textChanged(const QString & text) {
+
+    selected_setting.set_default_list_file(text.toStdString());
+}
+
+void SettingsDialog::accept() {
 
     try {
         // Write settings to file first, so that if a failure occurs,
@@ -149,9 +156,10 @@ void SettingsDialog::save_setting() {
             "after it closes)."),
             QMessageBox::Yes | QMessageBox::No);
         if (try_again == QMessageBox::Yes) {
-            save_setting();
+            accept();
         }
     }
+    QDialog::accept();
 }
 
 void SettingsDialog::restore_defaults() {

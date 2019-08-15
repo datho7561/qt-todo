@@ -52,6 +52,14 @@ private slots:
      */
     void on_settings_act_triggered();
 
+    /**
+     * \brief Adds a the specified task to the list in the currently selected
+     * tab
+     * 
+     * \param task The task to add to the list
+     */
+    void add_task_to_current_tab(Task task);
+
 public:
     MainWindow();
 
