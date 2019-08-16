@@ -12,7 +12,6 @@
             "dependsOn": [
                 "qmake-app",
                 "make",
-                "run-app"
             ],
             "problemMatcher": "$gcc"
         },
@@ -47,11 +46,6 @@
             "type": "shell",
             "command": "make -j5",
             "problemMatcher": "$gcc"
-        },
-        {
-            "label": "run-app",
-            "type": "shell",
-            "command": "./build/qt-todo"
         },
         {
             "label": "run-test",
