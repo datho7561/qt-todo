@@ -55,7 +55,7 @@ void TaskList::remove_expired(ExpiryPolicy expiry_policy) {
     tasks.reset(new_tasks);
 }
 
-
+// TODO: TEST ME! I had an assertion failure in this code, there are probably more issues
 void TaskList::add_new(Task task) {
 
     // The array order is preserved everywhere else, so all that's needed is an
@@ -65,7 +65,7 @@ void TaskList::add_new(Task task) {
     std::vector<std::unique_ptr<Task>>::reverse_iterator iter = tasks->rbegin();
 
     // While the task belongs before ones that are currently before it
-    while (iter != tasks->rend() && *iter < *(iter+1)) {
+    while (iter != tasks->rend() && (iter + 1) != tasks->rend() && *iter < *(iter+1)) {
         // Swaps ownership of the Task downwards
         (*iter).swap(*(iter+1));
     }

@@ -104,10 +104,18 @@ MainWindow::MainWindow():
     connect(new_act, SIGNAL(triggered()),
         this, SLOT(new_list()));
 
+	// Close tab
+	connect(close_act, SIGNAL(triggered()),
+		this, SLOT(close_current_tab()));
+
     // Connect the add task button to the currently open tabbed widget
     connect(add_task_widget, SIGNAL(task_created(Task)),
         this, SLOT(add_task_to_current_tab(Task)));
 
+	// Connect close button to closing the tab
+	connect(tab_widget, SIGNAL(tabCloseRequested(int)),
+		this, SLOT(close_tab(int)));
+	
 }
 
 // SLOTS
