@@ -91,9 +91,9 @@ void ListWidget::update_list_widget() {
     QVBoxLayout * layout = dynamic_cast<QVBoxLayout *>(list_contents->layout());
 	
     // Remove widgets
-    while(layout->count() > 0) {
-        QLayoutItem * to_remove = layout->itemAt(0);
-        layout->removeItem(to_remove);
+    while (layout->count() > 0) {
+        QWidget * to_remove = layout->itemAt(0)->widget();
+        layout->removeWidget(to_remove);
         delete to_remove;
     }
 

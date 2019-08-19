@@ -60,6 +60,22 @@ private slots:
      */
     void add_task_to_current_tab(Task task);
 
+	/**
+	 * \brief Close the tab with the specified index
+	 *
+	 * \param index The index of the tab to close
+	 */
+	void close_tab(int index) {
+		tab_widget->removeTab(index);
+	}
+
+	/**
+	 * \brief Close the tab that is currently open
+	 */
+	void close_current_tab() {
+		tab_widget->removeTab(tab_widget->currentIndex());
+	}
+
 public:
     MainWindow();
 
