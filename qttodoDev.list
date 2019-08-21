@@ -17,4 +17,5 @@ Freedesktop launcher	0	2019	12	30	2019	8	21
 Clicking text of TODO item should complete the item	0	2019	8	30	2019	8	21
 Windows installer	0	2019	12	30	2019	8	21
 Vector version of logo	0	2019	12	30	2019	8	21
+Whe making a new list, check if the selected filename ends with .list, and if not append it	0	2019	8	30	2019	8	21
 Middle click tab closes it	0	2019	12	30	2019	8	21

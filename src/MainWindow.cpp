@@ -10,6 +10,7 @@
 #include <QFileDialog>
 #include <QDir>
 #include <QMessageBox>
+#include <QShortcut>
 
 #include "MainWindow.h"
 #include "SettingsDialog.h"
@@ -85,6 +86,58 @@ MainWindow::MainWindow():
         tab_widget->addTab(new_tab,
             QString::fromStdString(new_tab->get_widget_name()));
     }
+
+    // TAB SHORTCUTS
+
+    QShortcut * tab_shortcut =
+        new QShortcut(QKeySequence(Qt::ALT + Qt::Key_1), this);
+    connect(tab_shortcut, SIGNAL(activated()),
+        this, SLOT(switch_tab_1()));
+
+    tab_shortcut =
+        new QShortcut(QKeySequence(Qt::ALT + Qt::Key_2), this);
+    connect(tab_shortcut, SIGNAL(activated()),
+        this, SLOT(switch_tab_2()));
+
+    tab_shortcut =
+        new QShortcut(QKeySequence(Qt::ALT + Qt::Key_3), this);
+    connect(tab_shortcut, SIGNAL(activated()),
+        this, SLOT(switch_tab_3()));
+    
+    tab_shortcut =
+        new QShortcut(QKeySequence(Qt::ALT + Qt::Key_4), this);
+    connect(tab_shortcut, SIGNAL(activated()),
+        this, SLOT(switch_tab_4()));
+    
+    tab_shortcut =
+        new QShortcut(QKeySequence(Qt::ALT + Qt::Key_5), this);
+    connect(tab_shortcut, SIGNAL(activated()),
+        this, SLOT(switch_tab_5()));
+    
+    tab_shortcut =
+        new QShortcut(QKeySequence(Qt::ALT + Qt::Key_6), this);
+    connect(tab_shortcut, SIGNAL(activated()),
+        this, SLOT(switch_tab_6()));
+    
+    tab_shortcut =
+        new QShortcut(QKeySequence(Qt::ALT + Qt::Key_7), this);
+    connect(tab_shortcut, SIGNAL(activated()),
+        this, SLOT(switch_tab_7()));
+    
+    tab_shortcut =
+        new QShortcut(QKeySequence(Qt::ALT + Qt::Key_8), this);
+    connect(tab_shortcut, SIGNAL(activated()),
+        this, SLOT(switch_tab_8()));
+    
+    tab_shortcut =
+        new QShortcut(QKeySequence(Qt::ALT + Qt::Key_9), this);
+    connect(tab_shortcut, SIGNAL(activated()),
+        this, SLOT(switch_tab_9()));
+
+    tab_shortcut =
+        new QShortcut(QKeySequence(Qt::ALT + Qt::Key_0), this);
+    connect(tab_shortcut, SIGNAL(activated()),
+        this, SLOT(switch_tab_10()));
 
     // ACTIONS
 

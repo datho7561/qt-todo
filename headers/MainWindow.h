@@ -10,6 +10,7 @@
 
 #include <memory>
 #include <QMainWindow>
+#include <iostream> // DEBUG
 
 #include "Setting.h"
 #include "TaskList.h"
@@ -75,6 +76,60 @@ private slots:
 	void close_current_tab() {
 		tab_widget->removeTab(tab_widget->currentIndex());
 	}
+
+    /**
+     * \brief Switch to the indicated tab
+     */
+    void switch_tab_1() {
+        if (tab_widget->count() > 0) {
+            tab_widget->setCurrentIndex(0);
+        }
+    }
+    void switch_tab_2() {
+        if (tab_widget->count() > 1) {
+            tab_widget->setCurrentIndex(1);
+        }
+    }
+    void switch_tab_3() {
+        if (tab_widget->count() > 2) {
+            tab_widget->setCurrentIndex(2);
+        }
+    }
+    void switch_tab_4() {
+        if (tab_widget->count() > 3) {
+            tab_widget->setCurrentIndex(3);
+        }
+    }
+    void switch_tab_5() {
+        if (tab_widget->count() > 4) {
+            tab_widget->setCurrentIndex(4);
+        }
+    }
+    void switch_tab_6() {
+        if (tab_widget->count() > 5) {
+            tab_widget->setCurrentIndex(5);
+        }
+    }
+    void switch_tab_7() {
+        if (tab_widget->count() > 6) {
+            tab_widget->setCurrentIndex(6);
+        }
+    }
+    void switch_tab_8() {
+        if (tab_widget->count() > 7) {
+            tab_widget->setCurrentIndex(7);
+        }
+    }
+    void switch_tab_9() {
+        if (tab_widget->count() > 8) {
+            tab_widget->setCurrentIndex(8);
+        }
+    }
+    void switch_tab_10() {
+        if (tab_widget->count() > 9) {
+            tab_widget->setCurrentIndex(9);
+        }
+    }
 
 public:
     MainWindow();
