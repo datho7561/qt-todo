@@ -28,6 +28,11 @@ private slots:
      */
     void on_add_button_clicked();
 
+    /**
+     * \brief Check if the task name is valid and enable/disable the button
+     */
+    void on_task_name_field_textChanged();
+
 signals:
     void task_created(Task task);
 

@@ -57,6 +57,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="add_button">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>&amp;Add</string>
           </property>
