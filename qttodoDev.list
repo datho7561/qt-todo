@@ -1,6 +1,4 @@
 Qt TODO Development
-Find out why widgets are duplicated but in the wrong order when updating	1	2019	8	30	2019	8	19
-Add the ability to close tabs	1	2019	8	30	2019	8	19
 Add a button to delete a list	0	2019	8	30	2019	8	15
 Themes!	0	2019	12	30	2019	8	15
 Atl+Num goes to that tab	0	2019	12	30	2019	8	15
@@ -19,3 +17,4 @@ Freedesktop launcher	0	2019	12	30	2019	8	21
 Clicking text of TODO item should complete the item	0	2019	8	30	2019	8	21
 Windows installer	0	2019	12	30	2019	8	21
 Vector version of logo	0	2019	12	30	2019	8	21
+Middle click tab closes it	0	2019	12	30	2019	8	21
