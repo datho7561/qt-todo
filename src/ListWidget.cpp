@@ -87,7 +87,6 @@ void ListWidget::add_new_task(Task task) {
 
 void ListWidget::update_list_widget() {
 
-
     QVBoxLayout * layout = dynamic_cast<QVBoxLayout *>(list_contents->layout());
 	
     // Remove widgets
