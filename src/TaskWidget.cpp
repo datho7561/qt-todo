@@ -33,7 +33,6 @@ void TaskWidget::update_text() {
     if (task->is_complete()) {
         new_text += "<s><span style=\"color: gray\">";
     }
-    // TODO: I don't think that the overdue works properly, make an example
     if (task->is_overdue()) {
         new_text += "<span style=\"color: red\">";
     }
@@ -54,13 +53,12 @@ void TaskWidget::on_clicked() {
     
     if (check_box->isChecked()) {
         task->set_complete();
-        task->is_complete();
     } else {
         task->set_incomplete();
-        !task->is_complete();
     }
     update_text();
     emit task_updated();
 }
 
 } // qttodo
+
