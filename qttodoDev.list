@@ -21,3 +21,4 @@ Whe making a new list, check if the selected filename ends with .list, and if no
 Export to lists to plaintext? Only include incomplete items	0	2019	12	30	2019	8	21
 Middle click tab closes it	0	2019	12	30	2019	8	21
 Test suite backs up settings before testing settings, then replaces settings afterwards	0	2019	12	30	2019	8	22
+Tagging items and filtering? Consider if this is worthwhile in addition to beng able to have multiple lists	0	2019	12	30	2019	8	22
