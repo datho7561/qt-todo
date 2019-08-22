@@ -1,13 +1,13 @@
 # qt-todo
 
 This is a project where I am learning the basics of Qt4 through building a
-simple cross-platform TODO application.
+simple cross-platform Desktop TODO application.
 
 ---
 
 ## BUILDING
 
-This project was developed on Linux but should be able to be built on Mac and
+This project was developed on Linux but should be able to be built on macOS and
 Windows. All that's needed is a C++ development environment (c++ compiler,
 make/nmake) and a development installation of Qt4.
 
@@ -24,13 +24,13 @@ from these standards are being used in the application.
 
 #### Windows
 
-Installing Qt4 on Windows i kind of difficult. I will most likely include
+Installing Qt4 on Windows is kind of difficult. I will most likely include
 instructions on how to do this in the future.
 
-These instructions are for Visual Studio. I have built on Visual Studio 2019, but
-it should work on any version newer than 2010. I would have included instructions
-for how to build on MinGW/Cygwin, but I have not had time to attempt these
-methods.
+These instructions are for Visual Studio. I have built it on Visual Studio 2019, but
+it should work on any version newer than 2010 that include a compiler that supports
+C++11. I would have included instructions for how to build on MinGW/Cygwin, but I
+have not had the time to attempt these methods.
 
 1. In a developer command prompt where you have Qt4's bin files on the path,
    enter `qmake -tp vc` while in the `qt-todo` folder.
@@ -43,7 +43,7 @@ methods.
 4. Build/run the project as normal. If you need to make changes to the qt-todo.pro
    or add/remove files, you will need to regenerate the Visual Studio project.
    (At least, I find regenerating the project is the easiest method, because this
-   means no manually editing the .vcxproj to get Visual Studio to run the
+   means no manual editing of the .vcxproj to get Visual Studio to run the
    correct preprocessing commands).
 
 ---
@@ -52,19 +52,33 @@ methods.
 
 #### RUNNING TESTS
 
-__WARNING__: the checked in test suite created the folders and file
-`~/.config/qt-todo/setting`. If you have a file there currently, it will be
-overwritten.
+__WARNING__: the checked in test suite creates the folders and file
+`~/.config/qt-todo/setting`. If you have a file there currently
+(such as settings for this or other programs), it will be overwritten
+without warning.
 
 In order to unit test the application, the testing framework 
-[Catch2](https://github.com/catchorg/Catch2) was used. Currently, these steps
-only work under Linux. In order to be able to run the test suite, follow these steps:
+[Catch2](https://github.com/catchorg/Catch2) was used. In order to be able to
+run the test suite, follow these steps:
+
+##### LINUX
 
 1. Download the latest release of `catch2.cpp` from
     [the Catch2 Github](https://github.com/catchorg/Catch2/releases)
 2. Put the file into the `testing` folder
 3. Run `qmake test=1` in order to set up the testing Makefile
 4. Run `./testing/qt-todo` in order to run the tests
+
+##### WINDOWS
+
+1. Download the latest release of `catch2.cpp` from
+    [the Catch2 Github](https://github.com/catchorg/Catch2/releases)
+2. Put the file into the `testing` folder
+3. Run `qmake -tp vc test=1` in order to create the test Visual Studio project
+4. Open the project, then retarget it
+5. Build the project
+6. Run the generated .exe in a Command Prompt/Powershell/Windows Terminal in
+   order to view the results of the tests.
 
 #### ADDING TEST CASES
 
