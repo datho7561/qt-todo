@@ -1,7 +1,7 @@
 Qt TODO Development
 Add a button to delete a list	0	2019	8	30	2019	8	15
 Themes!	0	2019	12	30	2019	8	15
-Atl+Num goes to that tab	0	2019	12	30	2019	8	15
+Atl+Num goes to that tab	1	2019	12	30	2019	8	21
 Handle multiple apps reading the list files (i.e. lock or reread before write)	0	2019	8	30	2019	8	16
 Display the due date of each task	0	2019	8	30	2019	8	15
 Fixed width tabs?	0	2019	12	30	2019	8	19
