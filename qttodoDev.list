@@ -5,12 +5,12 @@ Atl+Num goes to that tab	1	2019	12	30	2019	8	21
 Handle multiple apps reading the list files (i.e. lock or reread before write)	0	2019	8	30	2019	8	16
 Display the due date of each task	0	2019	8	30	2019	8	15
 Fixed width tabs?	0	2019	12	30	2019	8	19
-Reset deadline on Add button press	0	2019	8	30	2019	8	19
-Clean <span style="color: purple">input data</span> so that the app is more secure	0	2019	8	30	2019	8	19
+Reset deadline on Add button press	1	2019	8	30	2019	8	21
+Clean <span style="color: purple">input data</span> so that the app is more secure	1	2019	8	30	2019	8	21
 Add version control integration so that list history can be stored and synced to a server	0	2019	12	30	2019	8	19
 Display the due date for tasks	0	2019	8	30	2019	8	19
 Timed refresh of tasks	0	2019	8	30	2019	8	19
-Prevent the null string from being accepted	0	2019	8	30	2019	8	19
+Prevent the null string from being accepted	1	2019	8	30	2019	8	21
 High/Low priority tasks?	0	2019	12	30	2019	8	21
 Help system	0	2019	12	30	2019	8	21
 Freedesktop launcher	0	2019	12	30	2019	8	21
@@ -18,4 +18,6 @@ Clicking text of TODO item should complete the item	0	2019	8	30	2019	8	21
 Windows installer	0	2019	12	30	2019	8	21
 Vector version of logo	0	2019	12	30	2019	8	21
 Whe making a new list, check if the selected filename ends with .list, and if not append it	0	2019	8	30	2019	8	21
+Export to lists to plaintext? Only include incomplete items	0	2019	12	30	2019	8	21
 Middle click tab closes it	0	2019	12	30	2019	8	21
+Test suite backs up settings before testing settings, then replaces settings afterwards	0	2019	12	30	2019	8	22
