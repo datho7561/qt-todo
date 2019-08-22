@@ -1,10 +1,7 @@
 /**
  * \file main.cpp
  * \author David Thompson
- * \brief This file handles the top-level application flow, such as setting up
- * windows.
- * \detail As of yet it really doesn't do anything except open the settings
- * dialog
+ * \brief Sets up the application and calls the main window constructor
  * \date 2019-07-19
  */
 

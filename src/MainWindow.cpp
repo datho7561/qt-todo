@@ -9,7 +9,6 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDir>
-#include <QMessageBox>
 #include <QShortcut>
 
 #include "MainWindow.h"
@@ -20,7 +19,7 @@
 namespace qttodo {
 
 MainWindow::MainWindow():
-    QMainWindow(),
+    QMainWindow(nullptr),
     setting() {
     
     // Set settings if first time, read them otherwise

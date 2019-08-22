@@ -43,7 +43,7 @@ unix:!macx {
     QMAKE_CXXFLAGS += -std=c++11
 }
 
-# Darwin (macos)
+# Darwin (macOS)
 macx {
     QMAKE_CXXFLAGS += -std=c++11
 }
