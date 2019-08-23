@@ -1,22 +1,24 @@
 # qt-todo
 
-This is a project where I am learning the basics of Qt4 through building a
+This is a project where I am learning the basics of Qt through building a
 simple cross-platform Desktop TODO application.
 
 ---
 
 ## BUILDING
 
-This project was developed on Linux but should be able to be built on macOS and
+This project was developed on Linux, but it should be able to be built on macOS and
 Windows. All that's needed is a C++ development environment (c++ compiler,
-make/nmake) and a development installation of Qt4.
+make/nmake/msbuild) and a development installation of Qt4 or Qt5. Note that either
+Qt4 or Qt5 should work, but this application was tested using Qt5 on Linux and Qt4 on
+Windows.
 
 Make sure that the compiler being used supports C++11 or later, because features
-from these standards are being used in the application.
+added in this standard are being used in the application.
 
 #### Linux/Mac
 
-1. `qmake`
+1. `qmake-qt4` or `qmake-qt5` or `qmake`
 
 2. `make`
 
@@ -24,11 +26,11 @@ from these standards are being used in the application.
 
 #### Windows
 
-Installing Qt4 on Windows is kind of difficult. I will most likely include
-instructions on how to do this in the future.
+Qt4 is a hassle to set up now that it's no longer supported. I will update
+these instructions when I have tested the application against Qt5.
 
 These instructions are for Visual Studio. I have built it on Visual Studio 2019, but
-it should work on any version newer than 2010 that include a compiler that supports
+it should work on any version newer than 2010 that includes a compiler that supports
 C++11. I would have included instructions for how to build on MinGW/Cygwin, but I
 have not had the time to attempt these methods.
 
@@ -63,15 +65,16 @@ run the test suite, follow these steps:
 
 ##### LINUX
 
-1. Download the latest release of `catch2.cpp` from
+1. Download the latest release of `catch2.hpp` from
     [the Catch2 Github](https://github.com/catchorg/Catch2/releases)
 2. Put the file into the `testing` folder
 3. Run `qmake test=1` in order to set up the testing Makefile
-4. Run `./testing/qt-todo` in order to run the tests
+4. Run `make` in order to build the testing program
+5. Run `./testing/qt-todo` in order to run the tests
 
 ##### WINDOWS
 
-1. Download the latest release of `catch2.cpp` from
+1. Download the latest release of `catch2.hpp` from
     [the Catch2 Github](https://github.com/catchorg/Catch2/releases)
 2. Put the file into the `testing` folder
 3. Run `qmake -tp vc test=1` in order to create the test Visual Studio project
@@ -98,7 +101,7 @@ Here is the current process for testing a class that is not yet being tested:
 
 I have included VSCode build tasks for the program in order to help anyone else
 who wants to build the application and happens to be using VSCode. They are
-currently set up to compile with Qt5 instead of Qt4, and only work on Linux. The
+currently set up to compile with Qt5 and only work on Linux. The
 tasks that are intended to be run directly are `build-app` and `build-test`. I
 put them both under the 'Build' section of Tasks so that they can be run with
 the `Ctrl+Shift+B` shortcut
