@@ -54,7 +54,7 @@
      id="layer1"
      transform="translate(-53.672619,-36.952377)">
     <path
-       style="fill:#787878;stroke:none;stroke-width:0.24804688px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       style="fill:#1e1e1e;stroke:none;stroke-width:0.24804688px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
        d="m 83.672618,36.95238 c -14.910839,-0.06699 -30.263152,14.12181 -29.999999,30 l 0,60 c -0.157956,17.81792 15.014953,29.66306 29.999999,30 h 60.000002 c 16.44038,0.17198 30.06472,-12.89236 30,-30 v -60 c -0.0771,-16.616937 -13.81089,-30.086138 -30,-30 z"
        id="path60"
        inkscape:connector-curvature="0"
