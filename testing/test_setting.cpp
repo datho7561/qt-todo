@@ -5,9 +5,6 @@
  * \date 2019-07-10
  */
 
-
-#include <qglobal.h>
-
 #include "catch.hpp"
 
 #include "Setting.h"

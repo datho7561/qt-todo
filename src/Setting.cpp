@@ -97,7 +97,7 @@ void Setting::write_to_file() const {
     const QString config_folder_str = ".config/qt-todo";
     QDir config_folder(QDir::homePath() + "/" + config_folder_str);
     if (!config_folder.exists()) {
-        if (QDir::home().mkpath(config_folder_str)){
+        if (!config_folder.mkpath(".")){
             throw std::runtime_error("Unable to create config folder");
         }
     }
