@@ -1,0 +1,18 @@
+language: cpp
+sudo: required
+dist: bionic
+compiler:
+  - gcc
+os:
+  - linux
+
+install:
+  - sudo apt-add-repository --yes ppa:ubuntu-sdk-team/ppa
+  - sudo apt-get update -q
+  - sudo apt-get install qt5-default qt5-qmake
+
+script:
+  - qmake qt-todo.pro test=1
+  - make
+  - ./testing/qt-todo
+
