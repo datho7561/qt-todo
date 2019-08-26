@@ -1,6 +1,6 @@
 # qt-todo
 
-![qt-todo logo](logo/qt-todo.svg)
+![travis-ci](https://travis-ci.org/datho7561/qt-todo.svg?branch=master)
 
 This is a project where I am learning the basics of Qt through building a
 simple cross-platform Desktop TODO application.
