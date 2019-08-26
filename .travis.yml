@@ -8,6 +8,8 @@ os:
 
 install:
   - sudo apt-get install qt5-default qt5-qmake
+  - curl https://github.com/catchorg/Catch2/releases/download/v2.9.2/catch.hpp
+  - mv catch.hpp testing/catch.hpp
 
 script:
   - qmake qt-todo.pro test=1
