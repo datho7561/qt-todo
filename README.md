@@ -1,5 +1,7 @@
 # qt-todo
 
+![qt-todo logo](https://raw.githubusercontent.com/datho7561/qt-todo/master/logo/qt-todo.svg.png)
+
 This is a project where I am learning the basics of Qt through building a
 simple cross-platform Desktop TODO application.
 
