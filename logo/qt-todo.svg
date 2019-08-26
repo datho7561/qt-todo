@@ -15,7 +15,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="qt-todo.svg">
+   sodipodi:docname="qt-todo.svg"
+   inkscape:export-filename="/home/david/Documents/Programming/qt-todo/logo/qt-todo.svg.png"
+   inkscape:export-xdpi="101.6"
+   inkscape:export-ydpi="101.6">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -26,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="168.08837"
-     inkscape:cy="227.46363"
+     inkscape:cx="146.11755"
+     inkscape:cy="166.85448"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -54,8 +57,8 @@
      id="layer1"
      transform="translate(-53.672619,-36.952377)">
     <path
-       style="fill:#1e1e1e;stroke:none;stroke-width:0.24804688px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
-       d="m 83.672618,36.95238 c -14.910839,-0.06699 -30.263152,14.12181 -29.999999,30 l 0,60 c -0.157956,17.81792 15.014953,29.66306 29.999999,30 h 60.000002 c 16.44038,0.17198 30.06472,-12.89236 30,-30 v -60 c -0.0771,-16.616937 -13.81089,-30.086138 -30,-30 z"
+       style="fill:#1e1e1e;fill-opacity:1;stroke:#000000;stroke-width:3.63628006;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 84.584154,38.77092 C 70.125581,38.705961 55.238924,52.464569 55.494096,67.861345 v 58.180845 c -0.153165,17.2777 14.559529,28.76371 29.090058,29.09043 h 58.180126 c 15.94172,0.16677 29.15281,-12.50147 29.09005,-29.09043 V 67.861345 C 171.77961,51.748219 158.46235,38.687394 142.76428,38.77092 Z"
        id="path60"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccccc" />
