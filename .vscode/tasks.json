@@ -7,50 +7,15 @@
             "label": "build-app",
             "type": "shell",
             "group": "build",
-            "command": ":",
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "qmake-app",
-                "make",
-            ],
+            "command": "qmake && make -j5",
             "problemMatcher": "$gcc"
         },
         {
             "label": "build-test",
             "type": "shell",
             "group": "build",
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "qmake-test",
-                "make",
-                "run-test"
-            ],
+            "command": "qmake test=1 && make -j5",
             "problemMatcher": "$gcc"
         },
-        {
-            "label": "qmake-app",
-            "type": "shell",
-            "command": [
-                "qmake-qt5",
-            ]
-        },
-        {
-            "label": "qmake-test",
-            "type": "shell",
-            "command": [
-                "qmake-qt5 test=1"
-            ]
-        },
-        {
-            "label": "make",
-            "type": "shell",
-            "command": "make -j5",
-            "problemMatcher": "$gcc"
-        },
-        {
-            "label": "run-test",
-            "type": "shell",
-            "command": "./testing/qt-todo"
-        }
     ]
 }

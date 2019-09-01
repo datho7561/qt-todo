@@ -1,0 +1,29 @@
+name: qt-todo
+version: "0.1"
+summary: TODO list maker
+description: |
+    A simple, memory efficient GUI program for making TODO lists.
+	It uses a TSV-style format for storing the lists.
+	It allows for adding tasks and marking them as completed, and can work with
+	many different lists at once through tabs.
+
+confinement: devmode
+base: core18
+
+parts:
+  dosbox:
+    plugin: autotools
+    source-type: tar
+    source: http://source.dosbox.com/dosboxsvn.tgz
+    build-packages:
+      - g++
+      - make
+	    - qt5-default
+
+apps:
+   dosbox:
+      command: dosbox
+      environment:
+        "LD_LIBRARY_PATH": "$SNAP/usr/lib/
+        $SNAPCRAFT_ARCH_TRIPLET/pulseaudio"
+        "DISABLE_WAYLAND": "1"
