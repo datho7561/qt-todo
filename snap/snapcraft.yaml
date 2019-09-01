@@ -1,22 +1,39 @@
 name: qt-todo
 version: "0.1"
 summary: TODO list maker
-license: GPL-3.0-or-later
+license: GPL-3.0
 description: |
-    A simple, memory efficient GUI program for making TODO lists.
-	It uses a TSV-style format for storing the lists.
-	It allows for adding tasks and marking them as completed, and can work with
-	many different lists at once through tabs.
+  A simple, memory efficient GUI program for making TODO lists.
+  It uses a TSV-style format for storing the lists.
+  It allows for adding tasks and marking them as completed, and can work with
+  many different lists at once through tabs.
 
 confinement: devmode
 base: core18
+icon: logo/qt-todo.svg
+grade: devel
 
 apps:
   qt-todo:
-    command: build/qt-todo
+    command: qt-todo
 
 parts:
   qt-todo:
-    source: https://github.com/datho7561/qt-todo.git
+    source: .
     plugin: qmake
-
+    build-packages:
+      - binutils
+    stage-packages:
+      - libfreetype6
+      - libgl1
+      - libglvnd0
+      - libglx0
+      - libgraphite2-3
+      - libharfbuzz0b
+      - libpng16-16
+      - libqt5gui5
+      - libqt5widgets5
+      - libx11-6
+      - libxau6
+      - libxcb1
+      - libxdmcp6

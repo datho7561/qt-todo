@@ -31,3 +31,6 @@ testing/qt-todo.ilk
 *.list
 # Except for the application project TODO list
 !qttodoDev.list
+
+# Don't include any built snaps
+*.snap

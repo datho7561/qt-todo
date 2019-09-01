@@ -29,6 +29,11 @@ contains("test", 1) {
 # Qt5 https://stackoverflow.com/questions/18663331/how-to-check-the-selected-version-of-qt-in-a-pro-file
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
+    unix {
+        target.path = /usr/bin
+        target.files = build/qt-todo
+        INSTALLS += target
+    }
 }
 
 # Platform specific settings

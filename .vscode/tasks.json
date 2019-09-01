@@ -17,5 +17,12 @@
             "command": "qmake test=1 && make -j5",
             "problemMatcher": "$gcc"
         },
+        {
+            "label": "build-snap",
+            "type": "shell",
+            "group": "build",
+            "command": "snapcraft --debug",
+            "problemMatcher": "$gcc"
+        },
     ]
 }
