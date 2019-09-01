@@ -1,6 +1,7 @@
 name: qt-todo
 version: "0.1"
 summary: TODO list maker
+license: GPL-3.0-or-later
 description: |
     A simple, memory efficient GUI program for making TODO lists.
 	It uses a TSV-style format for storing the lists.
@@ -10,20 +11,12 @@ description: |
 confinement: devmode
 base: core18
 
-parts:
-  dosbox:
-    plugin: autotools
-    source-type: tar
-    source: http://source.dosbox.com/dosboxsvn.tgz
-    build-packages:
-      - g++
-      - make
-	    - qt5-default
-
 apps:
-   dosbox:
-      command: dosbox
-      environment:
-        "LD_LIBRARY_PATH": "$SNAP/usr/lib/
-        $SNAPCRAFT_ARCH_TRIPLET/pulseaudio"
-        "DISABLE_WAYLAND": "1"
+  qt-todo:
+    command: build/qt-todo
+
+parts:
+  qt-todo:
+    source: https://github.com/datho7561/qt-todo.git
+    plugin: qmake
+
