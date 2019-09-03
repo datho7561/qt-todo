@@ -1,6 +1,6 @@
 # qt-todo
 
-![travis-ci](https://travis-ci.org/datho7561/qt-todo.svg?branch=master)
+[![travis-ci](https://travis-ci.org/datho7561/qt-todo.svg?branch=master)](https://travis-ci.org/datho7561/qt-todo)
 
 This is a project where I am learning the basics of Qt through building a
 simple cross-platform Desktop TODO application.
@@ -20,7 +20,7 @@ added in this standard are being used in the application.
 
 #### Linux/Mac
 
-1. `qmake-qt4` or `qmake-qt5` or `qmake`
+1. `qmake-qt4` or `qmake-qt5` or `qmake` (whichever is installed and you want to use)
 
 2. `make`
 

@@ -21,19 +21,12 @@ parts:
   qt-todo:
     source: .
     plugin: qmake
+    qt-version: qt5
+    project-files: [qt-todo.pro]
     build-packages:
       - binutils
+      - qt5-default
     stage-packages:
-      - libfreetype6
-      - libgl1
-      - libglvnd0
-      - libglx0
-      - libgraphite2-3
-      - libharfbuzz0b
-      - libpng16-16
       - libqt5gui5
       - libqt5widgets5
-      - libx11-6
-      - libxau6
-      - libxcb1
-      - libxdmcp6
+      - libqt5dbus5
