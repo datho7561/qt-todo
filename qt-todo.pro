@@ -57,3 +57,4 @@ macx {
 FORMS += ui/*.ui
 SOURCES += src/*.cpp
 HEADERS += headers/*.h
+RESOURCES = resources.qrc
