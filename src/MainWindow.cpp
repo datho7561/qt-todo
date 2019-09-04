@@ -247,6 +247,8 @@ void MainWindow::open_list() {
             tab_widget->addTab(new_tab,
                 QString::fromStdString(new_tab->get_widget_name()));
             tab_widget->setCurrentWidget(new_tab);
+            tab_widget->setTabToolTip(tab_widget->currentIndex(),
+                QString::fromStdString(new_tab->get_file_name()));
         }
     }
 }
@@ -264,6 +266,11 @@ void MainWindow::new_list() {
     // If a name was selected
     if (new_file_list != QString()) {
         
+        // Append the extension if it wasn't already added on
+        if (!new_file_list.contains(QRegExp("\\.list$"))) {
+            new_file_list += ".list";
+        }
+
         // Get the name for the new TaskList, abort if no name is selected
         NameNewListDialog name_dlg(this);
         if (name_dlg.exec()) {
@@ -321,6 +328,8 @@ void MainWindow::new_list() {
                 tab_widget->addTab(new_tab,
                     QString::fromStdString(new_tab->get_widget_name()));
                 tab_widget->setCurrentWidget(new_tab);
+                tab_widget->setTabToolTip(tab_widget->currentIndex(),
+                    QString::fromStdString(new_tab->get_file_name()));
             }
         }
     }
