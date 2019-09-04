@@ -113,9 +113,12 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="github_label">
          <property name="text">
           <string>&lt;a href=&quot;https://github.com/datho7561/qt-todo/&quot;&gt;https://github.com/datho7561/qt-todo/&lt;/a&gt;</string>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -144,9 +147,12 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label_9">
+    <widget class="QLabel" name="gpl_label">
      <property name="text">
       <string>Licensed under the &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.en.html&quot;&gt;GNU GPL v3&lt;/a&gt;</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

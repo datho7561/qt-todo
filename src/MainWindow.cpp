@@ -331,9 +331,8 @@ void MainWindow::about_qt() {
 }
 
 void MainWindow::about_qt_todo() {
-    // TODO: implement and connect
-    AboutQtTodoDialog * about_dialog = new AboutQtTodoDialog(this);
-    about_dialog->show();
+    AboutQtTodoDialog about_dialog(this);
+    about_dialog.exec();
 }
 
 void MainWindow::on_settings_act_triggered() {
