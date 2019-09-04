@@ -85,6 +85,8 @@ MainWindow::MainWindow():
     if (new_tab != nullptr) {
         tab_widget->addTab(new_tab,
             QString::fromStdString(new_tab->get_widget_name()));
+        tab_widget->setTabToolTip(tab_widget->currentIndex(),
+            QString::fromStdString(new_tab->get_file_name()));
     }
 
     // TAB SHORTCUTS
