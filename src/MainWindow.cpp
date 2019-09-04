@@ -15,6 +15,7 @@
 #include "SettingsDialog.h"
 #include "ListWidget.h"
 #include "NameNewListDialog.h"
+#include "AboutQtTodoDialog.h"
 
 namespace qttodo {
 
@@ -147,6 +148,10 @@ MainWindow::MainWindow():
     // About Qt
     connect(about_qt_act, SIGNAL(triggered()),
         this, SLOT(about_qt()));
+
+    // About qt-todo
+    connect(about_qt_todo_act, SIGNAL(triggered()),
+        this, SLOT(about_qt_todo()));
 
     // Open list
     connect(open_act, SIGNAL(triggered()),
@@ -323,6 +328,12 @@ void MainWindow::new_list() {
 
 void MainWindow::about_qt() {
     QMessageBox::aboutQt(this, this->windowTitle());
+}
+
+void MainWindow::about_qt_todo() {
+    // TODO: implement and connect
+    AboutQtTodoDialog * about_dialog = new AboutQtTodoDialog(this);
+    about_dialog->show();
 }
 
 void MainWindow::on_settings_act_triggered() {

@@ -1,7 +1,7 @@
 /**
  * \file MainWindow.h
  * \author David Thompson
- * \brief
+ * \brief 
  * \date 2019-07-31
  */
 
@@ -45,6 +45,11 @@ private slots:
      * \brief Open the About Qt Dialog
      */
     void about_qt();
+
+    /**
+     * \brief Open the AboutQtTodoDialog
+     */
+    void about_qt_todo();
 
     /**
      * \brief Called when the user requests to edit settings.

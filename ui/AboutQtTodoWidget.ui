@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>AboutQtTodoDialog</class>
+ <widget class="QDialog" name="AboutQtTodoDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -144,6 +144,13 @@
     </layout>
    </item>
    <item>
+    <widget class="QLabel" name="label_9">
+     <property name="text">
+      <string>Licensed under the &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.en.html&quot;&gt;GNU GPL v3&lt;/a&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
       <set>QDialogButtonBox::Close</set>
@@ -159,7 +166,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>clicked(QAbstractButton*)</signal>
-   <receiver>Dialog</receiver>
+   <receiver>AboutQtTodoDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
