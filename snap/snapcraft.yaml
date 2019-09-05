@@ -25,6 +25,7 @@ parts:
     project-files: [qt-todo.pro]
     build-packages:
       - binutils
+      - build-essential
       - qt5-default
     stage-packages:
       - libqt5gui5
