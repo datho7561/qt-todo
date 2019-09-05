@@ -21,6 +21,8 @@ TaskWidget::TaskWidget(Task * task, QWidget * parent):
     
     connect(check_box, SIGNAL(released()),
         this, SLOT(on_clicked()));
+    connect(task_label, SIGNAL(released()),
+        this, SLOT(on_clicked()));
 
     check_box->setChecked(task->is_complete());
     update_text();
@@ -29,6 +31,7 @@ TaskWidget::TaskWidget(Task * task, QWidget * parent):
 
 void TaskWidget::update_text() {
 
+    std::cout << "Update called\n";
     std::string new_text = "";
     std::string new_date_text = "";
 
@@ -70,11 +73,15 @@ void TaskWidget::update_text() {
 
 void TaskWidget::on_clicked() {
     
-    if (check_box->isChecked()) {
+    // Don't read the value directly from the checkbox, as this function is
+    // also called if the label for the todo item is clicked, and this doesn't
+    // update the checked state of the label
+    if (!task->is_complete()) {
         task->set_complete();
     } else {
         task->set_incomplete();
     }
+    check_box->setChecked(task->is_complete());
     update_text();
     emit task_updated();
 }
