@@ -30,7 +30,6 @@ signals:
 
 protected:
     virtual void mouseReleaseEvent(QMouseEvent* event) {
-        std::cout << "eat pant\n";
         emit released();
     }
 

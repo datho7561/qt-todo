@@ -31,7 +31,6 @@ TaskWidget::TaskWidget(Task * task, QWidget * parent):
 
 void TaskWidget::update_text() {
 
-    std::cout << "Update called\n";
     std::string new_text = "";
     std::string new_date_text = "";
 
