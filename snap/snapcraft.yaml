@@ -15,7 +15,7 @@ grade: devel
 
 apps:
   qt-todo:
-    command: qt-todo
+    command: desktop-launch qt-todo
 
 parts:
   qt-todo:
@@ -23,11 +23,31 @@ parts:
     plugin: qmake
     qt-version: qt5
     project-files: [qt-todo.pro]
+    after: [desktop-qt5]
+
+  desktop-qt5:
     build-packages:
-      - binutils
       - build-essential
-      - qt5-default
+      - qtbase5-dev
+      - dpkg-dev
+    make-parameters:
+     - FLAVOR=qt5
+    plugin: make
+    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source-subdir: qt
     stage-packages:
+      - libxkbcommon0
+      - ttf-ubuntu-font-family
+      - dmz-cursor-theme
+      - light-themes
+      - adwaita-icon-theme
+      - gnome-themes-standard
+      - shared-mime-info
       - libqt5gui5
-      - libqt5widgets5
-      - libqt5dbus5
+      - libgdk-pixbuf2.0-0
+      - libqt5svg5
+      - try:
+        - appmenu-qt5
+      - locales-all
+      - xdg-user-dirs
+      - fcitx-frontend-qt5
