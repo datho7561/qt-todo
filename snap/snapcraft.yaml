@@ -1,6 +1,6 @@
 name: qt-todo
 version: "0.1"
-summary: TODO list maker
+summary: Efficient Qt-based TODO list manager
 license: GPL-3.0
 description: |
   A simple, memory efficient GUI program for making TODO lists.
@@ -8,16 +8,56 @@ description: |
   It allows for adding tasks and marking them as completed, and can work with
   many different lists at once through tabs.
 
-confinement: devmode
+# All interface uses must be stated explicitly
+confinement: strict
+# Use Bionic Beaver as the base version for the VM
 base: core18
 icon: logo/qt-todo.svg
+# TODO: change to production when the snap is ready
 grade: devel
+
+# Needed for support for common GTK themes
+# https://forum.snapcraft.io/t/how-to-use-the-system-gtk-theme-via-the-gtk-common-themes-snap
+plugs:
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/share/themes
+    default-provider: gtk-common-themes:gtk-3-themes
+  icon-themes:
+    interface: content
+    target: $SNAP/share/icons
+    default-provider: gtk-common-themes:icon-themes
+  sound-themes:
+    interface: content
+    target: $SNAP/share/sounds
+    default-provider: gtk-common-themes:sounds-themes
 
 apps:
   qt-todo:
+    # Launch the qt-todo application with the script that sets up the
+    # environment
     command: desktop-launch qt-todo
+    # Essentially just need access to:
+    # * Non-hidden files in home folder in order to save and access lists
+    # * Desktop environment/display server in order to display window
+    # * GSettings in order to detect what theming should be used
+    plugs:
+      - home
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7
+      - x11
+      - gsettings
+    environment:
+      # Use GTK3 cursor theme, icon theme and open/save file dialogs.
+      # Taken from the Qt5 tutorial in the snapcraft documentation
+      # https://snapcraft.io/docs/t/desktop-app-support-qt5/11703
+      QT_QPA_PLATFORMTHEME: gtk3
 
 parts:
+
+  # Template to build the application
   qt-todo:
     source: .
     plugin: qmake
@@ -25,6 +65,8 @@ parts:
     project-files: [qt-todo.pro]
     after: [desktop-qt5]
 
+  # For setting up the environment for Qt5
+  # TODO: auto-update this by checking if the code has changed on the Github
   desktop-qt5:
     build-packages:
       - build-essential
@@ -51,3 +93,9 @@ parts:
       - locales-all
       - xdg-user-dirs
       - fcitx-frontend-qt5
+  
+  # For changing the theme to the theme used by the desktop environment
+  qt5-gtk-platform:
+    plugin: nil
+    stage-packages:
+      - qt5-gtk-platformtheme
