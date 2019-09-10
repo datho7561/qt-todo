@@ -1,6 +1,7 @@
 # qt-todo
 
 [![travis-ci](https://travis-ci.org/datho7561/qt-todo.svg?branch=master)](https://travis-ci.org/datho7561/qt-todo)
+[![Snap Status](https://build.snapcraft.io/badge/datho7561/qt-todo.svg)](https://build.snapcraft.io/user/datho7561/qt-todo)
 
 This is a project where I am learning the basics of Qt through building a
 simple cross-platform Desktop TODO application.
