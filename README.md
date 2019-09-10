@@ -117,9 +117,17 @@ Here is the current process for testing a class that is not yet being tested:
 
 I am currently working on making a snap of this application for potential
 future release onto the [Snap Store](https://snapcraft.io/store). This will
-allow for an easier installation across Linux distributions. Since this is the
-first Snap that I have ever made, the Snap may be a long way out. The Snapcraft
-related files here likely don't work properly.
+allow for an easier installation across Linux distributions.
+
+I have tested the `snapcraft.yaml` on my system, and it appears to work. You
+can build the snap if you have snapcraft installed by running
+`snapcraft --debug` in the root of the project. It will take a while to build,
+because it needs to make a Ubuntu VM in order to build the snap. Once its
+built, you can install it with `sudo snap install (name).snap --dangerous`.
+
+I am hoping to get this application published onto the snap store, but this
+will take a while. The reasons are I have never been through this process
+before, and I ma need to get approval for my snap because of the slots it uses.
 
 ---
 
@@ -127,7 +135,7 @@ related files here likely don't work properly.
 
 I have included VSCode build tasks for the program in order to help anyone else
 who wants to build the application and happens to be using VSCode. They are
-currently set up to compile with Qt5 and only work on Linux. The
-tasks that are intended to be run directly are `build-app`, `build-test`, and
-`build-snap`. I put them both under the 'Build' section of Tasks so that they
-can be run with the `Ctrl+Shift+B` shortcut
+currently set up to use the default Qt make (`qmake`) and only work on Linux.
+The tasks that are intended to be run directly are `build-app`, `build-test`,
+and `build-snap`. I put them all under the 'Build' section of Tasks so that
+they can be run with the `Ctrl+Shift+B` shortcut
