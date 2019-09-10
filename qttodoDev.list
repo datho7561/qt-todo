@@ -7,14 +7,15 @@ Add version control integration so that list history can be stored and synced to
 Timed refresh of tasks	0	2019	8	30	2019	8	19
 High/Low priority tasks?	0	2019	12	30	2019	8	21
 Help system	0	2019	12	30	2019	8	21
-Freedesktop launcher	0	2019	12	30	2019	8	21
-Clicking text of TODO item should complete the item	0	2019	8	30	2019	8	21
+Freedesktop launcher	1	2019	12	30	2019	9	10
+Clicking text of TODO item should complete the item	1	2019	8	30	2019	9	10
 Windows installer	0	2019	12	30	2019	8	21
 Export to lists to plaintext? Only include incomplete items	0	2019	12	30	2019	8	21
 Middle click tab closes it	0	2019	12	30	2019	8	21
 Test suite backs up settings before testing settings, then replaces settings afterwards	0	2019	12	30	2019	8	22
-Hovering a tab tells the user the name of the file	0	2019	12	31	2019	8	26
-Add the application to the Snap store	0	2019	12	31	2019	8	26
+Hovering a tab tells the user the name of the file	1	2019	12	31	2019	9	10
+Add the application to the Snap store	1	2019	12	31	2019	9	10
 Tagging items and filtering? Consider if this is worthwhile in addition to beng able to have multiple lists	0	2019	12	30	2019	8	22
 What to do if file gets deleted during runtime?	0	2019	12	31	2019	9	4
-Update window title for about page	0	2019	9	12	2019	9	10
+Update window title for about page	1	2019	9	12	2019	9	10
+Get browse button in the settings page to work	0	2019	9	14	2019	9	10

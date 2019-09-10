@@ -35,3 +35,7 @@ testing/qt-todo.ilk
 
 # Don't include any built snaps
 *.snap
+
+# Don't include the screenshots used for the Snap Store page 
+screenshots/**
+
