@@ -1,6 +1,7 @@
 # qt-todo
 
 [![travis-ci](https://travis-ci.org/datho7561/qt-todo.svg?branch=master)](https://travis-ci.org/datho7561/qt-todo)
+[![qt-todo](https://snapcraft.io/qt-todo/badge.svg)](https://snapcraft.io/qt-todo)
 
 This is a project where I am learning the basics of Qt through building a
 simple cross-platform Desktop TODO application.
@@ -115,19 +116,24 @@ Here is the current process for testing a class that is not yet being tested:
 
 ## SNAPCRAFT
 
-I am currently working on making a snap of this application for potential
-future release onto the [Snap Store](https://snapcraft.io/store). This will
-allow for an easier installation across Linux distributions.
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/qt-todo)
 
-I have tested the `snapcraft.yaml` on my system, and it appears to work. You
-can build the snap if you have snapcraft installed by running
-`snapcraft --debug` in the root of the project. It will take a while to build,
-because it needs to make a Ubuntu VM in order to build the snap. Once its
-built, you can install it with `sudo snap install (name).snap --dangerous`.
+This application is available on the Snap Store. This will allow for an easier
+installation across Linux distributions. The repository is set up to
+automatically build and deploy Snaps when there is a push to the master branch.
 
-I am hoping to get this application published onto the snap store, but this
-will take a while. The reasons are I have never been through this process
-before, and I ma need to get approval for my snap because of the slots it uses.
+If you are intending to add new features to qt-todo, then it may be necessary
+to modify `snap/snapcraft.yaml`. This is because of the Snap sandboxing. You
+will need to declare slots for every time you wish to access a restricted system
+feature. Please refer to the
+[Snapcraft Documentation](https://snapcraft.io/docs) for more information.
+
+If you have added new slots, you should test to make sure that the snap build
+works. You can build the snap on your computer if you have snapcraft installed by
+running `snapcraft --debug` in the root of the project. It will take a
+while to build, because it needs to make a Ubuntu VM in order to build the
+snap. Once it is built, you can install it with
+`sudo snap install (name).snap --dangerous` in order to test.
 
 ---
 
