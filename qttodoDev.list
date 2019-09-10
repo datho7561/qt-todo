@@ -2,7 +2,6 @@ Qt TODO Development
 Add a button to delete a list	0	2019	8	30	2019	8	15
 Themes!	0	2019	12	30	2019	8	15
 Handle multiple apps reading the list files (i.e. lock or reread before write)	0	2019	8	30	2019	8	16
-Display the due date of each task	1	2019	8	30	2019	9	4
 Fixed width tabs?	0	2019	12	30	2019	8	19
 Add version control integration so that list history can be stored and synced to a server	0	2019	12	30	2019	8	19
 Timed refresh of tasks	0	2019	8	30	2019	8	19
@@ -11,7 +10,6 @@ Help system	0	2019	12	30	2019	8	21
 Freedesktop launcher	0	2019	12	30	2019	8	21
 Clicking text of TODO item should complete the item	0	2019	8	30	2019	8	21
 Windows installer	0	2019	12	30	2019	8	21
-Whe making a new list, check if the selected filename ends with .list, and if not append it	1	2019	8	30	2019	9	4
 Export to lists to plaintext? Only include incomplete items	0	2019	12	30	2019	8	21
 Middle click tab closes it	0	2019	12	30	2019	8	21
 Test suite backs up settings before testing settings, then replaces settings afterwards	0	2019	12	30	2019	8	22
@@ -19,3 +17,4 @@ Hovering a tab tells the user the name of the file	0	2019	12	31	2019	8	26
 Add the application to the Snap store	0	2019	12	31	2019	8	26
 Tagging items and filtering? Consider if this is worthwhile in addition to beng able to have multiple lists	0	2019	12	30	2019	8	22
 What to do if file gets deleted during runtime?	0	2019	12	31	2019	9	4
+Update window title for about page	0	2019	9	12	2019	9	10
