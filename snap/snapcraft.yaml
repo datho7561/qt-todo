@@ -14,7 +14,7 @@ confinement: strict
 base: core18
 icon: logo/qt-todo.svg
 # TODO: change to production when the snap is ready
-grade: devel
+grade: stable
 
 # Needed for support for common GTK themes
 # https://forum.snapcraft.io/t/how-to-use-the-system-gtk-theme-via-the-gtk-common-themes-snap
