@@ -64,6 +64,8 @@ parts:
     qt-version: qt5
     project-files: [qt-todo.pro]
     after: [desktop-qt5]
+    stage:
+      - usr/bin/qt-todo # Needed to copy over the file from the install step
 
   # For setting up the environment for Qt5
   # TODO: auto-update this by checking if the code has changed on the Github
