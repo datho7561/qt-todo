@@ -65,6 +65,11 @@ private slots:
     void on_defaultListField_textChanged(const QString & text);
 
     /**
+     * \brief Called when the select default list button is pressed
+     */
+    void on_selectFileButton_clicked(bool);
+
+    /**
      * \brief Called when the Ok button is pressed
      * \detail Saves the setting to file, then changes the application's
      * current setting. Prompts the user to try again if writing to file fails.

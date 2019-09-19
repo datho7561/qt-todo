@@ -7,6 +7,7 @@
 
 #include <iostream> // DEBUG
 #include <QMessageBox>
+#include <QFileDialog>
 
 #include "SettingsDialog.h"
 
@@ -226,6 +227,21 @@ int SettingsDialog::colour_to_id(ColourScheme colour) {
             break;
         default:
             throw std::logic_error("Given ColourScheme not yet supported");
+    }
+}
+
+void SettingsDialog::on_selectFileButton_clicked(bool) {
+
+    QString default_list_file_path = QFileDialog::getOpenFileName(
+        this,
+        tr("Select Default List"),
+        QDir::homePath(),
+        tr("qt-todo Lists (*.list)")
+    );
+    // If a file was selected
+    if (default_list_file_path != QString()) { 
+        defaultListField->setText(default_list_file_path);
+        repaint(); // TODO: is this the right command to repaint the window?
     }
 }
 
