@@ -21,8 +21,14 @@ namespace qttodo {
 
 MainWindow::MainWindow():
     QMainWindow(nullptr),
-    setting() {
-    
+    setting(),
+    timer(new QTimer()) {
+
+    // Setup and start the refresh timer for one hour
+    timer->setInterval(1000 * 60 * 60);
+    timer->setSingleShot(false);
+    timer->start();
+
     // Set settings if first time, read them otherwise
     if (Setting::setting_file_exists()) {
         setting.reset(new Setting(Setting::read_setting_file()));
@@ -87,6 +93,9 @@ MainWindow::MainWindow():
             QString::fromStdString(new_tab->get_widget_name()));
         tab_widget->setTabToolTip(tab_widget->currentIndex(),
             QString::fromStdString(new_tab->get_file_name()));
+        // Connect to the refresh clock
+        connect(timer.get(), SIGNAL(timeout()),
+            new_tab, SLOT(update_list_widget()));
     }
 
     // TAB SHORTCUTS
@@ -251,6 +260,8 @@ void MainWindow::open_list() {
             tab_widget->setCurrentWidget(new_tab);
             tab_widget->setTabToolTip(tab_widget->currentIndex(),
                 QString::fromStdString(new_tab->get_file_name()));
+            connect(timer.get(), SIGNAL(timeout()),
+                new_tab, SLOT(update_list_widget()));
         }
     }
 }
@@ -332,6 +343,8 @@ void MainWindow::new_list() {
                 tab_widget->setCurrentWidget(new_tab);
                 tab_widget->setTabToolTip(tab_widget->currentIndex(),
                     QString::fromStdString(new_tab->get_file_name()));
+                connect(timer.get(), SIGNAL(timeout()),
+                    new_tab, SLOT(update_list_widget()));
             }
         }
     }

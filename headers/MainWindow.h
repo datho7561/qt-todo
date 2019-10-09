@@ -9,7 +9,9 @@
 #define MAIN_WINDOW_H
 
 #include <memory>
+
 #include <QMainWindow>
+#include <QTimer>
 #include <iostream> // DEBUG
 
 #include "Setting.h"
@@ -24,6 +26,11 @@ class MainWindow: public QMainWindow, public Ui::MainWindow {
 
 private:
     std::unique_ptr<Setting> setting;
+
+    /**
+     * \brief Used to signal the lists to refresh every hour
+     */
+    std::unique_ptr<QTimer> timer;
 
 private slots:
 
